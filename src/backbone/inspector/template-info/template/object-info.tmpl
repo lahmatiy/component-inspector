@@ -1,0 +1,95 @@
+<b:style src="./object-info.css"/>
+<b:isolate/>
+
+<div class="panel">
+  <div class="caption">
+    View
+  </div>
+  <div class="content">
+    <!-- <span class="object-title">#{objectId}</span> -->
+    <span class="object-loc instance" b:show="{objectLoc}">
+      <span
+        class="loc"
+        data-loc="{objectLoc}"
+        event-click="openRefLocation"
+        event-mouseenter="enterRefLocation"
+        event-mouseleave="leaveRefLocation">
+        {objectLoc}
+      </span>
+    </span>
+    <span class="object-loc class" b:show="{objectClassLoc}">
+      <span
+        class="loc"
+        data-loc="{objectClassLoc}"
+        event-click="openRefLocation"
+        event-mouseenter="enterRefLocation"
+        event-mouseleave="leaveRefLocation">
+        {objectClassLoc}
+      </span>
+    </span>
+    <span class="object-loc render" b:show="{objectRenderLoc}">
+      <span
+        class="loc"
+        data-loc="{objectRenderLoc}"
+        event-click="openRefLocation"
+        event-mouseenter="enterRefLocation"
+        event-mouseleave="leaveRefLocation">
+        {objectRenderLoc}
+      </span>
+    </span>
+  </div>
+  <div b:show="{collectionLoc}">
+    <div class="caption">
+      Collection
+    </div>
+    <div class="content">
+      <span class="object-loc instance" b:show="{collectionLoc}">
+        <span
+          class="loc"
+          data-loc="{collectionLoc}"
+          event-click="openRefLocation"
+          event-mouseenter="enterRefLocation"
+          event-mouseleave="leaveRefLocation">
+          {collectionLoc}
+        </span>
+      </span>
+      <span class="object-loc class" b:show="{collectionClassLoc}">
+        <span
+          class="loc"
+          data-loc="{collectionClassLoc}"
+          event-click="openRefLocation"
+          event-mouseenter="enterRefLocation"
+          event-mouseleave="leaveRefLocation">
+          {collectionClassLoc}
+        </span>
+      </span>
+    </div>
+  </div>
+  <div b:show="{modelLoc}">
+    <div class="caption">
+      Model
+    </div>
+    <div class="content">
+      <span class="object-loc instance" b:show="{modelLoc}">
+        <span
+          class="loc"
+          data-loc="{modelLoc}"
+          event-click="openRefLocation"
+          event-mouseenter="enterRefLocation"
+          event-mouseleave="leaveRefLocation">
+          {modelLoc}
+        </span>
+      </span>
+      <span class="object-loc class" b:show="{modelClassLoc}">
+        <span
+          class="loc"
+          data-loc="{modelClassLoc}"
+          event-click="openRefLocation"
+          event-mouseenter="enterRefLocation"
+          event-mouseleave="leaveRefLocation">
+          {modelClassLoc}
+        </span>
+      </span>
+    </div>
+  </div>
+</div>

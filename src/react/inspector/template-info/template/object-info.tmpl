@@ -1,0 +1,41 @@
+<b:style src="./object-info.css"/>
+<b:isolate/>
+
+<div class="panel">
+  <div class="caption">
+    Compontent
+  </div>
+  <div class="content">
+    <span class="object-title">{sourceTitle}</span>
+    <span class="object-loc instance" b:show="{objectLoc}">
+      <span
+        class="loc"
+        data-loc="{objectLoc}"
+        event-click="openRefLocation"
+        event-mouseenter="enterRefLocation"
+        event-mouseleave="leaveRefLocation">
+        {objectLoc}
+      </span>
+    </span>
+    <span class="object-loc class" b:show="{objectClassLoc}">
+      <span
+        class="loc"
+        data-loc="{objectClassLoc}"
+        event-click="openRefLocation"
+        event-mouseenter="enterRefLocation"
+        event-mouseleave="leaveRefLocation">
+        {objectClassLoc}
+      </span>
+    </span>
+    <span class="object-loc render" b:show="{objectRenderLoc}">
+      <span
+        class="loc"
+        data-loc="{objectRenderLoc}"
+        event-click="openRefLocation"
+        event-mouseenter="enterRefLocation"
+        event-mouseleave="leaveRefLocation">
+        {objectRenderLoc}
+      </span>
+    </span>
+  </div>
+</div>

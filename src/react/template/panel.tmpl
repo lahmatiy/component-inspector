@@ -1,0 +1,19 @@
+<b:style src="./panel.css"/>
+<b:isolate/>
+<b:define name="activated" type="bool"/>
+<b:define name="isOnline" type="bool"/>
+<b:define name="inspectMode" type="bool"/>
+<b:define name="templateActivated" from="inspectorId" type="enum" values="template"/>
+
+<div class="panel panel_{activated} panel_{isOnline} panel_{inspectMode}"
+  basis-devpanel-ignore
+  event-mousemove="storePosition">
+  <div{dragElement} class="panel__dd-trigger">&nbsp;</div>
+  <div class="panel__section">
+    <div class="panel__button panel__button_template panel__button_active-{templateActivated}" event-mousedown="inspectTemplate">&nbsp;</div>
+  </div>
+  <div class="info-panels">
+    <b:include src="./reloadRequired.tmpl" isolate/>
+    <b:include src="./inspectMode.tmpl" isolate/>
+  </div>
+</div>

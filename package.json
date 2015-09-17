@@ -1,0 +1,26 @@
+{
+  "name": "component-inspector",
+  "title": "Component inspector",
+  "description": "Component DOM inspector",
+  "version": "0.0.0",
+  "repository": "lahmatiy/component-inspector",
+  "keywords": [
+    "frontend",
+    "component",
+    "dom",
+    "inspector",
+    "spa",
+    "devtools",
+    "tools"
+  ],
+  "licenses": "MIT",
+  "dependencies": {
+    "basisjs": "basisjs/basisjs#1.5"
+  },
+  "devDependencies": {
+    "basisjs-tools": "basisjs/basisjs-tools"
+  },
+  "scripts": {
+    "build": "basis build"
+  }
+}
