@@ -70,7 +70,7 @@ function getRefLoc(ref){
     : null;
 }
 function getRefClassLoc(ref){
-  return basis.dev.getInfo(ref && ref.element.constructor, 'loc');
+  return basis.dev.getInfo(ref && ref.element._instance.constructor, 'loc');
 }
 
 var view = new Node({

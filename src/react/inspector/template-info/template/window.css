@@ -14,6 +14,7 @@
   background: rgba(0, 0, 0, .2);
   color: black;
   overflow: auto;
+  line-height: 1.4em;
 }
 .window__wrapper:before
 {

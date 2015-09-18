@@ -7,7 +7,10 @@ module.exports = new Popup({
   loc: new Value(),
 
   dir: 'top left bottom left',
-  autorotate: true,
+  autorotate: [
+    'bottom left top left',
+    'top right top left'
+  ],
   template: resource('./template/js-source-popup.tmpl'),
   binding: {
     loc: function(node){
@@ -18,7 +21,7 @@ module.exports = new Popup({
     source: function(node){
       return node.loc.as(function(loc){
         if (loc)
-          return getColoredSource(loc, 0, 0, 15);
+          return getColoredSource(loc, 0, 0, 10);
       });
     }
   },

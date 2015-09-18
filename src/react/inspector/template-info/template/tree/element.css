@@ -50,3 +50,7 @@
   color: black;
   background: rgba(255, 255, 255, .5);
 }
+.showLoc:hover
+{
+  background: #D0D8FF;
+}

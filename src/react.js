@@ -1,10 +1,8 @@
-var reactDevApi;
-
 function patchApi(api){
   /** @cut */ window.reactDevApi = api;
 
-  reactDevApi = api;
-  api._instanceMap = {};
+  var reactDevApi = api;
+  var _instanceMap = {};
 
   function getReactElementFromNative(node) {
     var id = api.Mount.getID(node);
@@ -12,7 +10,7 @@ function patchApi(api){
       node = node.parentNode;
       id = api.Mount.getID(node);
     }
-    return api._instanceMap[id];
+    return _instanceMap[id];
   }
 
   function getInstanceByNode(node){
@@ -82,7 +80,7 @@ function patchApi(api){
   var _mount = api.Reconciler.mountComponent;
   api.Reconciler.mountComponent = function(instance){
     var res = _mount.apply(this, arguments);
-    api._instanceMap[instance._rootNodeID] = instance;
+    _instanceMap[instance._rootNodeID] = instance;
     return res;
   }
 

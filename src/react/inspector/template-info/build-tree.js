@@ -4,21 +4,65 @@ var SINGLETON = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', '
 var jsSourcePopup = require('./js-source-popup.js');
 var templateSwitcher = require('basis.template').switcher;
 
+function memo(fn, oldValue){
+  return function(newValue){
+    var result = fn(newValue, oldValue);
+    oldValue = newValue;
+    return result;
+  }
+}
+
+var showLocNode = new basis.Token();
+showLocNode.attach(memo(function(node, oldNode){
+  if (oldNode)
+  {
+    oldNode.showLoc = false;
+    oldNode.updateBind('showLoc');
+  }
+
+  if (node)
+  {
+    jsSourcePopup.loc.set(node.loc);
+    jsSourcePopup.show(node.element);
+    node.showLoc = true;
+    node.updateBind('showLoc');
+  }
+  else
+  {
+    jsSourcePopup.hide();
+  }
+}));
+
 var DOMNode = Node.subclass({
   action: {
     enter: function(){
       if (this.loc)
-      {
-        jsSourcePopup.loc.set(this.loc);
-        jsSourcePopup.show(this.element);
-      }
+        showLocNode.set(this);
     },
     leave: function(){
-      jsSourcePopup.hide();
+      var cursor = this.parentNode;
+      while (cursor && cursor instanceof DOMNode)
+      {
+        if (cursor.loc)
+        {
+          showLocNode.set(cursor);
+          return;
+        }
+        cursor = cursor.parentNode;
+      }
+
+      showLocNode.set();
     },
     inspect: function(){
       if (this.selectDomNode && this.domNode)
+      {
         this.selectDomNode(this.domNode);
+      }
+      else
+      {
+        if (showLocNode.value && showLocNode.value.loc)
+          fileAPI.openFile(showLocNode.value.loc);
+      }
     }
   },
   destroy: function(){
@@ -64,6 +108,7 @@ var Attribute = DOMNode.subclass({
 var Element = DOMNode.subclass({
   template: resource('./template/tree/element.tmpl'),
   binding: {
+    showLoc: 'showLoc',
     name: 'name',
     binding: 'bindingName',
     nestedView: 'nestedView',
@@ -151,6 +196,7 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
       var attrs;
       var inline;
       var componentName;
+      var loc;
 
       if (binding && binding.binding == 'element')
         binding = null;
@@ -191,6 +237,13 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
         componentName = component ? basis.reactApi.getInfo(component.element).name : '';
       }
 
+      var instance = basis.reactApi.getInstanceByNode(node);
+      if (instance)
+      {
+        var locHost = (instance.element._renderedComponent || instance.element);
+        loc = basis.dev.getInfo(locHost._currentElement, 'loc');
+      }
+
       return new Element({
         domNode: node,
         name: node.tagName.toLowerCase(),
@@ -201,7 +254,8 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
         componentName: componentName,
         selectDomNode: nestedView ? selectDomNode : null,
         attributes: attrs,
-        childNodes: children
+        childNodes: children,
+        loc: loc
       });
 
       break;
