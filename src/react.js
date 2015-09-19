@@ -24,6 +24,7 @@ function patchApi(api){
 
   function isComponentInstance(instance){
     return instance &&
+        instance.element._currentElement &&
         typeof instance.element._currentElement != 'number' &&
         typeof instance.element._currentElement != 'string' &&
         typeof instance.element._currentElement.type != 'string';
