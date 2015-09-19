@@ -2,7 +2,7 @@
 
 This is mostly a **proof of concent**. Generally it's adopted version of `devpanel` tool from `basis.js` for some other frameworks. For now adoption for Backbone and React are available.
 
-![Example for React](http://www.gfycat.com/DimpledCharmingFlyingfish)
+[Example for React](http://www.gfycat.com/DimpledCharmingFlyingfish)
 
 ## Install
 
@@ -27,7 +27,7 @@ $devinfo.get(obj);
 
 When server supports "open in external editor" feature, all location links become active. Click by those links opens file in editor with cursor on code fragment start.
 
-![Open in editor](http://www.gfycat.com/MelodicFlawedGreatargus)
+[Open in editor example](http://www.gfycat.com/MelodicFlawedGreatargus)
 
 ## Framework adoptations
 
