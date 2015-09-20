@@ -4,7 +4,7 @@
 
 This is mostly a **proof of concept**. Generally it's adoptation of `devpanel` tool from `basis.js` for some other frameworks. For now Backbone and React are supported.
 
-![Example for React](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/intro.png)
+![Example for React](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/intro.gif)
 
 ## Install
 
