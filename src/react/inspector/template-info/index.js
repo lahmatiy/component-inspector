@@ -66,11 +66,11 @@ function findParentComponent(node){
 
 function getRefLoc(ref){
   return ref
-    ? basis.dev.getInfo(ref.element._currentElement, 'loc')
+    ? basis.reactApi.getDevInfo(ref.element._currentElement, 'loc')
     : null;
 }
 function getRefClassLoc(ref){
-  return basis.dev.getInfo(ref && ref.element._instance.constructor, 'loc');
+  return basis.reactApi.getDevInfo(ref && ref.element._instance.constructor, 'loc');
 }
 
 var view = new Node({
@@ -90,7 +90,7 @@ var view = new Node({
     objectClassLoc: selectedComponent.as(getRefClassLoc),
     objectRenderLoc: selectedComponent.as(function(ref){
       if (ref)
-        return basis.dev.getInfo(ref.element._instance.render, 'loc');
+        return basis.reactApi.getDevInfo(ref.element._instance.render, 'loc');
     })
   },
   action: {

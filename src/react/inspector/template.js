@@ -51,7 +51,7 @@ function pickHandler(event){
 
     if (event.altKey)
     {
-      var info = basis.dev.getInfo(component.element._currentElement);
+      var info = basis.reactApi.getDevInfo(component.element._currentElement);
 
       if (info && info.loc)
         fileAPI.openFile(info.loc);
@@ -147,7 +147,7 @@ var nodeInfoPopup = basis.fn.lazyInit(function(){
         events: 'delegateChanged update',
         getter: function(node){
           var element = node.data.element;
-          return basis.dev.getInfo(element && element._currentElement, 'loc');
+          return basis.reactApi.getDevInfo(element && element._currentElement, 'loc');
         }
       }
     },

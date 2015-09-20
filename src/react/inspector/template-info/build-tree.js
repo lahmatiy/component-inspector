@@ -241,7 +241,7 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
       if (instance)
       {
         var locHost = (instance.element._renderedComponent || instance.element);
-        loc = basis.dev.getInfo(locHost._currentElement, 'loc');
+        loc = basis.reactApi.getDevInfo(locHost._currentElement, 'loc');
       }
 
       return new Element({
