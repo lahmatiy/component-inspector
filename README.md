@@ -51,7 +51,17 @@ $devinfo.get(obj);
 
 When dev-server supports "open in external editor" feature, all location references become active links. Click by those links opens file in editor with cursor on code fragment start. You'll see hint if feature is supported.
 
-If you doesn't depends on dev-server you could use [basisjs-tools](https://github.com/basisjs/basisjs-tools) dev-server that support that feature.
+One possible way to provide this feature is some url that do the job. This url could be set via global variable `OPEN_FILE_URL`.
+
+```js
+window.OPEN_FILE_URL = '/open-in-editor';
+```
+
+If you use `Express` you can use [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor) to provide some url with necessary functionality.
+
+Or if you don't depend on dev-server you could use [basisjs-tools](https://github.com/basisjs/basisjs-tools) that support that feature.
+
+Also you could implement your own implmentation for your dev-server using [open-in-editor](https://github.com/lahmatiy/open-in-editor) as basis.
 
 ## License
 
