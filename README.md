@@ -14,15 +14,45 @@ General purpose of tool is show components boundaries and its DOM fragment with 
 npm install component-inspector --save-dev
 ```
 
-### Usage
+## Usage
 
-In case you use one of ready-to-use editions (i.e. `React` or `Backbone`) there is no any public API. Just include necessary script and here you are.
+There are 3 options to use Component Inspector:
 
-You can build your own ready-to-use edition, see [React](src/react.js) or [Backbone](src/backbone.js) examples.
+- use one of ready-to-use build for certain framework or library
+- use API free build and init inspector with custom API
+- make you own build as ready-to-use solution (PRs are welcome)
 
-But if you want to provide custom API, you should use `dist/base.js` script. if script included only one public function will be available – `initComponentInspector(api)`. This function could be called just once. It takes API methods that should override defaults and build interface.
+### Ready to use builds
 
-```js
+In case you use one of ready-to-use editions (i.e. `React` or `Backbone`) there is no any public API. Just include apropriate script and here you are.
+
+#### React
+
+![React example](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/react.png)
+
+You should include `component-inspector` script **before** `React` script.
+
+```html
+<script src="node_modules/component-inspector/dist/react.js"></script>
+<script src="react.js"></script>
+```
+
+#### Backbone
+
+![Backbone example](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/backbone.png)
+
+You should include `component-inspector` script right **after** `Backbone` script.
+
+```html
+<script src="backbone.js"></script>
+<script src="node_modules/component-inspector/dist/backbone.js"></script>
+```
+
+### API free build
+
+In case you want to use inspector with your own API adapter you should use `dist/base.js` script. When script included into html only one public function available – `initComponentInspector(api)`. This function could be invoked just once. It takes API methods that override defaults.
+
+```html
 <script src="node_modules/component-inspector/dist/base.js"></script>
 <script>
   initComponentInspector({
@@ -43,7 +73,7 @@ But if you want to provide custom API, you should use `dist/base.js` script. if 
 </script>
 ```
 
-### Custom API
+All methods are optional. Most important method is `isComponentRootNode` that checks DOM node is component root node. Also `getInstanceByNode` and `getInstanceRootNode` could be used to resolve DOM fragment owner (component instance) and owners root element. Other methods could provide additional information.
 
 #### isComponentRootNode(node)
 
@@ -115,29 +145,64 @@ Returns `true` if `open file in editor` is supported. In this case click by sour
 
 Should make some action to open specified filename in editor.
 
-### Using with React
+### Make your own build
 
-![React example](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/react.png)
+You can make your own ready-to-use edition, see [React](src/react.js) or [Backbone](src/backbone.js) as examples.
 
-You should include `component-inspector` script **before** `React` script.
+#### Implementation
 
-```html
-<script src="node_modules/component-inspector/dist/react.js"></script>
-<script src="react.js"></script>
-```
-
-### Using with Backbone
-
-![Backbone example](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/backbone.png)
-
-You should include `component-inspector` script right **after** `Backbone` script.
+First of all, you should include `basis.js` core (as inspector was originaly implemented using it) in your base html file and specify path to your implementation module.
 
 ```html
-<script src="backbone.js"></script>
-<script src="node_modules/component-inspector/dist/backbone.js"></script>
+<script src="node_modules/component-inspector/node_modules/basisjs/src/basis.js" basis-config="
+  noConflict: true,    // prevents export names to global scope
+  devpanel: false,
+  modules: {
+    myapi: {           // your implementation module
+      autoload: true,
+      filename: 'path/to/implementation.js'
+    }
+  }
+"></script>
 ```
 
-## Locating component's source
+Example of `implementation.js`:
+
+```js
+var initInspector = require('./inspector/index.js');
+
+initInspector({
+  isComponentRootNode: function(node){
+    // ..
+  },
+  getInstanceByNode: function(node){
+    // ..
+  },
+  getInstanceRootNode: function(instance){
+    // ..
+  }
+});
+```
+
+#### Build
+
+Install `basisjs-tools`
+
+```
+npm install basisjs-tools --save-dev
+```
+
+Run build with `--single-file` option.
+
+```
+node node_modules/basisjs-tools/bin/basis --file path/to/myinspector.html --single-file --pack --same-filenames
+```
+
+As result you'll get single JavaScript file (`myinspector.js` in this example) that contains everything. Include this script in your application page.
+
+## Additional features
+
+### Locating component's source
 
 Component inspector works as is, but shows only component bounds and its DOM fragment. More interesting things could be shown if some meta information (like source code location) is available.
 
@@ -150,7 +215,7 @@ $devinfo.get(obj);
 // > { "loc": "app.js:..." }
 ```
 
-## Opening file in editor
+### Opening file in editor
 
 In case dev-server supports "open in external editor" feature, all location references become active links. A click on any of those opens a file in editor with cursor set at the start of the code fragment. You'll see a hint if feature is supported.
 
