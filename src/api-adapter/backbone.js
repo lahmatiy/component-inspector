@@ -1,16 +1,16 @@
 var api = new basis.Token();
 
-function isComponentRootNode(el) {
-  if (el && el.__view) {
+function isComponentRootNode(node) {
+  if (node && node.__view) {
     return true;
   }
 
   return false;
 }
 
-function getInstanceByNode(el) {
-  if (el) {
-    return el.__view;
+function getInstanceByNode(node) {
+  if (node) {
+    return node.__view;
   }
 }
 
