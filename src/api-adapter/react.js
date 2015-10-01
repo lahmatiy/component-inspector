@@ -142,8 +142,9 @@ function adoptAPI(reactApi) {
     getInstanceRenderLocation: getInstanceRenderLocation,
     getNodeLocation: getNodeLocation,
 
-    ignoreAttribute: function(attr){
-      return attr.name === 'data-reactid';
+    getNestedComponentNameByNode: getComponentNameByNode,
+    viewAttributeFilter: function(attr){
+      return attr.name !== 'data-reactid';
     }
   });
 }

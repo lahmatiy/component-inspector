@@ -188,9 +188,7 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
     case 1:
       var binding = findNodeBinding(node);
       var nestedView = properties.nestedView;
-      var attributes = basis.array(node.attributes).filter(function(attr){
-        return !api.ignoreAttribute(attr);
-      });
+      var attributes = basis.array(node.attributes).filter(api.viewAttributeFilter);
       var attrs;
       var inline;
 
@@ -234,7 +232,7 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
         childrenHidden: node.firstChild && !children.length,
         inlineChildren: inline,
         nestedView: nestedView,
-        componentName: nestedView ? api.getComponentNameByNode(node) : null,
+        componentName: nestedView ? api.getNestedComponentNameByNode(node) : null,
         selectDomNode: nestedView ? selectDomNode : null,
         attributes: attrs,
         childNodes: children,

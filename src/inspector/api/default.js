@@ -36,9 +36,12 @@ module.exports = {
     return null;
   },
 
-  // build
-  ignoreAttribute: function(){
-    return false;
+  // dom view
+  getNestedComponentNameByNode: function(){
+    return '';
+  },
+  viewAttributeFilter: function(){
+    return true;
   },
 
   // file API
@@ -46,15 +49,10 @@ module.exports = {
   openFile: fileAPI.openFile,
 
   // info
+  getDevInfo: getDevInfo,
   getLocation: function(value){
     if (value) {
       return this.getDevInfo(value, 'loc');
-    }
-  },
-  getDevInfo: getDevInfo,
-  getInstanceDevInfo: function(instance, property){
-    if (instance) {
-      return this.getDevInfo(instance._currentElement, property);
     }
   }
 };
