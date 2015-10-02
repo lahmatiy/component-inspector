@@ -2,11 +2,11 @@
 
 # Component inspector
 
-This is mostly a **proof of concept**. Generally it's an adoptation of `devpanel` tool from `basis.js` for some other frameworks. Currently Backbone and React are supported.
-
 ![Example for React](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/intro.gif)
 
-General purpose of tool is show components boundaries and its DOM fragment with some details. But this functionality could be extended by features like `source fragment locating` and `open file in editor`.
+General purpose of tool is showing components boundaries and its DOM fragment with some details. It could be extended by features like [source fragment locating](#locating-components-source) and [opening file in editor](#opening-file-in-editor).
+
+It's still a **proof of concept**. Generally it's an adoptation of [basis.js](https://github.com/basisjs/basisjs) tool for other component frameworks and libraries. Here is ready to use builds for [React](#react) and [Backbone](#backbone). But you also could [use inspector with custom API](#api-free-build) for your own component solution.
 
 ## Install
 
