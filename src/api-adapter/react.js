@@ -1,7 +1,22 @@
+var hasOwnProperty = Object.prototype.hasOwnProperty;
 var api = new basis.Token()
 var elementMap = {};
 var getNode;
 var getID;
+
+function unwrap(value, getDevInfo) {
+  var info;
+
+  while (info = getDevInfo(value)) {
+    if (!info.wrapperFor) {
+      break;
+    }
+
+    value = info.wrapperFor;
+  }
+
+  return value;
+}
 
 function getReactElementByNode(node) {
   var element = elementMap[getID(node)];
@@ -32,7 +47,18 @@ function getComponentNameByNode(node){
   var name;
 
   if (element) {
-    name = getInfo(element).name;
+    if (element._instance) {
+      var constructor = element._instance.constructor;
+      var rootConstructor = unwrap(constructor, this.getDevInfo);
+
+      if (constructor !== rootConstructor) {
+        name = rootConstructor.displayName || rootConstructor.name;
+      }
+    }
+
+    if (!name) {
+      name = getInfo(element).name;
+    }
   }
 
   return name ? '<' + name + '>' : 'Unknown';
@@ -50,10 +76,44 @@ function getInstanceClass(element){
             element._instance.constructor;
 
   if (typeof cls == 'function') {
-    return cls;
+    return unwrap(cls, this.getDevInfo);
   }
 
   return null;
+}
+
+function getAdditionalInstanceInfo(element){
+  var decorators = [];
+  var info;
+  var cls = element &&
+            element._instance &&
+            element._instance.constructor;
+
+  if (typeof cls == 'function') {
+    while (info = this.getDevInfo(cls)) {
+      if (!info.wrapperFor) {
+        break;
+      }
+
+      decorators.push({
+        name: '[decorator] ' + (cls.displayName || cls.name || 'UnknownName'),
+        locations: [
+          {
+            type: 'class',
+            loc: this.getLocation(cls)
+          },
+          {
+            type: 'render',
+            loc: this.getLocation(cls.prototype.render)
+          }
+        ]
+      });
+
+      cls = info.wrapperFor;
+    }
+  }
+
+  return decorators.reverse();
 }
 
 function getInstanceLocation(element){
@@ -61,9 +121,19 @@ function getInstanceLocation(element){
 }
 
 function getInstanceRenderLocation(element){
-  var render = element &&
-               element._instance &&
-               element._instance.render;
+  var instance = element && element._instance;
+  var render;
+
+  if (instance) {
+    if (hasOwnProperty.call(instance, 'render')) {
+      render = instance.render;
+    } else {
+      var constructor = unwrap(instance.constructor, this.getDevInfo);
+      if (constructor && constructor.prototype) {
+        render = constructor.prototype.render;
+      }
+    }
+  }
 
   if (typeof render == 'function') {
     return this.getLocation(render);
@@ -82,6 +152,16 @@ function getNodeLocation(node){
   return null;
 }
 
+function getNestedComponentNodeLocation(node){
+  var element = getReactElementByNode(node);
+
+  if (element) {
+    return this.getLocation(element._currentElement);
+  }
+
+  return null;
+}
+
 function getInfo(element){
   var name = null;
   var type = null;
@@ -94,9 +174,11 @@ function getInfo(element){
     } else if (element.getName) {
       nodeType = 'Composite';
       name = element.getName();
+
       if (element._renderedComponent && element._currentElement.props === element._renderedComponent._currentElement) {
         nodeType = 'Wrapper';
       }
+
       if (name === null) {
         name = 'No display name';
       }
@@ -141,8 +223,10 @@ function adoptAPI(reactApi) {
     getInstanceLocation: getInstanceLocation,
     getInstanceRenderLocation: getInstanceRenderLocation,
     getNodeLocation: getNodeLocation,
+    getAdditionalInstanceInfo: getAdditionalInstanceInfo,
 
     getNestedComponentNameByNode: getComponentNameByNode,
+    getNestedComponentNodeLocation: getNestedComponentNodeLocation,
     viewAttributeFilter: function(attr){
       return attr.name !== 'data-reactid';
     }
@@ -163,7 +247,7 @@ else
 {
   window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
     inject: adoptAPI
-  }
+  };
 }
 
 // provide ready function
