@@ -111,6 +111,10 @@ If there is source location where DOM node was created this function should retu
 
 Used in DOM viewer to get name for nested components. Override function if those names should be provided.
 
+#### getNestedComponentNodeLocation(node)
+
+Allow provide location for nested component root node. If not defined `getNodeLocation` is used.
+
 #### domAttributeFilter(attribute)
 
 Allow to filter output attributes in DOM viewer. For example, React adds `data-reactid` attribute to every element, but we don't want to show it. In this case, method could be:
@@ -119,6 +123,24 @@ Allow to filter output attributes in DOM viewer. For example, React adds `data-r
 domAttributeFilter: function(attr){
   return attr.name !== 'data-reactid';
 }
+```
+
+#### getAdditionalInstanceInfo(instance)
+
+Allow provide additional info for related objects. Should provide array of objects or nothing. For example, provide instance model info:
+
+```js
+api.getAdditionalInstanceInfo = function(instance){
+  if (instance && instance.model) {
+    return [{
+      name: 'Model',
+      locations: [
+        { type: 'instance', loc: this.getLocation(instance.model) },
+        { type: 'class', loc: this.getLocation(instance.model.constructor) }
+      ]
+    }];
+  }
+};
 ```
 
 #### getLocation(value)

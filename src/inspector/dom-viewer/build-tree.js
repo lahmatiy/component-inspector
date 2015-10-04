@@ -236,7 +236,9 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
         selectDomNode: nestedView ? selectDomNode : null,
         attributes: attrs,
         childNodes: children,
-        loc: api.getNodeLocation(node)
+        loc: nestedView
+          ? api.getNestedComponentNodeLocation(node)
+          : api.getNodeLocation(node)
       });
 
       break;

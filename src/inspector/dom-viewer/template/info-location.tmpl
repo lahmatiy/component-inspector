@@ -1,0 +1,14 @@
+<b:style src="./info-location.css"/>
+<b:isolate/>
+<b:define name="type" type="enum" values="instance class render"/>
+
+<span class="wrapper {type}" b:show="{loc}">
+  <span
+    class="location"
+    data-loc="{loc}"
+    event-click="openRefLocation"
+    event-mouseenter="enterRefLocation"
+    event-mouseleave="leaveRefLocation">
+    {loc}
+  </span>
+</span>

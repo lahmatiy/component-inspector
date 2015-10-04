@@ -61,7 +61,8 @@
 .source-title
 {
   font-size: 12px;
-  padding: 3px 3ex;
+  line-height: 1;
+  padding: 4px 3ex;
   margin-right: 60px;
   text-align: center;
   overflow: hidden;

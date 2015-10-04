@@ -32,6 +32,9 @@ module.exports = {
 
     return null;
   },
+  getAdditionalInstanceInfo: function(){
+    return []
+  },
   getNodeLocation: function(){
     return null;
   },
@@ -39,6 +42,9 @@ module.exports = {
   // dom view
   getNestedComponentNameByNode: function(){
     return '';
+  },
+  getNestedComponentNodeLocation: function(node){
+    return this.getNodeLocation(node);
   },
   viewAttributeFilter: function(){
     return true;

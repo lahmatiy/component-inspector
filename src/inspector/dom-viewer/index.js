@@ -1,8 +1,8 @@
 var api = require('../api.js');
 var parseDom = require('./parse-dom.js');
 var buildTree = require('./build-tree.js');
-var jsSourcePopup = require('./js-source-popup.js');
 var Node = require('basis.ui').Node;
+var InfoSection = require('./info.js');
 var selectedDomNode = new basis.Token();
 var selectedInstance = selectedDomNode.as(api.getInstanceByNode)
 
@@ -74,6 +74,40 @@ function findParentComponent(node){
   return null;
 }
 
+var defaultInfoSection = {
+  name: 'Component',
+  childNodes: [
+    {
+      type: 'instance',
+      loc: selectedInstance.as(api.getInstanceLocation),
+    },
+    {
+      type: 'class',
+      loc: selectedInstance.as(function getRefClassLoc(instance){
+        var cls = api.getInstanceClass(instance);
+        return api.getLocation(cls);
+      })
+    },
+    {
+      type: 'render',
+      loc: selectedInstance.as(api.getInstanceRenderLocation)
+    }
+  ]
+};
+
+var info = new Node({
+  childClass: InfoSection,
+  childNodes: [
+    defaultInfoSection
+  ]
+});
+
+selectedInstance.attach(function(instance){
+  info.setChildNodes([defaultInfoSection].concat(
+    api.getAdditionalInstanceInfo(instance) || []
+  ));
+});
+
 var view = new Node({
   container: document.body,
   visible: selectedDomNode.as(Boolean),
@@ -85,12 +119,7 @@ var view = new Node({
       return findParentComponent(node) ? 'parent' : '';
     }),
     sourceTitle: selectedDomNode.as(api.getComponentNameByNode),
-    objectLoc: selectedInstance.as(api.getInstanceLocation),
-    objectClassLoc: selectedInstance.as(function getRefClassLoc(instance){
-      var cls = api.getInstanceClass(instance);
-      return api.getLocation(cls);
-    }),
-    objectRenderLoc: selectedInstance.as(api.getInstanceRenderLocation)
+    info: 'satellite:'
   },
   action: {
     up: function(){
@@ -98,22 +127,6 @@ var view = new Node({
     },
     close: function(){
       selectedDomNode.set();
-    },
-    openRefLocation: function(e){
-      var loc = e.target.getAttribute('data-loc');
-      if (loc) {
-        api.openFile(loc);
-      }
-    },
-    enterRefLocation: function(e){
-      var loc = e.target.getAttribute('data-loc');
-      if (loc) {
-        jsSourcePopup.loc.set(loc);
-        jsSourcePopup.show(e.actionTarget);
-      }
-    },
-    leaveRefLocation: function(){
-      jsSourcePopup.hide();
     },
     logInfo: function(){
       global.$component = {
@@ -123,6 +136,9 @@ var view = new Node({
 
       console.log($component);
     }
+  },
+  satellite: {
+    info: info
   }
 });
 
