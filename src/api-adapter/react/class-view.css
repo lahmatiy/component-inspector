@@ -1,0 +1,29 @@
+.view
+{
+  white-space: pre;
+  font-family: consolas, monaco, courier new, monospace;
+  line-height: 1.6;
+}
+.classHasLoc,
+.extendsHasLoc,
+.renderHasLoc
+{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.classHasLoc:hover,
+.extendsHasLoc:hover,
+.renderHasLoc:hover
+{
+  color: #A00;
+}
+.class-content
+{
+  padding-left: 2ex;
+  padding-left: 2ch;
+}
+.keyword
+{
+  color: #006699;
+  font-weight: bold;
+}

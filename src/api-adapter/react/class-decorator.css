@@ -1,0 +1,58 @@
+.decorator
+{
+  color: #BBB;
+  line-height: 1.8;
+}
+
+.name
+{
+  color: #666;
+  margin-right: 1ex;
+  margin-right: 1ch;
+}
+.name_hasLoc
+{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.name_hasLoc:hover
+{
+  color: #A00;
+}
+
+.fn,
+.class,
+.render
+{
+  opacity: .65;
+  margin-left: .5ex;
+  margin-left: .5ch;
+  padding: 2px .5ex;
+  padding: 3px .5ch 2px;
+  border-radius: 3px;
+  cursor: pointer;  
+}
+.fn:hover,
+.class:hover,
+.render:hover
+{
+  opacity: 1;
+}
+
+.fn
+{
+  color: #353;
+  background: #B6CFB6;
+}
+.class
+{
+  color: #618;
+  background: #EAC4F7;
+}
+.render
+{
+  margin-left: .5ex;
+  margin-left: .5ch;
+  color: #666;
+  background: #DDD;
+}

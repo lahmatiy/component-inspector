@@ -1,0 +1,15 @@
+.instance
+{
+  font-family: consolas, monaco, courier new, monospace;
+  line-height: 1.6;
+}
+
+.name_hasLoc
+{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.name_hasLoc:hover
+{
+  color: #A00;
+}

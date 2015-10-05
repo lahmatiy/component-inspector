@@ -1,0 +1,34 @@
+<b:style src="./class-view.css"/>
+<b:isolate/>
+<b:define name="classHasLoc" from="classLoc" type="bool"/>
+<b:define name="extendsHasLoc" from="extendsLoc" type="bool"/>
+<b:define name="renderHasLoc" from="renderLoc" type="bool"/>
+
+<div class="view">
+  <!--{childNodesHere}-->
+  <span b:show="{isClass}">
+    <span class="keyword">class</span>
+    &nbsp;
+    <span class="{classHasLoc}" data-loc="{classLoc}">{className}</span>
+    &nbsp;
+    <span class="keyword">extends</span>
+    &nbsp;
+    <span class="{extendsHasLoc}" data-loc="{extendsLoc}">{extendsClassName}</span>
+    &nbsp;&#x7b;
+  </span>
+  <span b:hide="{isClass}">
+    <span class="{classHasLoc}" data-loc="{classLoc}">{className}</span>
+    &nbsp;
+    =
+    &nbsp;
+    React.createClass(&#x7b;
+  </span>
+  <div class="class-content">
+    <div class="render">
+    <span class="{renderHasLoc}" data-loc="{renderLoc}">render</span>() {
+      &nbsp;&#x2026;&nbsp;
+    }
+    </div>
+  </div>
+  &#x7d;<span b:hide="{isClass}">);</span>
+</div>

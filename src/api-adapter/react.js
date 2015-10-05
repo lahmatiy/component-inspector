@@ -1,3 +1,5 @@
+var Node = require('basis.ui').Node;
+var ClassView = require('./react/class-view.js');
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var api = new basis.Token()
 var elementMap = {};
@@ -8,11 +10,11 @@ function unwrap(value, getDevInfo) {
   var info;
 
   while (info = getDevInfo(value)) {
-    if (!info.wrapperFor) {
+    if (!info.wrapper || !info.wrapper.target) {
       break;
     }
 
-    value = info.wrapperFor;
+    value = info.wrapper.target;
   }
 
   return value;
@@ -82,38 +84,77 @@ function getInstanceClass(element){
   return null;
 }
 
+var InstanceView = Node.subclass({
+  template: resource('./react/instance-view.tmpl'),
+  binding: {
+    name: 'name',
+    loc: 'loc'
+  }
+});
+
 function getAdditionalInstanceInfo(element){
+  var instanceRootNode = this.getInstanceRootNode(element);
+  var instance = element && element._instance;
+  var cls = instance && instance.constructor;
+  var decoratorsMap = {};
   var decorators = [];
   var info;
-  var cls = element &&
-            element._instance &&
-            element._instance.constructor;
 
   if (typeof cls == 'function') {
     while (info = this.getDevInfo(cls)) {
-      if (!info.wrapperFor) {
+      if (!info.wrapper || !info.wrapper.target) {
         break;
       }
 
-      decorators.push({
-        name: '[decorator] ' + (cls.displayName || cls.name || 'UnknownName'),
-        locations: [
-          {
-            type: 'class',
-            loc: this.getLocation(cls)
-          },
-          {
-            type: 'render',
-            loc: this.getLocation(cls.prototype.render)
-          }
-        ]
-      });
+      decoratorsMap[info.wrapper.index] = info.wrapper;
 
-      cls = info.wrapperFor;
+      cls = info.wrapper.target;
     }
   }
 
-  return decorators.reverse();
+  if (info && Array.isArray(info.decorators)) {
+    decorators = info.decorators.map(function(decorator, idx){
+      var wrapper = decoratorsMap[idx];
+      var classLoc;
+      var renderLoc;
+
+      if (wrapper) {
+        classLoc = this.getLocation(wrapper.target);
+        renderLoc = this.getLocation(wrapper.target && wrapper.target.prototype.render);
+      }
+
+      return {
+        name: decorator.name,
+        loc: decorator.loc,
+        fnLoc: this.getLocation(decorator.fn),
+        classLoc: classLoc,
+        renderLoc: renderLoc
+      };
+    }, this);
+  }
+  
+  return [
+    {
+      name: 'Instance',
+      childNodes: [
+        new InstanceView({
+          name: this.getComponentNameByNode(instanceRootNode),
+          loc: this.getNestedComponentNodeLocation(instanceRootNode)
+        })
+      ]
+    },
+    {
+      name: 'Component',
+      childNodes: [
+        new ClassView({
+          cls: cls,
+          isClass: info && info.type === 'class',
+          getLocation: this.getLocation,
+          childNodes: decorators
+        })
+      ]
+    }
+  ];
 }
 
 function getInstanceLocation(element){
@@ -224,6 +265,9 @@ function adoptAPI(reactApi) {
     getInstanceRenderLocation: getInstanceRenderLocation,
     getNodeLocation: getNodeLocation,
     getAdditionalInstanceInfo: getAdditionalInstanceInfo,
+    showDefaultInfo: function(){
+      return false;
+    },
 
     getNestedComponentNameByNode: getComponentNameByNode,
     getNestedComponentNodeLocation: getNestedComponentNodeLocation,

@@ -1,0 +1,10 @@
+<b:style src="./class-decorator.css"/>
+<b:isolate/>
+<b:define name="hasLoc" from="loc" type="bool"/>
+
+<div class="decorator">
+  @<span class="name name_{hasLoc}" data-loc="{loc}">{name}</span>
+  <span b:show="{fnLoc}" class="fn" data-loc="{fnLoc}">fn</span>
+  <span b:show="{classLoc}" class="class" data-loc="{classLoc}">class</span>
+  <span b:show="{renderLoc}" class="render" data-loc="{renderLoc}">render</span>
+</div>
