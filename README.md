@@ -125,6 +125,10 @@ domAttributeFilter: function(attr){
 }
 ```
 
+#### showDefaultInfo()
+
+Show default info block or not. True by default.
+
 #### getAdditionalInstanceInfo(instance)
 
 Allow provide additional info for related objects. Should provide array of objects or nothing. For example, provide instance model info:

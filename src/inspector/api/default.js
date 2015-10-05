@@ -32,6 +32,9 @@ module.exports = {
 
     return null;
   },
+  showDefaultInfo: function(){
+    return true;
+  },
   getAdditionalInstanceInfo: function(){
     return []
   },
