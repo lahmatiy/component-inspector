@@ -20,6 +20,36 @@ function getInstanceRootNode(view) {
   }
 }
 
+function getAdditionalInstanceInfo(instance) {
+  function buildSection(name, ref) {
+    return {
+      name: name,
+      locations: [
+        {
+          type: 'instance',
+          loc: this.getLocation(ref)
+        },
+        {
+          type: 'class',
+          loc: this.getLocation(ref.constructor)
+        }
+      ]
+    }
+  }
+
+  var result = [];
+
+  if (instance.model) {
+    result.push(buildSection.call(this, 'Model', instance.model));
+  }
+
+  if (instance.collection) {
+    result.push(buildSection.call(this, 'Collection', instance.collection));
+  }
+
+  return result;
+}
+
 if (typeof Backbone != 'undefined')
 {
   // patch backbone.js to have references to view
@@ -33,7 +63,8 @@ if (typeof Backbone != 'undefined')
     api.set({
       isComponentRootNode: isComponentRootNode,
       getInstanceByNode: getInstanceByNode,
-      getInstanceRootNode: getInstanceRootNode
+      getInstanceRootNode: getInstanceRootNode,
+      getAdditionalInstanceInfo: getAdditionalInstanceInfo
     });
   });
 }
