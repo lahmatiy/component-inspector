@@ -4,6 +4,12 @@
   font-family: consolas, monaco, courier new, monospace;
   line-height: 1.6;
 }
+.header
+{
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .classHasLoc,
 .extendsHasLoc,
 .renderHasLoc

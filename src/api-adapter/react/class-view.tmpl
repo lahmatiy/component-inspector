@@ -6,7 +6,7 @@
 
 <div class="view">
   <!--{childNodesHere}-->
-  <span b:show="{isClass}">
+  <span class="header" b:show="{isClass}">
     <span class="keyword">class</span>
     &nbsp;
     <span class="{classHasLoc}" data-loc="{classLoc}">{className}</span>
@@ -16,7 +16,7 @@
     <span class="{extendsHasLoc}" data-loc="{extendsLoc}">{extendsClassName}</span>
     &nbsp;&#x7b;
   </span>
-  <span b:hide="{isClass}">
+  <span class="header" b:hide="{isClass}">
     <span class="{classHasLoc}" data-loc="{classLoc}">{className}</span>
     &nbsp;
     =
