@@ -29,7 +29,8 @@ function openFileByUrl(filename){
             (/\?/.test(OPEN_FILE_URL) ? '&' : '?') +
             'file=' + escape(filename);
 
-  xhr.open('GET', url, false);
+  // async GET to url
+  xhr.open('GET', url, true);
   // set if-modified-since header since begining prevents cache using;
   // otherwise browser could never ask server for new file content
   // and use file content from cache
