@@ -96,7 +96,7 @@ function getAdditionalInstanceInfo(element){
   var instanceRootNode = this.getInstanceRootNode(element);
   var instance = element && element._instance;
   var cls = instance && instance.constructor;
-  var decoratorsMap = {};
+  var wrapperClassMap = {};
   var decorators = [];
   var info;
 
@@ -106,7 +106,7 @@ function getAdditionalInstanceInfo(element){
         break;
       }
 
-      decoratorsMap[info.wrapper.index] = info.wrapper;
+      wrapperClassMap[info.wrapper.index] = cls;
 
       cls = info.wrapper.target;
     }
@@ -114,13 +114,13 @@ function getAdditionalInstanceInfo(element){
 
   if (info && Array.isArray(info.decorators)) {
     decorators = info.decorators.map(function(decorator, idx){
-      var wrapper = decoratorsMap[idx];
+      var wrapperClass = wrapperClassMap[idx];
       var classLoc;
       var renderLoc;
 
-      if (wrapper) {
-        classLoc = this.getLocation(wrapper.target);
-        renderLoc = this.getLocation(wrapper.target && wrapper.target.prototype.render);
+      if (wrapperClass) {
+        classLoc = this.getLocation(wrapperClass);
+        renderLoc = this.getLocation(wrapperClass && wrapperClass.prototype.render);
       }
 
       return {
