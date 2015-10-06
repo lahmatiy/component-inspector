@@ -103,6 +103,11 @@ var info = new Node({
 });
 
 selectedInstance.attach(function(instance){
+  if (!instance) {
+    info.setChildNodes();
+    return;
+  };
+
   var base = api.showDefaultInfo(instance) ? [defaultInfoSection] : [];
   info.setChildNodes(base.concat(
     api.getAdditionalInstanceInfo(instance) || []

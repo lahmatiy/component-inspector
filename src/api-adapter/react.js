@@ -100,10 +100,6 @@ function getAdditionalInstanceInfo(element){
   var decorators = [];
   var info;
 
-  if (!cls) {
-    return;
-  }
-
   if (typeof cls == 'function') {
     while (info = this.getDevInfo(cls)) {
       if (!info.wrapper || !info.wrapper.target) {
