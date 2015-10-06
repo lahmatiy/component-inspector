@@ -2,7 +2,7 @@
 
 # Component inspector
 
-![Example for React](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/intro.gif)
+![Example for React](http://s63.imgup.net/ci-introcbc0.gif)
 
 General purpose of tool is showing components boundaries and its DOM fragment with some details. It could be extended by features like [source fragment locating](#locating-components-source) and [opening file in editor](#opening-file-in-editor).
 
@@ -28,7 +28,7 @@ In case you use one of ready-to-use editions (i.e. `React` or `Backbone`) there 
 
 #### React
 
-![React example](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/react.png)
+![React example](http://u12.imgup.net/ScreenShot5cce.png)
 
 You should include `component-inspector` script **before** `React` script.
 
