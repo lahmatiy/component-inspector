@@ -295,17 +295,19 @@ One possible way to provide this feature is set global variable `OPEN_FILE_URL`.
 window.OPEN_FILE_URL = '/open-in-editor';
 ```
 
-After that inspector will send request for server (i.e. `GET /open-in-editor?file=/path/to/file.js:1:2:3:4`) on click by location link. Server should run command to open file in external editor on request receiving.
+When location link is clicked, inspector sends request for server (see [implementation](https://github.com/lahmatiy/component-inspector/blob/master/src/inspector/api/file.js) for details):
 
-See inspector's [API implementation](https://github.com/lahmatiy/component-inspector/blob/master/src/inspector/api/file.js) for details.
-
-There is `express` extension [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor) that provides necessary functionality. It also could be used with [webpack-dev-server](https://github.com/lahmatiy/express-open-in-editor#using-with-webpack-dev-server).
-
-In case you don't depend on dev-server, you can use [basisjs-tools](https://github.com/basisjs/basisjs-tools) that also support that feature.
-
-Roll your own implementation for your dev-server using [open-in-editor](https://github.com/lahmatiy/open-in-editor).
+```
+GET /open-in-editor?file=/path/to/file.js:1:2:3:4
+```
 
 > NOTE: Take in account if source file was changed since running in browser, inspector could "open" file with wrong (outdated) position. Page refresh should solve the problem.
+
+There are option to provide `opening in editor` feature on server:
+
+- `express` extension [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor), that also could be used with [webpack-dev-server](https://github.com/lahmatiy/express-open-in-editor#using-with-webpack-dev-server).
+- in case you don't depend on dev-server, you can use [basisjs-tools](https://github.com/basisjs/basisjs-tools) that provides this feature out of box
+- roll your own implementation for your dev-server using [open-in-editor](https://github.com/lahmatiy/open-in-editor)
 
 ## License
 
