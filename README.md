@@ -4,7 +4,7 @@
 
 ![Example for React](http://s63.imgup.net/ci-introcbc0.gif)
 
-General purpose of tool is showing components boundaries and its DOM fragment with some details. It could be extended by features like [source fragment locating](#locating-components-source) and [opening file in editor](#opening-file-in-editor).
+General purpose of tool is showing components boundaries and its DOM fragment with some details. It could be extended by features like [source fragment locating](#locating-components-source) and [opening file in editor](#opening-file-in-editor). See [Additional features](#additional-features) section for details.
 
 It's still a **proof of concept**. Generally it's an adoptation of [basis.js](https://github.com/basisjs/basisjs) tool for other component frameworks and libraries. Here is ready to use builds for [React](#react) and [Backbone](#backbone). But you also could [use inspector with custom API](#api-free-build) for your own component solution.
 
@@ -228,8 +228,6 @@ As result you'll get single JavaScript file (`myinspector.js` in this example) t
 
 ## Additional features
 
-### Locating component's source
-
 Component inspector shows component bounds and its DOM fragment only. But more details could be shown if some sort of meta-data (like source code locations) is available.
 
 There is example of default view for React component:
@@ -240,7 +238,7 @@ Compare it to the same view but with meta-data available:
 
 ![Component inspector with instrumenting](http://o52.imgup.net/ScreenShot199c.png)
 
-Interface to get meta-data should be called `$devinfo` with at least single method `get()`. That method should returns meta-data if it's available.
+Interface to get meta-data should be called `$devinfo` with at least single method `get()`. Inspector expects `get` method returns object or falsy value if no data.
 
 ```js
 window.$devinfo = {
@@ -248,13 +246,6 @@ window.$devinfo = {
     // return some information for `ref`
   }
 };
-```
-
-Inspector expects `get` method returns object or falsy value if no data. Value source definition location should be stored in `loc` property as string in format `filename:startLine:startColumn:endLineEnd:endColumn`. Additional values may be provided as well.
-
-```js
-window.$devinfo.get(obj);
-// > { "loc": "app.js:...", ... }
 ```
 
 If API has name other than `$devinfo`, you can specify it's name by defining global variable `DEVINFO_API_NAME`.
@@ -265,21 +256,56 @@ window.DEVINFO_API_NAME = 'customApiName';
 
 You could use ready-to-use [babel plugin](https://github.com/restrry/babel-plugin-source-wrapper) that instruments source code and provides necessary API. See ([documentation](https://github.com/restrry/babel-plugin-source-wrapper)) for details. You free to implement your own solution and use plugin implementation as reference.
 
+### Locating component's source
+
+When meta-data object is available for inspecting value, inspector expects location is storing in `loc` property as string `filename:startLine:startColumn:endLineEnd:endColumn`.
+
+```js
+window.$devinfo.get(obj);
+// > { "loc": "app.js:...", ... }
+```
+
+If value definition source location is found some additional features became available: [fetching source fragments](#fetching-source-fragments) and [opening file in editor](opening-file-in-editor).
+
+### Fetching source fragments
+
+Component inspector includes solution for retrieving original source code and highlight it. It's all possible if value location provided.
+
+How does it works:
+
+- retrieve source code by request to server for original filename (or get it from cache if `basisjs-tools` server is used)
+- extract original source code with aware of source maps
+- cache the result
+- highligh code
+- get required source fragment and show it in popup
+
+Since original files are fetching by request to server, make sure those files are available for downloading by your server.
+
+> NOTE: Take in account if source file was changed since running in browser, inspector could wrong or outdated source fragment. Page refresh should solve the problem.
+
+> NOTE: Support for external or server API for source fragment extraction is coming in next releases (see [issue](https://github.com/lahmatiy/component-inspector/issues/10)).
+
 ### Opening file in editor
 
-In case dev-server supports "open in external editor" feature, all location references become active links. A click on any of those opens a file in editor with cursor set at the start of the code fragment. You'll see a hint if feature is supported.
+In case dev-server supports `opening in editor` feature, all location references become active links. A click on any of those opens a file in editor with cursor set at the start of the code fragment. You'll see a hint if feature is supported.
 
-One possible way to provide this feature is some URL that does the job. This URL could be set via global variable `OPEN_FILE_URL`.
+One possible way to provide this feature is set global variable `OPEN_FILE_URL`.
 
 ```js
 window.OPEN_FILE_URL = '/open-in-editor';
 ```
 
-There is an `Express` middleware [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor), which is able to provide an URL with necessary functionality.
+After that inspector will send request for server (i.e. `GET /open-in-editor?file=/path/to/file.js:1:2:3:4`) on click by location link. Server should run command to open file in external editor on request receiving.
 
-In case you don't depend on dev-server, you could use [basisjs-tools](https://github.com/basisjs/basisjs-tools) that support that feature.
+See inspector's [API implementation](https://github.com/lahmatiy/component-inspector/blob/master/src/inspector/api/file.js) for details.
+
+There is `express` extension [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor) that provides necessary functionality. It also could be used with [webpack-dev-server](https://github.com/lahmatiy/express-open-in-editor#using-with-webpack-dev-server).
+
+In case you don't depend on dev-server, you can use [basisjs-tools](https://github.com/basisjs/basisjs-tools) that also support that feature.
 
 Roll your own implementation for your dev-server using [open-in-editor](https://github.com/lahmatiy/open-in-editor).
+
+> NOTE: Take in account if source file was changed since running in browser, inspector could "open" file with wrong (outdated) position. Page refresh should solve the problem.
 
 ## License
 
