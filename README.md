@@ -39,7 +39,7 @@ You should include `component-inspector` script **before** `React` script.
 
 #### Backbone
 
-![Backbone example](https://github.com/lahmatiy/component-inspector/raw/master/docs/img/backbone.png)
+![Backbone example](http://i60.imgup.net/backbone2e57.png)
 
 You should include `component-inspector` script right **after** `Backbone` script.
 
@@ -230,16 +230,40 @@ As result you'll get single JavaScript file (`myinspector.js` in this example) t
 
 ### Locating component's source
 
-Component inspector works as is, but shows only component bounds and its DOM fragment. More interesting things could be shown if some meta information (like source code location) is available.
+Component inspector shows component bounds and its DOM fragment only. But more details could be shown if some sort of meta-data (like source code locations) is available.
 
-You could use [babel plugin](https://github.com/restrry/babel-plugin-source-wrapper) with your building solution to instrument sources ([see documentation](https://github.com/restrry/babel-plugin-source-wrapper)). Also suitable dev-server could be used for instrumenting source code on the fly e.g. [basisjs-tools](https://github.com/basisjs/basisjs-tools-instrumenter).
+There is example of default view for React component:
 
-Interface to get metadata about an object is called `$devinfo`. This interface should provide `get()` method, that returns metadata if available.
+![Component inspector w/o instrumenting](http://v03.imgup.net/ScreenShotb2f6.png)
+
+Compare it to the same view but with meta-data available:
+
+![Component inspector with instrumenting](http://o52.imgup.net/ScreenShot199c.png)
+
+Interface to get meta-data should be called `$devinfo` with at least single method `get()`. That method should returns meta-data if it's available.
 
 ```js
-$devinfo.get(obj);
-// > { "loc": "app.js:..." }
+window.$devinfo = {
+  get: function(ref){
+    // return some information for `ref`
+  }
+};
 ```
+
+Inspector expects `get` method returns object or falsy value if no data. Value source definition location should be stored in `loc` property as string in format `filename:startLine:startColumn:endLineEnd:endColumn`. Additional values may be provided as well.
+
+```js
+window.$devinfo.get(obj);
+// > { "loc": "app.js:...", ... }
+```
+
+If API has name other than `$devinfo`, you can specify it's name by defining global variable `DEVINFO_API_NAME`.
+
+```js
+window.DEVINFO_API_NAME = 'customApiName';
+```
+
+You could use ready-to-use [babel plugin](https://github.com/restrry/babel-plugin-source-wrapper) that instruments source code and provides necessary API. See ([documentation](https://github.com/restrry/babel-plugin-source-wrapper)) for details. You free to implement your own solution and use plugin implementation as reference.
 
 ### Opening file in editor
 
