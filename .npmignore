@@ -1,5 +1,6 @@
 node_modules
 build
+examples
 dist/*.html
 docs
 src
