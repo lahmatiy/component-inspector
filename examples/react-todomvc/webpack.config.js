@@ -30,9 +30,11 @@ module.exports = {
     ]
   },
   plugins: [
-
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      OPEN_FILE_URL: '"/open-in-editor"'
+    })
   ],
   resolve: {
     alias: {
