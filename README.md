@@ -228,7 +228,7 @@ As result you'll get single JavaScript file (`myinspector.js` in this example) t
 
 ## Additional features
 
-Component inspector shows component bounds and its DOM fragment only. But more details could be shown if some sort of meta-data (like source code locations) is available.
+Component inspector shows component bounds and its DOM fragment only. More details could be shown if some sort of meta-data (like source code location) is available.
 
 There is example of default view for React component:
 
@@ -238,7 +238,7 @@ Compare it to the same view but with meta-data available:
 
 ![Component inspector with instrumenting](http://o52.imgup.net/ScreenShot199c.png)
 
-Interface to get meta-data should be called `$devinfo` with at least single method `get()`. Inspector expects `get` method returns object or falsy value if no data.
+Interface to get meta-data should be called `$devinfo` with at least single method `get()`. Inspector expects `get` method returns an object or falsy value if no data.
 
 ```js
 window.$devinfo = {
@@ -248,17 +248,17 @@ window.$devinfo = {
 };
 ```
 
-If API has name other than `$devinfo`, you can specify it's name by defining global variable `DEVINFO_API_NAME`.
+If API has name other than `$devinfo`, it should be defined via global variable `DEVINFO_API_NAME`.
 
 ```js
 window.DEVINFO_API_NAME = 'customApiName';
 ```
 
-You could use ready-to-use [babel plugin](https://github.com/restrry/babel-plugin-source-wrapper) that instruments source code and provides necessary API. See ([documentation](https://github.com/restrry/babel-plugin-source-wrapper)) for details. You free to implement your own solution and use plugin implementation as reference.
+You can use ready-to-use [babel plugin](https://github.com/restrry/babel-plugin-source-wrapper) for source code instrumenting with necessary API included. You free to use your own implementation. See ([documentation](https://github.com/restrry/babel-plugin-source-wrapper)) for details.
 
 ### Locating component's source
 
-When meta-data object is available for inspecting value, inspector expects location is storing in `loc` property as string `filename:startLine:startColumn:endLineEnd:endColumn`.
+When meta-data is available for inspecting value, inspector expects location is storing in `loc` property as string `filename:startLine:startColumn:endLine:endColumn`.
 
 ```js
 window.$devinfo.get(obj);
@@ -271,7 +271,7 @@ If value definition source location is found some additional features became ava
 
 Component inspector includes solution for retrieving original source code and highlight it. It's all possible if value location provided.
 
-How does it works:
+How does it work:
 
 - retrieve source code by request to server for original filename (or get it from cache if `basisjs-tools` server is used)
 - extract original source code with aware of source maps
