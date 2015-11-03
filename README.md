@@ -6,7 +6,12 @@
 
 General purpose of tool is showing components boundaries and its DOM fragment with some details. It could be extended by features like [source fragment locating](#locating-components-source) and [opening file in editor](#opening-file-in-editor). See [Additional features](#additional-features) section for details.
 
-It's still a **proof of concept**. Generally it's an adoptation of [basis.js](https://github.com/basisjs/basisjs) tool for other component frameworks and libraries. Here is ready to use builds for [React](#react) and [Backbone](#backbone). But you also could [use inspector with custom API](#api-free-build) for your own component solution.
+Generally it's an adoptation of [basis.js](https://github.com/basisjs/basisjs) tool for other component frameworks and libraries. Here is ready to use builds:
+
+- [React](#react)
+- [Backbone](#backbone)
+
+You also could [setup custom API](#api-free-build) for your own component solution.
 
 ## Install
 
@@ -30,6 +35,9 @@ In case you use one of ready-to-use editions (i.e. `React` or `Backbone`) there 
 
 ![React example](http://u12.imgup.net/ScreenShot5cce.png)
 
+- [Demo: Component Inspector Backbone version](http://www.youtube.com/watch?v=CJDFidsjCas) (video)
+- [Setup example](https://github.com/lahmatiy/component-inspector/tree/master/examples/react-todomvc)
+
 You should include `component-inspector` script **before** `React` script.
 
 ```html
@@ -40,6 +48,8 @@ You should include `component-inspector` script **before** `React` script.
 #### Backbone
 
 ![Backbone example](http://i60.imgup.net/backbone2e57.png)
+
+- [Demo: Component Inspector Backbone version](http://www.youtube.com/watch?v=TddZvJTMPmw) (video)
 
 You should include `component-inspector` script right **after** `Backbone` script.
 
