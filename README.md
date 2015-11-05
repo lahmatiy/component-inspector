@@ -35,8 +35,8 @@ In case you use one of ready-to-use editions (i.e. `React` or `Backbone`) there 
 
 ![React example](http://u12.imgup.net/ScreenShot5cce.png)
 
-- [Component Inspector in action (React version)](http://www.youtube.com/watch?v=CJDFidsjCas) (video)
-– [Online Demo](http://lahmatiy.github.io/component-inspector/examples/react-todomvc/) (w/o open in editor feature)
+- [Component Inspector in action](http://www.youtube.com/watch?v=CJDFidsjCas) (video)
+- [Online Demo](http://lahmatiy.github.io/component-inspector/examples/react-todomvc/) (w/o open in editor feature)
 - [Setup example](https://github.com/lahmatiy/component-inspector/tree/master/examples/react-todomvc)
 
 You should include `component-inspector` script **before** `React` script.
@@ -50,7 +50,7 @@ You should include `component-inspector` script **before** `React` script.
 
 ![Backbone example](http://i60.imgup.net/backbone2e57.png)
 
-- [Component Inspector in action (Backbone version)](http://www.youtube.com/watch?v=TddZvJTMPmw) (video)
+- [Component Inspector in action](http://www.youtube.com/watch?v=TddZvJTMPmw) (video)
 
 You should include `component-inspector` script right **after** `Backbone` script.
 
