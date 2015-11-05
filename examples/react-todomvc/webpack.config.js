@@ -4,8 +4,8 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
+    // 'webpack-dev-server/client?http://localhost:3000',
+    // 'webpack/hot/only-dev-server',
     './index'
   ],
   output: {
@@ -22,7 +22,7 @@ module.exports = {
       require('babel-plugin-source-wrapper').configure({
         // webpack sends absolute paths to plugins
         // but we need paths relative to project root
-        basePath: process.cwd(),
+        basePath: path.resolve(path.join(process.cwd(), '../../')),
 
         // inject runtime in instrumented sources
         runtime: true
@@ -30,7 +30,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       OPEN_FILE_URL: '"/open-in-editor"'
