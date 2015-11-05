@@ -51,8 +51,6 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -75,14 +73,12 @@
 	__webpack_require__(192);
 	
 	($devinfo)(_reactDom2['default'].render(($devinfo)(_react2['default'].createElement(_containersApp2['default'], null), {
-	  loc: '/examples/react-todomvc/index.js:7:3:7:10'
+	  loc: '/component-inspector/examples/react-todomvc/index.js:7:3:7:10'
 	}), ($devinfo)(document.getElementById('root'), {
-	  loc: '/examples/react-todomvc/index.js:8:3:8:34'
+	  loc: '/component-inspector/examples/react-todomvc/index.js:8:3:8:34'
 	})), {
-	  loc: '/examples/react-todomvc/index.js:6:1:9:2'
+	  loc: '/component-inspector/examples/react-todomvc/index.js:6:1:9:2'
 	});
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 2 */
@@ -19672,8 +19668,6 @@
 /* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -19734,13 +19728,13 @@
 	        _reactRedux.Provider,
 	        { store: store },
 	        ($devinfo)(_react2['default'].createElement(_TodoApp2['default'], null), {
-	          loc: '/examples/react-todomvc/containers/App.js:14:11:14:22'
+	          loc: '/component-inspector/examples/react-todomvc/containers/App.js:14:11:14:22'
 	        })
 	      ), {
-	        loc: '/examples/react-todomvc/containers/App.js:13:9:15:20'
+	        loc: '/component-inspector/examples/react-todomvc/containers/App.js:13:9:15:20'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/containers/App.js:11:9:17:4'
+	      loc: '/component-inspector/examples/react-todomvc/containers/App.js:11:9:17:4'
 	    })
 	  }]);
 	
@@ -19748,20 +19742,16 @@
 	})(_react.Component);
 	
 	($devinfo)(App, {
-	  loc: '/examples/react-todomvc/containers/App.js:10:16:18:2',
+	  loc: '/component-inspector/examples/react-todomvc/containers/App.js:10:16:18:2',
 	  type: 'class'
 	});
 	exports['default'] = App;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -19829,16 +19819,16 @@
 	        'div',
 	        null,
 	        ($devinfo)(_react2['default'].createElement(_componentsHeader2['default'], { addTodo: actions.addTodo }), {
-	          loc: '/examples/react-todomvc/containers/TodoApp.js:15:9:15:45'
+	          loc: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:15:9:15:45'
 	        }),
 	        ($devinfo)(_react2['default'].createElement(_componentsMainSection2['default'], { todos: todos, actions: actions }), {
-	          loc: '/examples/react-todomvc/containers/TodoApp.js:16:9:16:56'
+	          loc: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:16:9:16:56'
 	        })
 	      ), {
-	        loc: '/examples/react-todomvc/containers/TodoApp.js:14:7:17:13'
+	        loc: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:14:7:17:13'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/containers/TodoApp.js:9:9:19:4'
+	      loc: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:9:9:19:4'
 	    })
 	  }]);
 	
@@ -19846,7 +19836,7 @@
 	})(_react.Component);
 	
 	($devinfo)(App, {
-	  loc: '/examples/react-todomvc/containers/TodoApp.js:8:1:20:2',
+	  loc: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:8:1:20:2',
 	  type: 'class'
 	});
 	
@@ -19854,10 +19844,10 @@
 	  todos: _react.PropTypes.array.isRequired,
 	  dispatch: _react.PropTypes.func.isRequired
 	}, {
-	  loc: '/examples/react-todomvc/containers/TodoApp.js:22:17:25:2',
+	  loc: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:22:17:25:2',
 	  map: {
-	    todos: '/examples/react-todomvc/containers/TodoApp.js:23:10:23:36',
-	    dispatch: '/examples/react-todomvc/containers/TodoApp.js:24:13:24:38'
+	    todos: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:23:10:23:36',
+	    dispatch: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:24:13:24:38'
 	  }
 	});
 	
@@ -19865,20 +19855,18 @@
 	  return ($devinfo)({
 	    todos: state.todos
 	  }, {
-	    loc: '/examples/react-todomvc/containers/TodoApp.js:28:10:30:4',
+	    loc: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:28:10:30:4',
 	    map: {
-	      todos: '/examples/react-todomvc/containers/TodoApp.js:29:12:29:23'
+	      todos: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:29:12:29:23'
 	    }
 	  });
 	}
 	
 	($devinfo)(mapStateToProps, {
-	  loc: '/examples/react-todomvc/containers/TodoApp.js:27:1:31:2'
+	  loc: '/component-inspector/examples/react-todomvc/containers/TodoApp.js:27:1:31:2'
 	});
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps)(App);
 	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "TodoApp.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 162 */
@@ -21123,8 +21111,6 @@
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -21170,11 +21156,11 @@
 	    value: ($devinfo)(function (text) {
 	      if (text.length !== 0) {
 	        ($devinfo)(this.props.addTodo(text), {
-	          loc: '/examples/react-todomvc/components/Header.js:11:7:11:31'
+	          loc: '/component-inspector/examples/react-todomvc/components/Header.js:11:7:11:31'
 	        });
 	      }
 	    }, {
-	      loc: '/examples/react-todomvc/components/Header.js:9:13:13:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/Header.js:9:13:13:4'
 	    })
 	  }, {
 	    key: 'render',
@@ -21187,27 +21173,27 @@
 	          null,
 	          'todos'
 	        ), {
-	          loc: '/examples/react-todomvc/components/Header.js:18:11:18:25'
+	          loc: '/component-inspector/examples/react-todomvc/components/Header.js:18:11:18:25'
 	        }),
 	        ($devinfo)(_react2['default'].createElement(_TodoTextInput2['default'], { newTodo: true,
 	          onSave: this.handleSave.bind(this),
 	          placeholder: 'What needs to be done?' }), {
-	          loc: '/examples/react-todomvc/components/Header.js:19:11:21:65'
+	          loc: '/component-inspector/examples/react-todomvc/components/Header.js:19:11:21:65'
 	        })
 	      ), {
-	        loc: '/examples/react-todomvc/components/Header.js:17:7:22:16'
+	        loc: '/component-inspector/examples/react-todomvc/components/Header.js:17:7:22:16'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/Header.js:15:9:24:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/Header.js:15:9:24:4'
 	    })
 	  }], [{
 	    key: 'propTypes',
 	    value: ($devinfo)({
 	      addTodo: _react.PropTypes.func.isRequired
 	    }, {
-	      loc: '/examples/react-todomvc/components/Header.js:5:22:7:4',
+	      loc: '/component-inspector/examples/react-todomvc/components/Header.js:5:22:7:4',
 	      map: {
-	        addTodo: '/examples/react-todomvc/components/Header.js:6:14:6:39'
+	        addTodo: '/component-inspector/examples/react-todomvc/components/Header.js:6:14:6:39'
 	      }
 	    }),
 	    enumerable: true
@@ -21217,20 +21203,16 @@
 	})(_react.Component);
 	
 	($devinfo)(Header, {
-	  loc: '/examples/react-todomvc/components/Header.js:4:16:25:2',
+	  loc: '/component-inspector/examples/react-todomvc/components/Header.js:4:16:25:2',
 	  type: 'class'
 	});
 	exports['default'] = Header;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
 /* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -21274,13 +21256,13 @@
 	      editing: _react.PropTypes.bool,
 	      newTodo: _react.PropTypes.bool
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoTextInput.js:5:22:11:4',
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:5:22:11:4',
 	      map: {
-	        onSave: '/examples/react-todomvc/components/TodoTextInput.js:6:13:6:38',
-	        text: '/examples/react-todomvc/components/TodoTextInput.js:7:11:7:27',
-	        placeholder: '/examples/react-todomvc/components/TodoTextInput.js:8:18:8:34',
-	        editing: '/examples/react-todomvc/components/TodoTextInput.js:9:14:9:28',
-	        newTodo: '/examples/react-todomvc/components/TodoTextInput.js:10:14:10:28'
+	        onSave: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:6:13:6:38',
+	        text: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:7:11:7:27',
+	        placeholder: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:8:18:8:34',
+	        editing: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:9:14:9:28',
+	        newTodo: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:10:14:10:28'
 	      }
 	    }),
 	    enumerable: true
@@ -21293,9 +21275,9 @@
 	    this.state = ($devinfo)({
 	      text: this.props.text || ''
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoTextInput.js:15:18:17:6',
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:15:18:17:6',
 	      map: {
-	        text: '/examples/react-todomvc/components/TodoTextInput.js:16:13:16:34'
+	        text: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:16:13:16:34'
 	      }
 	    });
 	  }
@@ -21304,50 +21286,50 @@
 	    key: 'handleSubmit',
 	    value: ($devinfo)(function (e) {
 	      var text = ($devinfo)(e.target.value.trim(), {
-	        loc: '/examples/react-todomvc/components/TodoTextInput.js:21:18:21:39'
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:21:18:21:39'
 	      });
 	      if (e.which === 13) {
 	        ($devinfo)(this.props.onSave(text), {
-	          loc: '/examples/react-todomvc/components/TodoTextInput.js:23:7:23:30'
+	          loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:23:7:23:30'
 	        });
 	        if (this.props.newTodo) {
 	          ($devinfo)(this.setState(($devinfo)({ text: '' }, {
-	            loc: '/examples/react-todomvc/components/TodoTextInput.js:25:23:25:35',
+	            loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:25:23:25:35',
 	            map: {
-	              text: '/examples/react-todomvc/components/TodoTextInput.js:25:31:25:33'
+	              text: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:25:31:25:33'
 	            }
 	          })), {
-	            loc: '/examples/react-todomvc/components/TodoTextInput.js:25:9:25:36'
+	            loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:25:9:25:36'
 	          });
 	        }
 	      }
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoTextInput.js:20:15:28:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:20:15:28:4'
 	    })
 	  }, {
 	    key: 'handleChange',
 	    value: ($devinfo)(function (e) {
 	      ($devinfo)(this.setState(($devinfo)({ text: e.target.value }, {
-	        loc: '/examples/react-todomvc/components/TodoTextInput.js:31:19:31:43',
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:31:19:31:43',
 	        map: {
-	          text: '/examples/react-todomvc/components/TodoTextInput.js:31:27:31:41'
+	          text: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:31:27:31:41'
 	        }
 	      })), {
-	        loc: '/examples/react-todomvc/components/TodoTextInput.js:31:5:31:44'
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:31:5:31:44'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoTextInput.js:30:15:32:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:30:15:32:4'
 	    })
 	  }, {
 	    key: 'handleBlur',
 	    value: ($devinfo)(function (e) {
 	      if (!this.props.newTodo) {
 	        ($devinfo)(this.props.onSave(e.target.value), {
-	          loc: '/examples/react-todomvc/components/TodoTextInput.js:36:7:36:40'
+	          loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:36:7:36:40'
 	        });
 	      }
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoTextInput.js:34:13:38:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:34:13:38:4'
 	    })
 	  }, {
 	    key: 'render',
@@ -21356,10 +21338,10 @@
 	          edit: this.props.editing,
 	          'new-todo': this.props.newTodo
 	        }, {
-	          loc: '/examples/react-todomvc/components/TodoTextInput.js:42:36:45:15',
+	          loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:42:36:45:15',
 	          map: {
-	            edit: '/examples/react-todomvc/components/TodoTextInput.js:43:21:43:39',
-	            'new-todo': '/examples/react-todomvc/components/TodoTextInput.js:44:27:44:45'
+	            edit: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:43:21:43:39',
+	            'new-todo': '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:44:27:44:45'
 	          }
 	        })),
 	        type: 'text',
@@ -21369,10 +21351,10 @@
 	        onBlur: this.handleBlur.bind(this),
 	        onChange: this.handleChange.bind(this),
 	        onKeyDown: this.handleSubmit.bind(this) }), {
-	        loc: '/examples/react-todomvc/components/TodoTextInput.js:42:7:52:48'
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:42:7:52:48'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoTextInput.js:40:9:54:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:40:9:54:4'
 	    })
 	  }]);
 	
@@ -21380,13 +21362,11 @@
 	})(_react.Component);
 	
 	($devinfo)(TodoTextInput, {
-	  loc: '/examples/react-todomvc/components/TodoTextInput.js:4:16:55:2',
+	  loc: '/component-inspector/examples/react-todomvc/components/TodoTextInput.js:4:16:55:2',
 	  type: 'class'
 	});
 	exports['default'] = TodoTextInput;
 	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "TodoTextInput.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 183 */
@@ -21446,8 +21426,6 @@
 /* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -21494,17 +21472,17 @@
 	var TODO_FILTERS = ($devinfo)((_ref = {}, _defineProperty(_ref, _constantsTodoFilters.SHOW_ALL, ($devinfo)(function () {
 	  return true;
 	}, {
-	  loc: '/examples/react-todomvc/components/MainSection.js:7:15:7:25'
+	  loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:7:15:7:25'
 	})), _defineProperty(_ref, _constantsTodoFilters.SHOW_UNMARKED, ($devinfo)(function (todo) {
 	  return !todo.marked;
 	}, {
-	  loc: '/examples/react-todomvc/components/MainSection.js:8:20:8:40'
+	  loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:8:20:8:40'
 	})), _defineProperty(_ref, _constantsTodoFilters.SHOW_MARKED, ($devinfo)(function (todo) {
 	  return todo.marked;
 	}, {
-	  loc: '/examples/react-todomvc/components/MainSection.js:9:18:9:37'
+	  loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:9:18:9:37'
 	})), _ref), {
-	  loc: '/examples/react-todomvc/components/MainSection.js:6:22:10:2',
+	  loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:6:22:10:2',
 	  map: {}
 	});
 	
@@ -21517,10 +21495,10 @@
 	      todos: _react.PropTypes.array.isRequired,
 	      actions: _react.PropTypes.object.isRequired
 	    }, {
-	      loc: '/examples/react-todomvc/components/MainSection.js:13:22:16:4',
+	      loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:13:22:16:4',
 	      map: {
-	        todos: '/examples/react-todomvc/components/MainSection.js:14:12:14:38',
-	        actions: '/examples/react-todomvc/components/MainSection.js:15:14:15:41'
+	        todos: '/component-inspector/examples/react-todomvc/components/MainSection.js:14:12:14:38',
+	        actions: '/component-inspector/examples/react-todomvc/components/MainSection.js:15:14:15:41'
 	      }
 	    }),
 	    enumerable: true
@@ -21531,9 +21509,9 @@
 	
 	    _get(Object.getPrototypeOf(MainSection.prototype), 'constructor', this).call(this, props, context);
 	    this.state = ($devinfo)({ filter: _constantsTodoFilters.SHOW_ALL }, {
-	      loc: '/examples/react-todomvc/components/MainSection.js:20:18:20:38',
+	      loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:20:18:20:38',
 	      map: {
-	        filter: '/examples/react-todomvc/components/MainSection.js:20:28:20:36'
+	        filter: '/component-inspector/examples/react-todomvc/components/MainSection.js:20:28:20:36'
 	      }
 	    });
 	  }
@@ -21544,31 +21522,31 @@
 	      var atLeastOneMarked = ($devinfo)(this.props.todos.some(($devinfo)(function (todo) {
 	        return todo.marked;
 	      }, {
-	        loc: '/examples/react-todomvc/components/MainSection.js:24:52:24:71'
+	        loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:24:52:24:71'
 	      })), {
-	        loc: '/examples/react-todomvc/components/MainSection.js:24:30:24:72'
+	        loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:24:30:24:72'
 	      });
 	      if (atLeastOneMarked) {
 	        ($devinfo)(this.props.actions.clearMarked(), {
-	          loc: '/examples/react-todomvc/components/MainSection.js:26:7:26:39'
+	          loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:26:7:26:39'
 	        });
 	      }
 	    }, {
-	      loc: '/examples/react-todomvc/components/MainSection.js:23:20:28:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:23:20:28:4'
 	    })
 	  }, {
 	    key: 'handleShow',
 	    value: ($devinfo)(function (filter) {
 	      ($devinfo)(this.setState(($devinfo)({ filter: filter }, {
-	        loc: '/examples/react-todomvc/components/MainSection.js:31:19:31:29',
+	        loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:31:19:31:29',
 	        map: {
-	          filter: '/examples/react-todomvc/components/MainSection.js:31:21:31:27'
+	          filter: '/component-inspector/examples/react-todomvc/components/MainSection.js:31:21:31:27'
 	        }
 	      })), {
-	        loc: '/examples/react-todomvc/components/MainSection.js:31:5:31:30'
+	        loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:31:5:31:30'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/MainSection.js:30:13:32:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:30:13:32:4'
 	    })
 	  }, {
 	    key: 'render',
@@ -21579,45 +21557,45 @@
 	      var filter = this.state.filter;
 	
 	      var filteredTodos = ($devinfo)(todos.filter(TODO_FILTERS[filter]), {
-	        loc: '/examples/react-todomvc/components/MainSection.js:38:27:38:61'
+	        loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:38:27:38:61'
 	      });
 	      var markedCount = ($devinfo)(todos.reduce(($devinfo)(function (count, todo) {
 	        return todo.marked ? count + 1 : count;
 	      }, {
-	        loc: '/examples/react-todomvc/components/MainSection.js:39:38:40:38'
+	        loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:39:38:40:38'
 	      }), 0), {
-	        loc: '/examples/react-todomvc/components/MainSection.js:39:25:42:6'
+	        loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:39:25:42:6'
 	      });
 	
 	      return ($devinfo)(_react2['default'].createElement(
 	        'section',
 	        { className: 'main' },
 	        ($devinfo)(this.renderToggleAll(markedCount), {
-	          loc: '/examples/react-todomvc/components/MainSection.js:46:10:46:43'
+	          loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:46:10:46:43'
 	        }),
 	        ($devinfo)(_react2['default'].createElement(
 	          'ul',
 	          { className: 'todo-list' },
 	          ($devinfo)(filteredTodos.map(($devinfo)(function (todo) {
 	            return ($devinfo)(_react2['default'].createElement(_TodoItem2['default'], _extends({ key: todo.id, todo: todo }, actions)), {
-	              loc: '/examples/react-todomvc/components/MainSection.js:49:13:49:64'
+	              loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:49:13:49:64'
 	            });
 	          }, {
-	            loc: '/examples/react-todomvc/components/MainSection.js:48:30:49:64'
+	            loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:48:30:49:64'
 	          })), {
-	            loc: '/examples/react-todomvc/components/MainSection.js:48:12:50:12'
+	            loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:48:12:50:12'
 	          })
 	        ), {
-	          loc: '/examples/react-todomvc/components/MainSection.js:47:9:51:14'
+	          loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:47:9:51:14'
 	        }),
 	        ($devinfo)(this.renderFooter(markedCount), {
-	          loc: '/examples/react-todomvc/components/MainSection.js:52:10:52:40'
+	          loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:52:10:52:40'
 	        })
 	      ), {
-	        loc: '/examples/react-todomvc/components/MainSection.js:45:7:53:17'
+	        loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:45:7:53:17'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/MainSection.js:34:9:55:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:34:9:55:4'
 	    })
 	  }, {
 	    key: 'renderToggleAll',
@@ -21631,11 +21609,11 @@
 	          type: 'checkbox',
 	          checked: markedCount === todos.length,
 	          onChange: actions.markAll }), {
-	          loc: '/examples/react-todomvc/components/MainSection.js:61:9:64:45'
+	          loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:61:9:64:45'
 	        });
 	      }
 	    }, {
-	      loc: '/examples/react-todomvc/components/MainSection.js:57:18:67:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:57:18:67:4'
 	    })
 	  }, {
 	    key: 'renderFooter',
@@ -21651,11 +21629,11 @@
 	          filter: filter,
 	          onClearMarked: this.handleClearMarked.bind(this),
 	          onShow: this.handleShow.bind(this) }), {
-	          loc: '/examples/react-todomvc/components/MainSection.js:76:9:80:46'
+	          loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:76:9:80:46'
 	        });
 	      }
 	    }, {
-	      loc: '/examples/react-todomvc/components/MainSection.js:69:15:83:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:69:15:83:4'
 	    })
 	  }]);
 	
@@ -21663,20 +21641,16 @@
 	})(_react.Component);
 	
 	($devinfo)(MainSection, {
-	  loc: '/examples/react-todomvc/components/MainSection.js:12:16:84:2',
+	  loc: '/component-inspector/examples/react-todomvc/components/MainSection.js:12:16:84:2',
 	  type: 'class'
 	});
 	exports['default'] = MainSection;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "MainSection.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
 /* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -21723,12 +21697,12 @@
 	      deleteTodo: _react.PropTypes.func.isRequired,
 	      markTodo: _react.PropTypes.func.isRequired
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoItem.js:6:22:11:4',
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:6:22:11:4',
 	      map: {
-	        todo: '/examples/react-todomvc/components/TodoItem.js:7:11:7:38',
-	        editTodo: '/examples/react-todomvc/components/TodoItem.js:8:15:8:40',
-	        deleteTodo: '/examples/react-todomvc/components/TodoItem.js:9:17:9:42',
-	        markTodo: '/examples/react-todomvc/components/TodoItem.js:10:15:10:40'
+	        todo: '/component-inspector/examples/react-todomvc/components/TodoItem.js:7:11:7:38',
+	        editTodo: '/component-inspector/examples/react-todomvc/components/TodoItem.js:8:15:8:40',
+	        deleteTodo: '/component-inspector/examples/react-todomvc/components/TodoItem.js:9:17:9:42',
+	        markTodo: '/component-inspector/examples/react-todomvc/components/TodoItem.js:10:15:10:40'
 	      }
 	    }),
 	    enumerable: true
@@ -21741,9 +21715,9 @@
 	    this.state = ($devinfo)({
 	      editing: false
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoItem.js:15:18:17:6',
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:15:18:17:6',
 	      map: {
-	        editing: '/examples/react-todomvc/components/TodoItem.js:16:16:16:21'
+	        editing: '/component-inspector/examples/react-todomvc/components/TodoItem.js:16:16:16:21'
 	      }
 	    });
 	  }
@@ -21752,38 +21726,38 @@
 	    key: 'handleDoubleClick',
 	    value: ($devinfo)(function () {
 	      ($devinfo)(this.setState(($devinfo)({ editing: true }, {
-	        loc: '/examples/react-todomvc/components/TodoItem.js:21:19:21:36',
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:21:19:21:36',
 	        map: {
-	          editing: '/examples/react-todomvc/components/TodoItem.js:21:30:21:34'
+	          editing: '/component-inspector/examples/react-todomvc/components/TodoItem.js:21:30:21:34'
 	        }
 	      })), {
-	        loc: '/examples/react-todomvc/components/TodoItem.js:21:5:21:37'
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:21:5:21:37'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoItem.js:20:20:22:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:20:20:22:4'
 	    })
 	  }, {
 	    key: 'handleSave',
 	    value: ($devinfo)(function (id, text) {
 	      if (text.length === 0) {
 	        ($devinfo)(this.props.deleteTodo(id), {
-	          loc: '/examples/react-todomvc/components/TodoItem.js:26:7:26:32'
+	          loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:26:7:26:32'
 	        });
 	      } else {
 	        ($devinfo)(this.props.editTodo(id, text), {
-	          loc: '/examples/react-todomvc/components/TodoItem.js:28:7:28:36'
+	          loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:28:7:28:36'
 	        });
 	      }
 	      ($devinfo)(this.setState(($devinfo)({ editing: false }, {
-	        loc: '/examples/react-todomvc/components/TodoItem.js:30:19:30:37',
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:30:19:30:37',
 	        map: {
-	          editing: '/examples/react-todomvc/components/TodoItem.js:30:30:30:35'
+	          editing: '/component-inspector/examples/react-todomvc/components/TodoItem.js:30:30:30:35'
 	        }
 	      })), {
-	        loc: '/examples/react-todomvc/components/TodoItem.js:30:5:30:38'
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:30:5:30:38'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoItem.js:24:13:31:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:24:13:31:4'
 	    })
 	  }, {
 	    key: 'render',
@@ -21801,12 +21775,12 @@
 	          editing: this.state.editing,
 	          onSave: ($devinfo)(function (text) {
 	            return ($devinfo)(_this.handleSave(todo.id, text), {
-	              loc: '/examples/react-todomvc/components/TodoItem.js:41:42:41:72'
+	              loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:41:42:41:72'
 	            });
 	          }, {
-	            loc: '/examples/react-todomvc/components/TodoItem.js:41:32:41:72'
+	            loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:41:32:41:72'
 	          }) }), {
-	          loc: '/examples/react-todomvc/components/TodoItem.js:39:9:41:76'
+	          loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:39:9:41:76'
 	        });
 	      } else {
 	        element = ($devinfo)(_react2['default'].createElement(
@@ -21818,27 +21792,27 @@
 	            onChange: ($devinfo)(function () {
 	              return markTodo(todo.id);
 	            }, {
-	              loc: '/examples/react-todomvc/components/TodoItem.js:49:28:49:51'
+	              loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:49:28:49:51'
 	            }) }), {
-	            loc: '/examples/react-todomvc/components/TodoItem.js:46:11:49:55'
+	            loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:46:11:49:55'
 	          }),
 	          ($devinfo)(_react2['default'].createElement(
 	            'label',
 	            { onDoubleClick: this.handleDoubleClick.bind(this) },
 	            todo.text
 	          ), {
-	            loc: '/examples/react-todomvc/components/TodoItem.js:50:11:52:19'
+	            loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:50:11:52:19'
 	          }),
 	          ($devinfo)(_react2['default'].createElement('button', { className: 'destroy',
 	            onClick: ($devinfo)(function () {
 	              return deleteTodo(todo.id);
 	            }, {
-	              loc: '/examples/react-todomvc/components/TodoItem.js:54:28:54:53'
+	              loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:54:28:54:53'
 	            }) }), {
-	            loc: '/examples/react-todomvc/components/TodoItem.js:53:11:54:57'
+	            loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:53:11:54:57'
 	          })
 	        ), {
-	          loc: '/examples/react-todomvc/components/TodoItem.js:45:9:55:15'
+	          loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:45:9:55:15'
 	        });
 	      }
 	
@@ -21848,18 +21822,18 @@
 	            completed: todo.marked,
 	            editing: this.state.editing
 	          }, {
-	            loc: '/examples/react-todomvc/components/TodoItem.js:60:33:63:8',
+	            loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:60:33:63:8',
 	            map: {
-	              completed: '/examples/react-todomvc/components/TodoItem.js:61:20:61:31',
-	              editing: '/examples/react-todomvc/components/TodoItem.js:62:18:62:36'
+	              completed: '/component-inspector/examples/react-todomvc/components/TodoItem.js:61:20:61:31',
+	              editing: '/component-inspector/examples/react-todomvc/components/TodoItem.js:62:18:62:36'
 	            }
 	          })) },
 	        element
 	      ), {
-	        loc: '/examples/react-todomvc/components/TodoItem.js:60:7:65:12'
+	        loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:60:7:65:12'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/TodoItem.js:33:9:67:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:33:9:67:4'
 	    })
 	  }]);
 	
@@ -21867,20 +21841,16 @@
 	})(_react.Component);
 	
 	($devinfo)(TodoItem, {
-	  loc: '/examples/react-todomvc/components/TodoItem.js:5:16:68:2',
+	  loc: '/component-inspector/examples/react-todomvc/components/TodoItem.js:5:16:68:2',
 	  type: 'class'
 	});
 	exports['default'] = TodoItem;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "TodoItem.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
 /* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -21919,7 +21889,7 @@
 	var _constantsTodoFilters = __webpack_require__(187);
 	
 	var FILTER_TITLES = ($devinfo)((_ref = {}, _defineProperty(_ref, _constantsTodoFilters.SHOW_ALL, 'All'), _defineProperty(_ref, _constantsTodoFilters.SHOW_UNMARKED, 'Active'), _defineProperty(_ref, _constantsTodoFilters.SHOW_MARKED, 'Completed'), _ref), {
-	  loc: '/examples/react-todomvc/components/Footer.js:5:23:9:2',
+	  loc: '/component-inspector/examples/react-todomvc/components/Footer.js:5:23:9:2',
 	  map: {}
 	});
 	
@@ -21941,39 +21911,39 @@
 	        'footer',
 	        { className: 'footer' },
 	        ($devinfo)(this.renderTodoCount(), {
-	          loc: '/examples/react-todomvc/components/Footer.js:23:10:23:32'
+	          loc: '/component-inspector/examples/react-todomvc/components/Footer.js:23:10:23:32'
 	        }),
 	        ($devinfo)(_react2['default'].createElement(
 	          'ul',
 	          { className: 'filters' },
 	          ($devinfo)(($devinfo)([_constantsTodoFilters.SHOW_ALL, _constantsTodoFilters.SHOW_UNMARKED, _constantsTodoFilters.SHOW_MARKED], {
-	            loc: '/examples/react-todomvc/components/Footer.js:25:12:25:50'
+	            loc: '/component-inspector/examples/react-todomvc/components/Footer.js:25:12:25:50'
 	          }).map(($devinfo)(function (filter) {
 	            return ($devinfo)(_react2['default'].createElement(
 	              'li',
 	              { key: filter },
 	              ($devinfo)(_this.renderFilterLink(filter), {
-	                loc: '/examples/react-todomvc/components/Footer.js:27:16:27:45'
+	                loc: '/component-inspector/examples/react-todomvc/components/Footer.js:27:16:27:45'
 	              })
 	            ), {
-	              loc: '/examples/react-todomvc/components/Footer.js:26:13:28:18'
+	              loc: '/component-inspector/examples/react-todomvc/components/Footer.js:26:13:28:18'
 	            });
 	          }, {
-	            loc: '/examples/react-todomvc/components/Footer.js:25:55:28:18'
+	            loc: '/component-inspector/examples/react-todomvc/components/Footer.js:25:55:28:18'
 	          })), {
-	            loc: '/examples/react-todomvc/components/Footer.js:25:12:29:12'
+	            loc: '/component-inspector/examples/react-todomvc/components/Footer.js:25:12:29:12'
 	          })
 	        ), {
-	          loc: '/examples/react-todomvc/components/Footer.js:24:9:30:14'
+	          loc: '/component-inspector/examples/react-todomvc/components/Footer.js:24:9:30:14'
 	        }),
 	        ($devinfo)(this.renderClearButton(), {
-	          loc: '/examples/react-todomvc/components/Footer.js:31:10:31:34'
+	          loc: '/component-inspector/examples/react-todomvc/components/Footer.js:31:10:31:34'
 	        })
 	      ), {
-	        loc: '/examples/react-todomvc/components/Footer.js:22:7:32:16'
+	        loc: '/component-inspector/examples/react-todomvc/components/Footer.js:22:7:32:16'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/Footer.js:20:9:34:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/Footer.js:20:9:34:4'
 	    })
 	  }, {
 	    key: 'renderTodoCount',
@@ -21990,16 +21960,16 @@
 	          null,
 	          unmarkedCount || 'No'
 	        ), {
-	          loc: '/examples/react-todomvc/components/Footer.js:42:9:42:49'
+	          loc: '/component-inspector/examples/react-todomvc/components/Footer.js:42:9:42:49'
 	        }),
 	        ' ',
 	        itemWord,
 	        ' left'
 	      ), {
-	        loc: '/examples/react-todomvc/components/Footer.js:41:7:43:14'
+	        loc: '/component-inspector/examples/react-todomvc/components/Footer.js:41:7:43:14'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/Footer.js:36:18:45:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/Footer.js:36:18:45:4'
 	    })
 	  }, {
 	    key: 'renderFilterLink',
@@ -22012,28 +21982,28 @@
 	      return ($devinfo)(_react2['default'].createElement(
 	        'a',
 	        { className: (0, _classnames2['default'])(($devinfo)({ selected: filter === selectedFilter }, {
-	            loc: '/examples/react-todomvc/components/Footer.js:52:32:52:71',
+	            loc: '/component-inspector/examples/react-todomvc/components/Footer.js:52:32:52:71',
 	            map: {
-	              selected: '/examples/react-todomvc/components/Footer.js:52:44:52:69'
+	              selected: '/component-inspector/examples/react-todomvc/components/Footer.js:52:44:52:69'
 	            }
 	          })),
 	          style: ($devinfo)({ cursor: 'hand' }, {
-	            loc: '/examples/react-todomvc/components/Footer.js:53:17:53:35',
+	            loc: '/component-inspector/examples/react-todomvc/components/Footer.js:53:17:53:35',
 	            map: {
-	              cursor: '/examples/react-todomvc/components/Footer.js:53:27:53:33'
+	              cursor: '/component-inspector/examples/react-todomvc/components/Footer.js:53:27:53:33'
 	            }
 	          }),
 	          onClick: ($devinfo)(function () {
 	            return onShow(filter);
 	          }, {
-	            loc: '/examples/react-todomvc/components/Footer.js:54:19:54:39'
+	            loc: '/component-inspector/examples/react-todomvc/components/Footer.js:54:19:54:39'
 	          }) },
 	        title
 	      ), {
-	        loc: '/examples/react-todomvc/components/Footer.js:52:7:56:11'
+	        loc: '/component-inspector/examples/react-todomvc/components/Footer.js:52:7:56:11'
 	      });
 	    }, {
-	      loc: '/examples/react-todomvc/components/Footer.js:47:19:58:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/Footer.js:47:19:58:4'
 	    })
 	  }, {
 	    key: 'renderClearButton',
@@ -22049,11 +22019,11 @@
 	            onClick: onClearMarked },
 	          'Clear completed'
 	        ), {
-	          loc: '/examples/react-todomvc/components/Footer.js:64:9:67:18'
+	          loc: '/component-inspector/examples/react-todomvc/components/Footer.js:64:9:67:18'
 	        });
 	      }
 	    }, {
-	      loc: '/examples/react-todomvc/components/Footer.js:60:20:70:4'
+	      loc: '/component-inspector/examples/react-todomvc/components/Footer.js:60:20:70:4'
 	    })
 	  }], [{
 	    key: 'propTypes',
@@ -22064,13 +22034,13 @@
 	      onClearMarked: _react.PropTypes.func.isRequired,
 	      onShow: _react.PropTypes.func.isRequired
 	    }, {
-	      loc: '/examples/react-todomvc/components/Footer.js:12:22:18:4',
+	      loc: '/component-inspector/examples/react-todomvc/components/Footer.js:12:22:18:4',
 	      map: {
-	        markedCount: '/examples/react-todomvc/components/Footer.js:13:18:13:45',
-	        unmarkedCount: '/examples/react-todomvc/components/Footer.js:14:20:14:47',
-	        filter: '/examples/react-todomvc/components/Footer.js:15:13:15:40',
-	        onClearMarked: '/examples/react-todomvc/components/Footer.js:16:20:16:45',
-	        onShow: '/examples/react-todomvc/components/Footer.js:17:13:17:38'
+	        markedCount: '/component-inspector/examples/react-todomvc/components/Footer.js:13:18:13:45',
+	        unmarkedCount: '/component-inspector/examples/react-todomvc/components/Footer.js:14:20:14:47',
+	        filter: '/component-inspector/examples/react-todomvc/components/Footer.js:15:13:15:40',
+	        onClearMarked: '/component-inspector/examples/react-todomvc/components/Footer.js:16:20:16:45',
+	        onShow: '/component-inspector/examples/react-todomvc/components/Footer.js:17:13:17:38'
 	      }
 	    }),
 	    enumerable: true
@@ -22080,20 +22050,16 @@
 	})(_react.Component);
 	
 	($devinfo)(Footer, {
-	  loc: '/examples/react-todomvc/components/Footer.js:11:16:71:2',
+	  loc: '/component-inspector/examples/react-todomvc/components/Footer.js:11:16:71:2',
 	  type: 'class'
 	});
 	exports['default'] = Footer;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Footer.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
 /* 187 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -22112,14 +22078,10 @@
 	var SHOW_UNMARKED = 'show_unmarked';
 	exports.SHOW_UNMARKED = SHOW_UNMARKED;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "TodoFilters.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
 /* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -22150,16 +22112,16 @@
 	    type: types.ADD_TODO,
 	    text: text
 	  }, {
-	    loc: '/examples/react-todomvc/actions/todos.js:4:10:7:4',
+	    loc: '/component-inspector/examples/react-todomvc/actions/todos.js:4:10:7:4',
 	    map: {
-	      type: '/examples/react-todomvc/actions/todos.js:5:11:5:25',
-	      text: '/examples/react-todomvc/actions/todos.js:6:5:6:9'
+	      type: '/component-inspector/examples/react-todomvc/actions/todos.js:5:11:5:25',
+	      text: '/component-inspector/examples/react-todomvc/actions/todos.js:6:5:6:9'
 	    }
 	  });
 	}
 	
 	($devinfo)(addTodo, {
-	  loc: '/examples/react-todomvc/actions/todos.js:3:8:8:2'
+	  loc: '/component-inspector/examples/react-todomvc/actions/todos.js:3:8:8:2'
 	});
 	
 	function deleteTodo(id) {
@@ -22167,16 +22129,16 @@
 	    type: types.DELETE_TODO,
 	    id: id
 	  }, {
-	    loc: '/examples/react-todomvc/actions/todos.js:11:10:14:4',
+	    loc: '/component-inspector/examples/react-todomvc/actions/todos.js:11:10:14:4',
 	    map: {
-	      type: '/examples/react-todomvc/actions/todos.js:12:11:12:28',
-	      id: '/examples/react-todomvc/actions/todos.js:13:5:13:7'
+	      type: '/component-inspector/examples/react-todomvc/actions/todos.js:12:11:12:28',
+	      id: '/component-inspector/examples/react-todomvc/actions/todos.js:13:5:13:7'
 	    }
 	  });
 	}
 	
 	($devinfo)(deleteTodo, {
-	  loc: '/examples/react-todomvc/actions/todos.js:10:8:15:2'
+	  loc: '/component-inspector/examples/react-todomvc/actions/todos.js:10:8:15:2'
 	});
 	
 	function editTodo(id, text) {
@@ -22185,17 +22147,17 @@
 	    id: id,
 	    text: text
 	  }, {
-	    loc: '/examples/react-todomvc/actions/todos.js:18:10:22:4',
+	    loc: '/component-inspector/examples/react-todomvc/actions/todos.js:18:10:22:4',
 	    map: {
-	      type: '/examples/react-todomvc/actions/todos.js:19:11:19:26',
-	      id: '/examples/react-todomvc/actions/todos.js:20:5:20:7',
-	      text: '/examples/react-todomvc/actions/todos.js:21:5:21:9'
+	      type: '/component-inspector/examples/react-todomvc/actions/todos.js:19:11:19:26',
+	      id: '/component-inspector/examples/react-todomvc/actions/todos.js:20:5:20:7',
+	      text: '/component-inspector/examples/react-todomvc/actions/todos.js:21:5:21:9'
 	    }
 	  });
 	}
 	
 	($devinfo)(editTodo, {
-	  loc: '/examples/react-todomvc/actions/todos.js:17:8:23:2'
+	  loc: '/component-inspector/examples/react-todomvc/actions/todos.js:17:8:23:2'
 	});
 	
 	function markTodo(id) {
@@ -22203,56 +22165,52 @@
 	    type: types.MARK_TODO,
 	    id: id
 	  }, {
-	    loc: '/examples/react-todomvc/actions/todos.js:26:10:29:4',
+	    loc: '/component-inspector/examples/react-todomvc/actions/todos.js:26:10:29:4',
 	    map: {
-	      type: '/examples/react-todomvc/actions/todos.js:27:11:27:26',
-	      id: '/examples/react-todomvc/actions/todos.js:28:5:28:7'
+	      type: '/component-inspector/examples/react-todomvc/actions/todos.js:27:11:27:26',
+	      id: '/component-inspector/examples/react-todomvc/actions/todos.js:28:5:28:7'
 	    }
 	  });
 	}
 	
 	($devinfo)(markTodo, {
-	  loc: '/examples/react-todomvc/actions/todos.js:25:8:30:2'
+	  loc: '/component-inspector/examples/react-todomvc/actions/todos.js:25:8:30:2'
 	});
 	
 	function markAll() {
 	  return ($devinfo)({
 	    type: types.MARK_ALL
 	  }, {
-	    loc: '/examples/react-todomvc/actions/todos.js:33:10:35:4',
+	    loc: '/component-inspector/examples/react-todomvc/actions/todos.js:33:10:35:4',
 	    map: {
-	      type: '/examples/react-todomvc/actions/todos.js:34:11:34:25'
+	      type: '/component-inspector/examples/react-todomvc/actions/todos.js:34:11:34:25'
 	    }
 	  });
 	}
 	
 	($devinfo)(markAll, {
-	  loc: '/examples/react-todomvc/actions/todos.js:32:8:36:2'
+	  loc: '/component-inspector/examples/react-todomvc/actions/todos.js:32:8:36:2'
 	});
 	
 	function clearMarked() {
 	  return ($devinfo)({
 	    type: types.CLEAR_MARKED
 	  }, {
-	    loc: '/examples/react-todomvc/actions/todos.js:39:10:41:4',
+	    loc: '/component-inspector/examples/react-todomvc/actions/todos.js:39:10:41:4',
 	    map: {
-	      type: '/examples/react-todomvc/actions/todos.js:40:11:40:29'
+	      type: '/component-inspector/examples/react-todomvc/actions/todos.js:40:11:40:29'
 	    }
 	  });
 	}
 	
 	($devinfo)(clearMarked, {
-	  loc: '/examples/react-todomvc/actions/todos.js:38:8:42:2'
+	  loc: '/component-inspector/examples/react-todomvc/actions/todos.js:38:8:42:2'
 	});
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "todos.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 189 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -22277,14 +22235,10 @@
 	var CLEAR_MARKED = 'CLEAR_MARKED';
 	exports.CLEAR_MARKED = CLEAR_MARKED;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ActionTypes.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
 /* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -22303,15 +22257,11 @@
 	var _todos = __webpack_require__(191);
 	
 	exports.todos = _interopRequire(_todos);
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
 	'use strict';
 	
 	($devinfo)(Object.defineProperty(exports, '__esModule', ($devinfo)({
@@ -22338,14 +22288,14 @@
 	  marked: false,
 	  id: 0
 	}, {
-	  loc: '/examples/react-todomvc/reducers/todos.js:3:23:7:2',
+	  loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:3:23:7:2',
 	  map: {
-	    text: '/examples/react-todomvc/reducers/todos.js:4:9:4:20',
-	    marked: '/examples/react-todomvc/reducers/todos.js:5:11:5:16',
-	    id: '/examples/react-todomvc/reducers/todos.js:6:7:6:8'
+	    text: '/component-inspector/examples/react-todomvc/reducers/todos.js:4:9:4:20',
+	    marked: '/component-inspector/examples/react-todomvc/reducers/todos.js:5:11:5:16',
+	    id: '/component-inspector/examples/react-todomvc/reducers/todos.js:6:7:6:8'
 	  }
 	})], {
-	  loc: '/examples/react-todomvc/reducers/todos.js:3:22:7:3'
+	  loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:3:22:7:3'
 	});
 	
 	function todos(state, action) {
@@ -22358,83 +22308,83 @@
 	        marked: false,
 	        text: action.text
 	      }, {
-	        loc: '/examples/react-todomvc/reducers/todos.js:12:13:16:6',
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:12:13:16:6',
 	        map: {
-	          id: '/examples/react-todomvc/reducers/todos.js:13:11:13:53',
-	          marked: '/examples/react-todomvc/reducers/todos.js:14:15:14:20',
-	          text: '/examples/react-todomvc/reducers/todos.js:15:13:15:24'
+	          id: '/component-inspector/examples/react-todomvc/reducers/todos.js:13:11:13:53',
+	          marked: '/component-inspector/examples/react-todomvc/reducers/todos.js:14:15:14:20',
+	          text: '/component-inspector/examples/react-todomvc/reducers/todos.js:15:13:15:24'
 	        }
 	      })].concat(_toConsumableArray(state)), {
-	        loc: '/examples/react-todomvc/reducers/todos.js:12:12:16:17'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:12:12:16:17'
 	      });
 	
 	    case _constantsActionTypes.DELETE_TODO:
 	      return ($devinfo)(state.filter(($devinfo)(function (todo) {
 	        return todo.id !== action.id;
 	      }, {
-	        loc: '/examples/react-todomvc/reducers/todos.js:19:25:20:28'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:19:25:20:28'
 	      })), {
-	        loc: '/examples/react-todomvc/reducers/todos.js:19:12:21:6'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:19:12:21:6'
 	      });
 	
 	    case _constantsActionTypes.EDIT_TODO:
 	      return ($devinfo)(state.map(($devinfo)(function (todo) {
 	        return todo.id === action.id ? ($devinfo)(_extends({}, todo, { text: action.text }), {
-	          loc: '/examples/react-todomvc/reducers/todos.js:26:9:26:39',
+	          loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:26:9:26:39',
 	          map: {
-	            text: '/examples/react-todomvc/reducers/todos.js:26:26:26:37'
+	            text: '/component-inspector/examples/react-todomvc/reducers/todos.js:26:26:26:37'
 	          }
 	        }) : todo;
 	      }, {
-	        loc: '/examples/react-todomvc/reducers/todos.js:24:22:27:13'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:24:22:27:13'
 	      })), {
-	        loc: '/examples/react-todomvc/reducers/todos.js:24:12:28:6'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:24:12:28:6'
 	      });
 	
 	    case _constantsActionTypes.MARK_TODO:
 	      return ($devinfo)(state.map(($devinfo)(function (todo) {
 	        return todo.id === action.id ? ($devinfo)(_extends({}, todo, { marked: !todo.marked }), {
-	          loc: '/examples/react-todomvc/reducers/todos.js:33:9:33:42',
+	          loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:33:9:33:42',
 	          map: {
-	            marked: '/examples/react-todomvc/reducers/todos.js:33:28:33:40'
+	            marked: '/component-inspector/examples/react-todomvc/reducers/todos.js:33:28:33:40'
 	          }
 	        }) : todo;
 	      }, {
-	        loc: '/examples/react-todomvc/reducers/todos.js:31:22:34:13'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:31:22:34:13'
 	      })), {
-	        loc: '/examples/react-todomvc/reducers/todos.js:31:12:35:6'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:31:12:35:6'
 	      });
 	
 	    case _constantsActionTypes.MARK_ALL:
 	      var areAllMarked = ($devinfo)(state.every(($devinfo)(function (todo) {
 	        return todo.marked;
 	      }, {
-	        loc: '/examples/react-todomvc/reducers/todos.js:38:38:38:57'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:38:38:38:57'
 	      })), {
-	        loc: '/examples/react-todomvc/reducers/todos.js:38:26:38:58'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:38:26:38:58'
 	      });
 	      return ($devinfo)(state.map(($devinfo)(function (todo) {
 	        return ($devinfo)(_extends({}, todo, {
 	          marked: !areAllMarked
 	        }), {
-	          loc: '/examples/react-todomvc/reducers/todos.js:39:31:42:6',
+	          loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:39:31:42:6',
 	          map: {
-	            marked: '/examples/react-todomvc/reducers/todos.js:41:15:41:28'
+	            marked: '/component-inspector/examples/react-todomvc/reducers/todos.js:41:15:41:28'
 	          }
 	        });
 	      }, {
-	        loc: '/examples/react-todomvc/reducers/todos.js:39:22:42:7'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:39:22:42:7'
 	      })), {
-	        loc: '/examples/react-todomvc/reducers/todos.js:39:12:42:8'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:39:12:42:8'
 	      });
 	
 	    case _constantsActionTypes.CLEAR_MARKED:
 	      return ($devinfo)(state.filter(($devinfo)(function (todo) {
 	        return todo.marked === false;
 	      }, {
-	        loc: '/examples/react-todomvc/reducers/todos.js:45:25:45:54'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:45:25:45:54'
 	      })), {
-	        loc: '/examples/react-todomvc/reducers/todos.js:45:12:45:55'
+	        loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:45:12:45:55'
 	      });
 	
 	    default:
@@ -22443,11 +22393,9 @@
 	}
 	
 	($devinfo)(todos, {
-	  loc: '/examples/react-todomvc/reducers/todos.js:9:16:50:2'
+	  loc: '/component-inspector/examples/react-todomvc/reducers/todos.js:9:16:50:2'
 	});
 	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/rdvornov/git/component-inspector/examples/react-todomvc/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "todos.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 192 */
