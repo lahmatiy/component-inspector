@@ -18,8 +18,8 @@
   "licenses": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "basisjs": "basisjs/basisjs#v1.5.1",
-    "basisjs-tools": "basisjs/basisjs-tools"
+    "basisjs": "^1.5.1",
+    "basisjs-tools": "^1.6.1"
   },
   "scripts": {
     "build": "basis build"
