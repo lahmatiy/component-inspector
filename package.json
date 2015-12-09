@@ -18,7 +18,7 @@
   "licenses": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "basisjs": "basisjs/basisjs#1.5",
+    "basisjs": "basisjs/basisjs#v1.5.1",
     "basisjs-tools": "basisjs/basisjs-tools"
   },
   "scripts": {
