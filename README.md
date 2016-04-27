@@ -126,12 +126,12 @@ Used in DOM viewer to get name for nested components. Override function if those
 
 Allow provide location for nested component root node. If not defined `getNodeLocation` is used.
 
-#### domAttributeFilter(attribute)
+#### viewAttributeFilter(attribute)
 
 Allow to filter output attributes in DOM viewer. For example, React adds `data-reactid` attribute to every element, but we don't want to show it. In this case, method could be:
 
 ```js
-domAttributeFilter: function(attr){
+viewAttributeFilter: function(attr){
   return attr.name !== 'data-reactid';
 }
 ```
