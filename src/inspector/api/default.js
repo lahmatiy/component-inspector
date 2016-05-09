@@ -63,5 +63,15 @@ module.exports = {
     if (value) {
       return this.getDevInfo(value, 'loc');
     }
+  },
+  buildComponentInfo: function(instance, node){
+    return {
+      instance: instance,
+      node: node
+    };
+  },
+  logComponentInfo: function(info){
+    global.$component = info;
+    console.log(info);
   }
 };

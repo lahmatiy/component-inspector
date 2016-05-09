@@ -174,6 +174,30 @@ getDevInfo(value, 'loc');
 // "file.js:1:2:3:4"
 ```
 
+#### buildComponentInfo(instance, node)
+
+Customize component info object build. Default behaviour:
+
+```js
+api.buildComponentInfo = function(instance, node){
+  return {
+    instance: instance,
+    node: node
+  };
+};
+```
+
+#### logComponentInfo(info)
+
+Defines actions on component info logging. Default actions:
+
+```js
+api.logComponentInfo = function(info){
+  window.$component = info;
+  console.log(info);
+};
+```
+
 #### isOpenFileSupported()
 
 Returns `true` if `open file in editor` is supported. In this case click by source location links will call `openFile` method.

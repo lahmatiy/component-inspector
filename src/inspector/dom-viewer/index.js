@@ -135,12 +135,10 @@ var view = new Node({
       selectedDomNode.set();
     },
     logInfo: function(){
-      global.$component = {
-        node: selectedDomNode.value,
-        instance: selectedInstance.value
-      };
-
-      console.log($component);
+      api.logComponentInfo(api.buildComponentInfo(
+        selectedInstance.value,
+        selectedDomNode.value
+      ));
     }
   },
   satellite: {
