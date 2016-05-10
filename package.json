@@ -22,6 +22,7 @@
     "basisjs-tools": "^1.6.1"
   },
   "scripts": {
-    "build": "basis build"
+    "build": "basis build",
+    "prepublish": "npm run build"
   }
 }
