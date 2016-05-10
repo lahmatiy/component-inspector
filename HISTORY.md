@@ -1,3 +1,10 @@
+## 1.3 (May 10, 2016)
+
+- New API methods `buildComponentInfo(instance, node)` and `logComponentInfo(info)` to customize instance info building and logging (#10)
+- New argument `helpers` for `getAdditionalInstanceInfo()` to simplify creation of custom info sections
+- Improve readme
+- React TodoMVC demo (thanks to @lapanoid)
+
 ## 1.2 (October 8, 2015)
 
 - Universal inspector implementation, just [add your own API](https://github.com/lahmatiy/component-inspector#api-free-build)

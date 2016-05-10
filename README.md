@@ -140,7 +140,7 @@ viewAttributeFilter: function(attr){
 
 Show default info block or not. True by default.
 
-#### getAdditionalInstanceInfo(instance)
+#### getAdditionalInstanceInfo(instance, helpers)
 
 Allow provide additional info for related objects. Should provide array of objects (configs for sections) or nothing. See more details in [Custom info sections](#custom-info-sections).
 
