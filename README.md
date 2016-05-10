@@ -142,7 +142,7 @@ Show default info block or not. True by default.
 
 #### getAdditionalInstanceInfo(instance)
 
-Allow provide additional info for related objects. Should provide array of objects (configs for panels) or nothing. See more details in [Custom info panels](custom-info-panels).
+Allow provide additional info for related objects. Should provide array of objects (configs for sections) or nothing. See more details in [Custom info sections](custom-info-sections).
 
 #### getLocation(value)
 
@@ -192,9 +192,9 @@ Returns `true` if `open file in editor` is supported. In this case click by sour
 
 Should make some action to open specified filename in editor.
 
-### Custom info panels
+### Custom info sections
 
-There several ways to create custom info panels for inspectors sidebar. For all cases you should define `getAdditionalInstanceInfo()` method. You are free to use any framework or library to create a section.
+There several ways to create custom info sections for inspectors sidebar. For all cases you should define `getAdditionalInstanceInfo()` method. You are free to use any framework or library to create a section.
 
 > NOTE: If you don't want to output default section with instance info use override `showDefaultInfo` API method to `function(){ return false; }`.
 
