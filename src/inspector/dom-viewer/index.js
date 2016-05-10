@@ -2,7 +2,7 @@ var api = require('../api.js');
 var parseDom = require('./parse-dom.js');
 var buildTree = require('./build-tree.js');
 var Node = require('basis.ui').Node;
-var InfoSection = require('./info.js');
+var sections = require('./sections.js');
 var selectedDomNode = new basis.Token();
 var selectedInstance = selectedDomNode.as(api.getInstanceByNode)
 
@@ -74,7 +74,7 @@ function findParentComponent(node){
   return null;
 }
 
-var defaultInfoSection = {
+var defaultSection = {
   name: 'Component',
   childNodes: [
     {
@@ -96,11 +96,23 @@ var defaultInfoSection = {
 };
 
 var info = new Node({
-  childClass: InfoSection,
-  childNodes: [
-    defaultInfoSection
-  ]
+  childClass: sections.Section
 });
+
+var sectionFactory = {
+  html: function(name, html){
+    return new sections.HTMLSection({
+      name: name || '',
+      html: String(html)
+    });
+  },
+  dom: function(name, element){
+    return new sections.DOMSection({
+      name: name || '',
+      dom: element
+    });
+  }
+}
 
 selectedInstance.attach(function(instance){
   if (!instance) {
@@ -108,9 +120,9 @@ selectedInstance.attach(function(instance){
     return;
   };
 
-  var base = api.showDefaultInfo(instance) ? [defaultInfoSection] : [];
+  var base = api.showDefaultInfo(instance) ? [defaultSection] : [];
   info.setChildNodes(base.concat(
-    api.getAdditionalInstanceInfo(instance) || []
+    api.getAdditionalInstanceInfo(instance, sectionFactory) || []
   ));
 });
 

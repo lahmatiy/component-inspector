@@ -142,21 +142,7 @@ Show default info block or not. True by default.
 
 #### getAdditionalInstanceInfo(instance)
 
-Allow provide additional info for related objects. Should provide array of objects or nothing. For example, provide instance model info:
-
-```js
-api.getAdditionalInstanceInfo = function(instance){
-  if (instance && instance.model) {
-    return [{
-      name: 'Model',
-      locations: [
-        { type: 'instance', loc: this.getLocation(instance.model) },
-        { type: 'class', loc: this.getLocation(instance.model.constructor) }
-      ]
-    }];
-  }
-};
-```
+Allow provide additional info for related objects. Should provide array of objects (configs for panels) or nothing. See more details in [Custom info panels](custom-info-panels).
 
 #### getLocation(value)
 
@@ -205,6 +191,93 @@ Returns `true` if `open file in editor` is supported. In this case click by sour
 #### openFile(filename)
 
 Should make some action to open specified filename in editor.
+
+### Custom info panels
+
+There several ways to create custom info panels for inspectors sidebar. For all cases you should define `getAdditionalInstanceInfo()` method. You are free to use any framework or library to create a section.
+
+> NOTE: If you don't want to output default section with instance info use override `showDefaultInfo` API method to `function(){ return false; }`.
+
+#### Location links
+
+Most simple way is specify links list for some nested object. Here is example for model attached to instance:
+
+```js
+api.getAdditionalInstanceInfo = function(instance){
+  if (instance && instance.model) {
+    return [{
+      name: 'Model',
+      locations: [
+        { type: 'instance', loc: this.getLocation(instance.model) },
+        { type: 'class', loc: this.getLocation(instance.model.constructor) }
+      ]
+    }];
+  }
+};
+```
+
+#### HTML view
+
+If view should be created by some HTML markup, you can use `section.html(name, html)` helper:
+
+```js
+api.getAdditionalInstanceInfo = function(instance, section){
+  return [
+    section.html('Custom section', '<h1>Hello world</h1>')
+  ];
+};
+```
+
+Pass empty string or `null` if you don't want to output a header of section.
+
+#### DOM view
+
+Any DOM node may to be specified as section. Use `section.dom(name, nodeOrElement)` helper in this case:
+
+```js
+var view = document.createElement('h1');
+view.appendChild(document.createTextNode('Hello world!'));
+
+api.getAdditionalInstanceInfo = function(instance, section){
+  return [
+    section.dom('Custom section', view)
+  ];
+};
+```
+
+If DOM node attach approach is using (e.g. `React`), function should be passed to `section.dom()` helper:
+
+```jsx
+api.getAdditionalInstanceInfo = function(instance, section){
+  return [
+    section.dom('Custom section', function(container){
+      container.innerHTML = '<h1>Hello world!</h1>';
+      container.onclick = function(){
+        alert('Example!');
+      };
+    }),
+    section.dom(null, function(container){
+      React.render(<h1>Hello world!</h1>, container);
+    })
+  ];
+};
+```
+
+Pass empty string or `null` if you don't want to output a header of section.
+
+#### Links to source
+
+To make a reference to source location add `data-loc` attribute to an element. You can use `getLocation()` method to fetch location for an object.
+
+```js
+api.getAdditionalInstanceInfo = function(instance, section){
+  return [
+    section.html(null, 'This is a <span data-loc="' + this.getLocation(instance) + '">link</span>')
+  ];
+};
+```
+
+In this case the `<span>` becomes clickable (if open in editor feature is set up) and popup with source fragment will be shown on hover.
 
 ### Make your own build
 

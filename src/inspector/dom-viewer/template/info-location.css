@@ -1,12 +1,16 @@
 .wrapper
 {
-  padding-top: 4px;
   display: block;
+  margin: 4px;
   font-size: 11px;
   color: #AAA;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.wrapper:last-child
+{
+  margin-bottom: 10px;
 }
 .location
 {

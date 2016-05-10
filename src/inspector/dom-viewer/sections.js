@@ -37,7 +37,7 @@ var Location = Node.subclass({
   }
 });
 
-var InfoSection = Node.subclass({
+var Section = Node.subclass({
   template: templates.section,
   binding: {
     name: 'name'
@@ -56,4 +56,33 @@ var InfoSection = Node.subclass({
   }
 });
 
-module.exports = InfoSection;
+var HTMLSection = Section.subclass({
+  html: '',
+  binding: {
+    content: 'html'
+  }
+});
+
+var DOMSection = Section.subclass({
+  dom: null,
+  binding: {
+    content: function(node){
+      if (node.dom && node.dom instanceof global.Node) {
+        return node.dom;
+      }
+    }
+  },
+  templateSync: function(){
+    Section.prototype.templateSync.call(this);
+
+    if (this.tmpl && typeof this.dom === 'function') {
+      this.dom.call(null, this.element);
+    }
+  }
+});
+
+module.exports = {
+  Section: Section,
+  HTMLSection: HTMLSection,
+  DOMSection: DOMSection
+};

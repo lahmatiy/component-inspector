@@ -5,9 +5,10 @@
   event-click="openRefLocation"
   event-mouseover="enterRefLocation"
   event-mouseout="leaveRefLocation">
-  <div class="header">
+  <div class="header" b:show="{name}">
     {name}
   </div>
-  <div{childNodesElement|content} class="content">
+  <div{content}>
+    <div{childNodesElement} b:show="{childCount}"/>
   </div>
 </div>
