@@ -15,11 +15,11 @@ var server = new WebpackDevServer(webpack(config), {
     app.use(openInEditor())
   }
 });
-
-server.listen(3000, 'localhost', function (err) {
+var port = process.env.PORT || 3000;
+server.listen(port, 'localhost', function (err) {
   if (err) {
     console.log(err);
   }
 
-  console.log('Listening at localhost:3000');
+  console.log('Listening at localhost:' + port);
 });
