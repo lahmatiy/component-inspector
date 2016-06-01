@@ -1,9 +1,9 @@
 // Karma configuration
 // Generated on Mon May 23 2016 22:39:36 GMT+0300 (MSK)
 var webpackConfig = require('./tests/webpack.config');
-module.exports = function(config) {
+module.exports = function (config) {
   var isCI = process.env.TRAVIS;
-    config.set({
+  config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -22,8 +22,7 @@ module.exports = function(config) {
 
     webpack: webpackConfig,
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
@@ -34,8 +33,8 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
-
+    reporters: ['spec'],
+    webpackMiddleware: {noInfo: true},
 
     // web server port
     port: 9876,
@@ -56,7 +55,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [isCI ? 'Firefox' :'Chrome'],
+    browsers: [isCI ? 'Firefox' : 'Chrome'],
 
 
     // Continuous Integration mode
