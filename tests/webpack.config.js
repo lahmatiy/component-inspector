@@ -6,13 +6,6 @@ if (require('os').platform() !== 'win32') {
 }
 module.exports = {
   devtool: 'source-map',
-  entry: {
-    bundle: [
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
-      './index'],
-    inspector: [path.join(__dirname, '../../', 'dist', 'react.js')]
-  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
@@ -35,7 +28,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       OPEN_FILE_URL: '"/open-in-editor"'
@@ -43,24 +35,16 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'react': path.join(__dirname, 'node_modules', 'react')
+      'react': path.join(__dirname, '../', 'node_modules', 'react')
     },
     extensions: ['', '.js']
   },
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
-      exclude: /node_modules/,
-      include: __dirname
-    }, {
-      test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, '..', '..', 'src')
-    }, {
-      test: /\.css?$/,
-      loaders: ['style', 'raw'],
-      include: __dirname
+      exclude: /node_modules/,
+      include: path.join(__dirname, '..')
     }]
   }
 };
