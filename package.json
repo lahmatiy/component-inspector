@@ -32,9 +32,9 @@
     "karma-mocha": "1.0.1",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "1.7.0",
-    "mocha": "2.5.1",
-    "react": "0.14.2",
-    "react-dom": "0.14.2",
+    "mocha": "2.5.3",
+    "react": "15.1.0",
+    "react-dom": "15.1.0",
     "react-hot-loader": "1.2.7",
     "react-redux": "3.0.1",
     "redux": "3.0.0",
@@ -42,7 +42,8 @@
   },
   "scripts": {
     "build": "basis build --pack",
+    "postinstall":"cd tests && npm i",
     "prepublish": "npm run build",
-    "test": "karma start"
+    "test": "karma start && export REACT=14 && karma start"
   }
 }

@@ -4,6 +4,9 @@ var basePath = '';
 if (require('os').platform() !== 'win32') {
   basePath = process.cwd();
 }
+var react = process.env.REACT === '14' ?
+  path.join(__dirname, 'node_modules', 'react') :
+  path.join(__dirname, '../', 'node_modules', 'react');
 module.exports = {
   devtool: 'source-map',
   output: {
@@ -35,7 +38,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'react': path.join(__dirname, '../', 'node_modules', 'react')
+      'react': react
     },
     extensions: ['', '.js']
   },

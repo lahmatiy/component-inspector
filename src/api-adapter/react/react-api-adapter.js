@@ -231,21 +231,39 @@ module.exports = {
    */
   api: function (config) {
     var reactApi = config.reactApi;
-    getID = reactApi.Mount.getID;
-    getNode = reactApi.Mount.getNode;
 
-    // patch React
-    var _mount = reactApi.Reconciler.mountComponent;
-    var _unmount = reactApi.Reconciler.unmountComponent;
-    reactApi.Reconciler.mountComponent = function (instance) {
-      var res = _mount.apply(this, arguments);
-      elementMap[instance._rootNodeID] = instance;
-      return res;
-    };
-    reactApi.Reconciler.unmountComponent = function (instance) {
-      delete elementMap[instance._rootNodeID];
-      return _unmount.apply(this, arguments);
-    };
+    if (reactApi.ComponentTree) {
+      getReactElementByNode = function (node) {
+        if(!node) {
+          return null;
+        }
+        var element = reactApi.ComponentTree.getClosestInstanceFromNode(node);
+        return element && element._currentElement != null ? element._currentElement._owner : null;
+      };
+
+      getInstanceRootNode = function (element) {
+        return reactApi.ComponentTree.getNodeFromInstance(element);
+      };
+    } else if (reactApi.Mount.getID && reactApi.Mount.getNode) {
+      getID = reactApi.Mount.getID;
+      getNode = reactApi.Mount.getNode;
+
+      // patch React
+      var _mount = reactApi.Reconciler.mountComponent;
+      var _unmount = reactApi.Reconciler.unmountComponent;
+      reactApi.Reconciler.mountComponent = function (instance) {
+        var res = _mount.apply(this, arguments);
+        elementMap[instance._rootNodeID] = instance;
+        return res;
+      };
+      reactApi.Reconciler.unmountComponent = function (instance) {
+        delete elementMap[instance._rootNodeID];
+        return _unmount.apply(this, arguments);
+      };
+    } else {
+      throw new Error('This version of React is not supported now');
+    }
+
     ClassView = config.ClassView;
     InstanceView = config.InstanceView;
     return {

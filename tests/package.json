@@ -1,0 +1,8 @@
+{
+  "name": "test-pakage",
+  "version": "0.0.1",
+  "devDependencies": {
+    "react": "0.14.2",
+    "react-dom": "0.14.2"
+  }
+}
