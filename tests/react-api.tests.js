@@ -1,50 +1,48 @@
-import {expect} from 'chai';
+import assert from 'assert';
 import React from 'react';
-import {render, unmountComponentAtNode} from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
 import apiAdapter from './../src/api-adapter/react/react-api-adapter';
 import App from './../examples/react-todomvc/containers/App'
 
-describe('react api test', function () {
-  before(function () {
+console.log('React version', React.version);
+describe('react api test', function() {
+  before(function() {
     this.domContainer = document.createElement('div');
     document.body.appendChild(this.domContainer);
     render(<App />, this.domContainer);
   });
 
+  var api = window.reactInspectorApi;
 
-  var reactInspectorApi = window.reactInspectorApi;
-
-
-  it('getComponentNameByNode', function () {
+  it('getComponentNameByNode', function() {
     var footer = this.domContainer.querySelector('footer');
     var input = this.domContainer.querySelector('.new-todo');
-    var Footer = reactInspectorApi.getComponentNameByNode(footer);
-    var Input = reactInspectorApi.getComponentNameByNode(input);
-    expect(Footer).to.be.equal('<Footer>');
-    expect(Input).to.be.equal('<TodoTextInput>');
 
+    assert.equal(api.getComponentNameByNode(footer), '<Footer>');
+    assert.equal(api.getComponentNameByNode(input), '<TodoTextInput>');
   });
 
-  it('isComponentRootNode', function () {
+  it('isComponentRootNode', function() {
     var footer = this.domContainer.querySelector('footer');
-    expect(reactInspectorApi.isComponentRootNode(footer)).to.be.equal(true);
     var input = this.domContainer.querySelector('.new-todo');
-    expect(reactInspectorApi.isComponentRootNode(input)).to.be.equal(true);
+
+    assert.equal(api.isComponentRootNode(footer), true);
+    assert.equal(api.isComponentRootNode(input), true);
   });
 
-  it('getAdditionalInstanceInfo', function () {
+  it('getAdditionalInstanceInfo', function() {
     var node = this.domContainer.querySelector('footer');
-    var reactElementByNode = reactInspectorApi.getInstanceByNode(node);
-    reactInspectorApi
-      .getAdditionalInstanceInfo(reactElementByNode);
+    var reactElementByNode = api.getInstanceByNode(node);
 
-    expect(instanceViewConfig.name).to.be.equal('<Footer>');
-    expect(instanceViewConfig.loc).to.be.contains('/examples/react-todomvc/components/MainSection.js:76:9:80:46');
-    expect(classViewConfig.cls.name).to.be.equal('Footer');
-    expect(classViewConfig.isClass).to.be.equal(false);
+    reactInspectorApi.getAdditionalInstanceInfo(reactElementByNode);
+
+    assert.equal(instanceViewConfig.name, '<Footer>');
+    assert.equal(instanceViewConfig.loc, '/examples/react-todomvc/components/MainSection.js:76:9:80:46');
+    assert.equal(classViewConfig.cls.name, 'Footer');
+    assert.equal(classViewConfig.isClass, false);
   });
 
-  after(function () {
+  after(function() {
     unmountComponentAtNode(this.domContainer);
   });
 });

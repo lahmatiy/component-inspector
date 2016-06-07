@@ -13,9 +13,12 @@ var InstanceView = Node.subclass({
 
 
 function adoptAPI(reactApi) {
-  var reactInspectorApi = apiAdapter.api({reactApi: reactApi, ClassView: ClassView, InstanceView: InstanceView});
   // export API
-  api.set(reactInspectorApi);
+  api.set(apiAdapter.api({
+    reactApi: reactApi,
+    ClassView: ClassView,
+    InstanceView: InstanceView
+  }));
 }
 // attach to React devtools
 var oldHook = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;

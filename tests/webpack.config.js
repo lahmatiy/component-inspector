@@ -1,12 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 var basePath = '';
+var reactPath = process.env.REACT === '14' ? 'react14' : 'react15';
+
 if (require('os').platform() !== 'win32') {
   basePath = process.cwd();
 }
-var react = process.env.REACT === '14' ?
-  path.join(__dirname, 'node_modules', 'react') :
-  path.join(__dirname, '../', 'node_modules', 'react');
+
 module.exports = {
   devtool: 'source-map',
   output: {
@@ -37,10 +37,11 @@ module.exports = {
     })
   ],
   resolve: {
+    extensions: ['', '.js'],
     alias: {
-      'react': react
-    },
-    extensions: ['', '.js']
+      'react-dom': path.join(__dirname, reactPath, 'node_modules', 'react-dom'),
+      'react': path.join(__dirname, reactPath, 'node_modules', 'react')
+    }
   },
   module: {
     loaders: [{

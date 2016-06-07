@@ -4,6 +4,7 @@ var getNode;
 var getID;
 var InstanceView;
 var ClassView;
+
 function unwrap(value, getDevInfo) {
   var info;
 
@@ -104,11 +105,13 @@ function getReactElementByNode(node) {
 }
 function isComponentRootNode(node) {
   var element = getReactElementByNode(node);
-  return Boolean(element &&
+  return Boolean(
+    element &&
     element._currentElement &&
     typeof element._currentElement != 'number' &&
     typeof element._currentElement != 'string' &&
-    typeof element._currentElement.type != 'string');
+    typeof element._currentElement.type != 'string'
+  );
 }
 
 function getAdditionalInstanceInfo(element) {
@@ -132,7 +135,7 @@ function getAdditionalInstanceInfo(element) {
   }
 
   if (info && Array.isArray(info.decorators)) {
-    decorators = info.decorators.map(function (decorator, idx) {
+    decorators = info.decorators.map(function(decorator, idx) {
       var wrapperClass = wrapperClassMap[idx];
       var classLoc;
       var renderLoc;
@@ -225,23 +228,22 @@ function getNestedComponentNodeLocation(node) {
 
 module.exports = {
   /**
-   *
    * @param config {{reactApi: reactApi, ClassView: ClassView, InstanceView: InstanceView}}
    * @returns {{isComponentRootNode: isComponentRootNode, getComponentNameByNode: getComponentNameByNode, getInstanceByNode: getReactElementByNode, getInstanceRootNode: getInstanceRootNode, getInstanceClass: getInstanceClass, getInstanceLocation: getInstanceLocation, getInstanceRenderLocation: getInstanceRenderLocation, getNodeLocation: getNodeLocation, getAdditionalInstanceInfo: getAdditionalInstanceInfo, showDefaultInfo: showDefaultInfo, getNestedComponentNameByNode: getComponentNameByNode, getNestedComponentNodeLocation: getNestedComponentNodeLocation, viewAttributeFilter: viewAttributeFilter}}
    */
-  api: function (config) {
+  api: function(config) {
     var reactApi = config.reactApi;
 
     if (reactApi.ComponentTree) {
-      getReactElementByNode = function (node) {
-        if(!node) {
+      getReactElementByNode = function(node) {
+        if (!node) {
           return null;
         }
         var element = reactApi.ComponentTree.getClosestInstanceFromNode(node);
         return element && element._currentElement != null ? element._currentElement._owner : null;
       };
 
-      getInstanceRootNode = function (element) {
+      getInstanceRootNode = function(element) {
         return reactApi.ComponentTree.getNodeFromInstance(element);
       };
     } else if (reactApi.Mount.getID && reactApi.Mount.getNode) {
@@ -251,12 +253,12 @@ module.exports = {
       // patch React
       var _mount = reactApi.Reconciler.mountComponent;
       var _unmount = reactApi.Reconciler.unmountComponent;
-      reactApi.Reconciler.mountComponent = function (instance) {
+      reactApi.Reconciler.mountComponent = function(instance) {
         var res = _mount.apply(this, arguments);
         elementMap[instance._rootNodeID] = instance;
         return res;
       };
-      reactApi.Reconciler.unmountComponent = function (instance) {
+      reactApi.Reconciler.unmountComponent = function(instance) {
         delete elementMap[instance._rootNodeID];
         return _unmount.apply(this, arguments);
       };
@@ -276,13 +278,13 @@ module.exports = {
       getInstanceRenderLocation: getInstanceRenderLocation,
       getNodeLocation: getNodeLocation,
       getAdditionalInstanceInfo: getAdditionalInstanceInfo,
-      showDefaultInfo: function () {
+      showDefaultInfo: function() {
         return false;
       },
 
       getNestedComponentNameByNode: getComponentNameByNode,
       getNestedComponentNodeLocation: getNestedComponentNodeLocation,
-      viewAttributeFilter: function (attr) {
+      viewAttributeFilter: function(attr) {
         return attr.name !== 'data-reactid';
       }
     }

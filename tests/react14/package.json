@@ -1,5 +1,5 @@
 {
-  "name": "test-pakage",
+  "name": "test-package",
   "version": "0.0.1",
   "devDependencies": {
     "react": "0.14.2",
