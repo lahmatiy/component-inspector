@@ -16,15 +16,20 @@ describe('react api test', function () {
 
 
   it('getComponentNameByNode', function () {
-    var node = this.domContainer.querySelector('footer');
-    var footer = reactInspectorApi.getComponentNameByNode(node);
-    expect(footer).to.be.equal('<Footer>');
+    var footer = this.domContainer.querySelector('footer');
+    var input = this.domContainer.querySelector('.new-todo');
+    var Footer = reactInspectorApi.getComponentNameByNode(footer);
+    var Input = reactInspectorApi.getComponentNameByNode(input);
+    expect(Footer).to.be.equal('<Footer>');
+    expect(Input).to.be.equal('<TodoTextInput>');
 
   });
 
   it('isComponentRootNode', function () {
-    var node = this.domContainer.querySelector('footer');
-    expect(reactInspectorApi.isComponentRootNode(node)).to.be.equal(true);
+    var footer = this.domContainer.querySelector('footer');
+    expect(reactInspectorApi.isComponentRootNode(footer)).to.be.equal(true);
+    var input = this.domContainer.querySelector('.new-todo');
+    expect(reactInspectorApi.isComponentRootNode(input)).to.be.equal(true);
   });
 
   it('getAdditionalInstanceInfo', function () {
