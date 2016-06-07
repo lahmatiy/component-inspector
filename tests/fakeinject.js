@@ -1,24 +1,25 @@
-import apiAdapter from './../src/api-adapter/react/react-api-adapter';
+import createApi from './../src/api-adapter/react/create-api';
 import api from './../src/inspector/api';
-window.classViewConfig = {};
-window.instanceViewConfig = {};
+
 var adoptAPI = (reactApi) => {
-  api.set(apiAdapter.api({
-    reactApi: reactApi, ClassView: function (config) {
-      window.classViewConfig = config
-    }, InstanceView: function (config) {
-      window.instanceViewConfig = config
+  api.set(createApi({
+    reactApi: reactApi,
+    createClassView: function(config) {
+      return config;
+    },
+    createInstanceView: function(config) {
+      return config;
     }
   }));
 
   window.reactInspectorApi = api;
-
 };
+
 // React
 var oldHook = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
 if (oldHook) {
   var oldInject = oldHook.inject;
-  oldHook.inject = function (api) {
+  oldHook.inject = function(api) {
     adoptAPI(api);
     oldInject.apply(this, arguments);
   };

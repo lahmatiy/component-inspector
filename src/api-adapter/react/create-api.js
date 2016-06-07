@@ -1,9 +1,9 @@
-var elementMap = {};
 var hasOwnProperty = Object.prototype.hasOwnProperty;
+var elementMap = {};
 var getNode;
 var getID;
-var InstanceView;
-var ClassView;
+var createInstanceView;
+var createClassView;
 
 function unwrap(value, getDevInfo) {
   var info;
@@ -159,7 +159,7 @@ function getAdditionalInstanceInfo(element) {
     {
       name: 'Instance',
       childNodes: [
-        new InstanceView({
+        createInstanceView({
           name: this.getComponentNameByNode(instanceRootNode),
           loc: this.getNestedComponentNodeLocation(instanceRootNode)
         })
@@ -168,7 +168,7 @@ function getAdditionalInstanceInfo(element) {
     {
       name: 'Component',
       childNodes: [
-        new ClassView({
+        createClassView({
           cls: cls,
           isClass: info && info.type === 'class',
           getLocation: this.getLocation,
@@ -226,67 +226,66 @@ function getNestedComponentNodeLocation(node) {
 }
 
 
-module.exports = {
-  /**
-   * @param config {{reactApi: reactApi, ClassView: ClassView, InstanceView: InstanceView}}
-   * @returns {{isComponentRootNode: isComponentRootNode, getComponentNameByNode: getComponentNameByNode, getInstanceByNode: getReactElementByNode, getInstanceRootNode: getInstanceRootNode, getInstanceClass: getInstanceClass, getInstanceLocation: getInstanceLocation, getInstanceRenderLocation: getInstanceRenderLocation, getNodeLocation: getNodeLocation, getAdditionalInstanceInfo: getAdditionalInstanceInfo, showDefaultInfo: showDefaultInfo, getNestedComponentNameByNode: getComponentNameByNode, getNestedComponentNodeLocation: getNestedComponentNodeLocation, viewAttributeFilter: viewAttributeFilter}}
-   */
-  api: function(config) {
-    var reactApi = config.reactApi;
+/**
+ * @param config {{reactApi: reactApi, ClassView: ClassView, InstanceView: InstanceView}}
+ * @returns {{isComponentRootNode: isComponentRootNode, getComponentNameByNode: getComponentNameByNode, getInstanceByNode: getReactElementByNode, getInstanceRootNode: getInstanceRootNode, getInstanceClass: getInstanceClass, getInstanceLocation: getInstanceLocation, getInstanceRenderLocation: getInstanceRenderLocation, getNodeLocation: getNodeLocation, getAdditionalInstanceInfo: getAdditionalInstanceInfo, showDefaultInfo: showDefaultInfo, getNestedComponentNameByNode: getComponentNameByNode, getNestedComponentNodeLocation: getNestedComponentNodeLocation, viewAttributeFilter: viewAttributeFilter}}
+ */
+module.exports = function(config) {
+  var reactApi = config.reactApi;
 
-    if (reactApi.ComponentTree) {
-      getReactElementByNode = function(node) {
-        if (!node) {
-          return null;
-        }
-        var element = reactApi.ComponentTree.getClosestInstanceFromNode(node);
-        return element && element._currentElement != null ? element._currentElement._owner : null;
-      };
+  createClassView = config.createClassView;
+  createInstanceView = config.createInstanceView;
 
-      getInstanceRootNode = function(element) {
-        return reactApi.ComponentTree.getNodeFromInstance(element);
-      };
-    } else if (reactApi.Mount.getID && reactApi.Mount.getNode) {
-      getID = reactApi.Mount.getID;
-      getNode = reactApi.Mount.getNode;
-
-      // patch React
-      var _mount = reactApi.Reconciler.mountComponent;
-      var _unmount = reactApi.Reconciler.unmountComponent;
-      reactApi.Reconciler.mountComponent = function(instance) {
-        var res = _mount.apply(this, arguments);
-        elementMap[instance._rootNodeID] = instance;
-        return res;
-      };
-      reactApi.Reconciler.unmountComponent = function(instance) {
-        delete elementMap[instance._rootNodeID];
-        return _unmount.apply(this, arguments);
-      };
-    } else {
-      throw new Error('This version of React is not supported now');
-    }
-
-    ClassView = config.ClassView;
-    InstanceView = config.InstanceView;
-    return {
-      isComponentRootNode: isComponentRootNode,
-      getComponentNameByNode: getComponentNameByNode,
-      getInstanceByNode: getReactElementByNode,
-      getInstanceRootNode: getInstanceRootNode,
-      getInstanceClass: getInstanceClass,
-      getInstanceLocation: getInstanceLocation,
-      getInstanceRenderLocation: getInstanceRenderLocation,
-      getNodeLocation: getNodeLocation,
-      getAdditionalInstanceInfo: getAdditionalInstanceInfo,
-      showDefaultInfo: function() {
-        return false;
-      },
-
-      getNestedComponentNameByNode: getComponentNameByNode,
-      getNestedComponentNodeLocation: getNestedComponentNodeLocation,
-      viewAttributeFilter: function(attr) {
-        return attr.name !== 'data-reactid';
+  if (reactApi.ComponentTree) {
+    getReactElementByNode = function(node) {
+      if (!node) {
+        return null;
       }
-    }
+      var element = reactApi.ComponentTree.getClosestInstanceFromNode(node);
+      return element && element._currentElement != null ? element._currentElement._owner : null;
+    };
+
+    getInstanceRootNode = function(element) {
+      return reactApi.ComponentTree.getNodeFromInstance(element);
+    };
+  } else if (reactApi.Mount.getID && reactApi.Mount.getNode) {
+    getID = reactApi.Mount.getID;
+    getNode = reactApi.Mount.getNode;
+
+    // patch React
+    var _mount = reactApi.Reconciler.mountComponent;
+    var _unmount = reactApi.Reconciler.unmountComponent;
+    reactApi.Reconciler.mountComponent = function(instance) {
+      var res = _mount.apply(this, arguments);
+      elementMap[instance._rootNodeID] = instance;
+      return res;
+    };
+    reactApi.Reconciler.unmountComponent = function(instance) {
+      delete elementMap[instance._rootNodeID];
+      return _unmount.apply(this, arguments);
+    };
+  } else {
+    throw new Error('This version of React is not supported now');
   }
+
+  return {
+    isComponentRootNode: isComponentRootNode,
+    getComponentNameByNode: getComponentNameByNode,
+    getInstanceByNode: getReactElementByNode,
+    getInstanceRootNode: getInstanceRootNode,
+    getInstanceClass: getInstanceClass,
+    getInstanceLocation: getInstanceLocation,
+    getInstanceRenderLocation: getInstanceRenderLocation,
+    getNodeLocation: getNodeLocation,
+    getAdditionalInstanceInfo: getAdditionalInstanceInfo,
+    showDefaultInfo: function() {
+      return false;
+    },
+
+    getNestedComponentNameByNode: getComponentNameByNode,
+    getNestedComponentNodeLocation: getNestedComponentNodeLocation,
+    viewAttributeFilter: function(attr) {
+      return attr.name !== 'data-reactid';
+    }
+  };
 };

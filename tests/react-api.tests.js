@@ -1,7 +1,6 @@
 import assert from 'assert';
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import apiAdapter from './../src/api-adapter/react/react-api-adapter';
 import App from './../examples/react-todomvc/containers/App'
 
 console.log('React version', React.version);
@@ -33,13 +32,12 @@ describe('react api test', function() {
   it('getAdditionalInstanceInfo', function() {
     var node = this.domContainer.querySelector('footer');
     var reactElementByNode = api.getInstanceByNode(node);
+    var info = reactInspectorApi.getAdditionalInstanceInfo(reactElementByNode);
 
-    reactInspectorApi.getAdditionalInstanceInfo(reactElementByNode);
-
-    assert.equal(instanceViewConfig.name, '<Footer>');
-    assert.equal(instanceViewConfig.loc, '/examples/react-todomvc/components/MainSection.js:76:9:80:46');
-    assert.equal(classViewConfig.cls.name, 'Footer');
-    assert.equal(classViewConfig.isClass, false);
+    assert.equal(info[0].childNodes[0].name, '<Footer>');
+    assert.equal(info[0].childNodes[0].loc, '/examples/react-todomvc/components/MainSection.js:76:9:80:46');
+    assert.equal(info[1].childNodes[0].cls.name, 'Footer');
+    assert.equal(info[1].childNodes[0].isClass, false);
   });
 
   after(function() {

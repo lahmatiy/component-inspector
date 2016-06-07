@@ -39,7 +39,7 @@
   "scripts": {
     "build": "basis build --pack",
     "prepublish": "npm run build",
-    "test": "karma start && export REACT=14 && karma start",
+    "test": "karma start",
     "init-test-deps": "cd tests && cd react14 && npm i && cd ../react15 && npm i",
     "travis": "npm run init-test-deps && npm test"
   }
