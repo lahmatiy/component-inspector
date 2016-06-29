@@ -14,13 +14,13 @@ module.exports = new Popup({
   template: resource('./template/js-source-popup.tmpl'),
   binding: {
     isOpenFileSupported: api.isOpenFileSupported,
-    loc: function(node){
-      return node.loc.as(function(loc){
+    loc: function(node) {
+      return node.loc.as(function(loc) {
         return (loc || '').replace(/(:\d+){1,4}$/, '');
       });
     },
-    source: function(node){
-      return node.loc.as(function(loc){
+    source: function(node) {
+      return node.loc.as(function(loc) {
         if (loc) {
           return getColoredSource(loc, 0, 0, 10);
         }
@@ -28,7 +28,7 @@ module.exports = new Popup({
     }
   },
 
-  setZIndex: function(){
+  setZIndex: function() {
     this.element.style.zIndex = 65000;
   }
 });

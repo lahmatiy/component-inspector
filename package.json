@@ -34,13 +34,15 @@
     "babel-plugin-source-wrapper": "1.1.1",
     "classnames": "2.1.2",
     "react-redux": "3.0.1",
-    "redux": "3.0.0"
+    "redux": "3.0.0",
+    "jscs": "~2.10.0"
   },
   "scripts": {
     "build": "basis build --pack",
     "prepublish": "npm run build",
+    "codestyle": "jscs src tests",
     "test": "karma start",
     "init-test-deps": "cd tests && cd react14 && npm i && cd ../react15 && npm i",
-    "travis": "npm run init-test-deps && npm test"
+    "travis": "npm run codestyle && npm run init-test-deps && npm test"
   }
 }

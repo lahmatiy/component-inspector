@@ -23,8 +23,7 @@ if (oldHook) {
     adoptAPI(api);
     oldInject.apply(this, arguments);
   };
-}
-else {
+} else {
   window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
     inject: adoptAPI
   };
@@ -32,7 +31,7 @@ else {
 
 // provide ready function
 module.exports = {
-  ready: function (fn) {
+  ready: function(fn) {
     api.attach(fn);
   }
 };

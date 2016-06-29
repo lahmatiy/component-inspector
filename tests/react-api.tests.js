@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import App from './../examples/react-todomvc/containers/App'
+import App from './../examples/react-todomvc/containers/App';
 
 console.log('React version', React.version);
 describe('react api test', function() {

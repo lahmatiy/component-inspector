@@ -3,53 +3,53 @@ var getDevInfo = require('./getDevInfo.js');
 
 module.exports = {
   // dom tree traversal
-  isComponentRootNode: function(){
+  isComponentRootNode: function() {
     return false;
   },
-  getComponentNameByNode: function(){
+  getComponentNameByNode: function() {
     return '';
   },
-  getInstanceByNode: function(){
+  getInstanceByNode: function() {
     return null;
   },
-  getInstanceRootNode: function(){
+  getInstanceRootNode: function() {
     return null;
   },
-  getInstanceClass: function(instance){
+  getInstanceClass: function(instance) {
     if (instance && typeof instance.constructor == 'function') {
       return instance.constructor;
     }
 
     return null;
   },
-  getInstanceLocation: function(instance){
+  getInstanceLocation: function(instance) {
     return this.getLocation(instance);
   },
-  getInstanceRenderLocation: function(instance){
+  getInstanceRenderLocation: function(instance) {
     if (instance && typeof instance.render == 'function') {
       return this.getLocation(instance.render);
     }
 
     return null;
   },
-  showDefaultInfo: function(){
+  showDefaultInfo: function() {
     return true;
   },
-  getAdditionalInstanceInfo: function(){
-    return []
+  getAdditionalInstanceInfo: function() {
+    return [];
   },
-  getNodeLocation: function(){
+  getNodeLocation: function() {
     return null;
   },
 
   // dom view
-  getNestedComponentNameByNode: function(){
+  getNestedComponentNameByNode: function() {
     return '';
   },
-  getNestedComponentNodeLocation: function(node){
+  getNestedComponentNodeLocation: function(node) {
     return this.getNodeLocation(node);
   },
-  viewAttributeFilter: function(){
+  viewAttributeFilter: function() {
     return true;
   },
 
@@ -59,18 +59,18 @@ module.exports = {
 
   // info
   getDevInfo: getDevInfo,
-  getLocation: function(value){
+  getLocation: function(value) {
     if (value) {
       return this.getDevInfo(value, 'loc');
     }
   },
-  buildComponentInfo: function(instance, node){
+  buildComponentInfo: function(instance, node) {
     return {
       instance: instance,
       node: node
     };
   },
-  logComponentInfo: function(info){
+  logComponentInfo: function(info) {
     global.$component = info;
     console.log(info);
   }

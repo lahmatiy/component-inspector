@@ -3,13 +3,13 @@ var jsSourcePopup = require('./js-source-popup.js');
 var Node = require('basis.ui').Node;
 var hideTimer;
 
-function openRefLocation(e){
+function openRefLocation(e) {
   var loc = e.target.getAttribute('data-loc');
   if (loc) {
     api.openFile(loc);
   }
 }
-function enterRefLocation(e){
+function enterRefLocation(e) {
   var loc = e.target.getAttribute('data-loc');
   if (loc) {
     clearTimeout(hideTimer);
@@ -17,10 +17,10 @@ function enterRefLocation(e){
     jsSourcePopup.show(e.target);
   }
 }
-function leaveRefLocation(){
+function leaveRefLocation() {
   clearTimeout(hideTimer);
-  hideTimer = setTimeout(function(){
-    jsSourcePopup.hide()
+  hideTimer = setTimeout(function() {
+    jsSourcePopup.hide();
   }, 100);
 }
 
@@ -47,10 +47,10 @@ var Section = Node.subclass({
     enterRefLocation: enterRefLocation,
     leaveRefLocation: leaveRefLocation
   },
-  childFactory: function(config){
+  childFactory: function(config) {
     return new Location(config);
   },
-  init: function(){
+  init: function() {
     this.childNodes = this.locations || this.childNodes;
     Node.prototype.init.call(this);
   }
@@ -66,13 +66,13 @@ var HTMLSection = Section.subclass({
 var DOMSection = Section.subclass({
   dom: null,
   binding: {
-    content: function(node){
+    content: function(node) {
       if (node.dom && node.dom instanceof global.Node) {
         return node.dom;
       }
     }
   },
-  templateSync: function(){
+  templateSync: function() {
     Section.prototype.templateSync.call(this);
 
     if (this.tmpl && typeof this.dom === 'function') {

@@ -1,13 +1,13 @@
 var openFile;
 
-function isOpenFileSupported(){
+function isOpenFileSupported() {
   if (openFile) {
     return true;
   }
 
   var basisjsTools = global.basisjsToolsFileSync || basis.devtools;
   if (basisjsTools && typeof basisjsTools.openFile == 'function') {
-    openFile = function(filename){
+    openFile = function(filename) {
       openFileByBasisjsTools(basisjsTools, filename);
     };
     return true;
@@ -19,11 +19,11 @@ function isOpenFileSupported(){
   }
 }
 
-function openFileByBasisjsTools(host, filename){
+function openFileByBasisjsTools(host, filename) {
   host.openFile(basis.path.resolve(filename.replace(/(:\d+:\d+):\d+:\d+$/, '$1')));
 }
 
-function openFileByUrl(filename){
+function openFileByUrl(filename) {
   var xhr = new XMLHttpRequest();
   var url = OPEN_FILE_URL +
             (/\?/.test(OPEN_FILE_URL) ? '&' : '?') +
@@ -40,7 +40,7 @@ function openFileByUrl(filename){
 
 module.exports = {
   isOpenFileSupported: isOpenFileSupported,
-  openFile: function(filename){
+  openFile: function(filename) {
     if (this.isOpenFileSupported()) {
       openFile(filename);
     } else {

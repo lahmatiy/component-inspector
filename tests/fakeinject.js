@@ -23,8 +23,7 @@ if (oldHook) {
     adoptAPI(api);
     oldInject.apply(this, arguments);
   };
-}
-else {
+} else {
   window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
     inject: adoptAPI
   };

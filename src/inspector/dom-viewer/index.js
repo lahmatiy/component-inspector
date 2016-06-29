@@ -4,9 +4,9 @@ var buildTree = require('./build-tree.js');
 var Node = require('basis.ui').Node;
 var sections = require('./sections.js');
 var selectedDomNode = new basis.Token();
-var selectedInstance = selectedDomNode.as(api.getInstanceByNode)
+var selectedInstance = selectedDomNode.as(api.getInstanceByNode);
 
-function syncSelectedNode(){
+function syncSelectedNode() {
   var element = api.getInstanceRootNode(selectedInstance.value);
 
   if (selectedDomNode.value === element) {
@@ -17,7 +17,7 @@ function syncSelectedNode(){
 }
 
 // dom mutation observer
-var observer = (function(){
+var observer = (function() {
   var names = ['MutationObserver', 'WebKitMutationObserver'];
 
   for (var i = 0, name; name = names[i]; i++) {
@@ -31,7 +31,7 @@ var observer = (function(){
   setInterval(syncSelectedNode, 100);
 })();
 
-selectedDomNode.attach(function(node){
+selectedDomNode.attach(function(node) {
   if (observer) {
     observer.disconnect();
   }
@@ -46,7 +46,7 @@ selectedDomNode.attach(function(node){
   }
 });
 
-selectedDomNode.attach(function(node){
+selectedDomNode.attach(function(node) {
   if (!node) {
     return view.clear();
   }
@@ -55,12 +55,12 @@ selectedDomNode.attach(function(node){
   var actions = {};
   var bindings = [];
 
-  view.setChildNodes(buildTree(nodes, bindings, actions, function(node){
+  view.setChildNodes(buildTree(nodes, bindings, actions, function(node) {
     selectedDomNode.set(node);
   }));
 });
 
-function findParentComponent(node){
+function findParentComponent(node) {
   node = node && node.parentNode;
 
   while (node) {
@@ -68,8 +68,8 @@ function findParentComponent(node){
       return node;
     }
 
-    node = node.parentNode
-  }    
+    node = node.parentNode;
+  }
 
   return null;
 }
@@ -79,11 +79,11 @@ var defaultSection = {
   childNodes: [
     {
       type: 'instance',
-      loc: selectedInstance.as(api.getInstanceLocation),
+      loc: selectedInstance.as(api.getInstanceLocation)
     },
     {
       type: 'class',
-      loc: selectedInstance.as(function getRefClassLoc(instance){
+      loc: selectedInstance.as(function getRefClassLoc(instance) {
         var cls = api.getInstanceClass(instance);
         return api.getLocation(cls);
       })
@@ -100,21 +100,21 @@ var info = new Node({
 });
 
 var sectionFactory = {
-  html: function(name, html){
+  html: function(name, html) {
     return new sections.HTMLSection({
       name: name || '',
       html: String(html)
     });
   },
-  dom: function(name, element){
+  dom: function(name, element) {
     return new sections.DOMSection({
       name: name || '',
       dom: element
     });
   }
-}
+};
 
-selectedInstance.attach(function(instance){
+selectedInstance.attach(function(instance) {
   if (!instance) {
     info.setChildNodes();
     return;
@@ -133,20 +133,20 @@ var view = new Node({
   template: resource('./template/window.tmpl'),
   binding: {
     visible: 'visible',
-    upName: selectedDomNode.as(function(node){
+    upName: selectedDomNode.as(function(node) {
       return findParentComponent(node) ? 'parent' : '';
     }),
     sourceTitle: selectedDomNode.as(api.getComponentNameByNode),
     info: 'satellite:'
   },
   action: {
-    up: function(){
+    up: function() {
       selectedDomNode.set(findParentComponent(selectedDomNode.value));
     },
-    close: function(){
+    close: function() {
       selectedDomNode.set();
     },
-    logInfo: function(){
+    logInfo: function() {
       api.logComponentInfo(api.buildComponentInfo(
         selectedInstance.value,
         selectedDomNode.value

@@ -1,4 +1,4 @@
-module.exports = function(node, api){
+module.exports = function(node, api) {
   var root = node;
   var cursor = root.firstChild;
   var nodes = [root, [], {}];
@@ -26,8 +26,9 @@ module.exports = function(node, api){
     while (!candidate && cursor.parentNode !== root) {
       cursor = cursor.parentNode;
       nodesCursor = nodesStack.pop();
-      if (cursor !== root)
+      if (cursor !== root) {
         candidate = cursor.nextSibling;
+      }
     }
 
     cursor = candidate;

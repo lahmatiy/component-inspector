@@ -33,7 +33,7 @@ var boxElement = domUtils.createElement({
   }
 });
 
-function pickHandler(event){
+function pickHandler(event) {
   event.die();
 
   if (event.mouseRight) {
@@ -53,7 +53,7 @@ function pickHandler(event){
         basis.dev.warn('Instance create location doesn\'t resolved:', target);
         return;
       }
-      
+
       api.openFile(loc);
       return;
     }
@@ -64,7 +64,7 @@ function pickHandler(event){
 
 var pickupTarget = new Value({
   handler: {
-    change: function(){
+    change: function() {
       var target = this.value || null;
 
       if (target) {
@@ -104,13 +104,13 @@ var pickupTarget = new Value({
   }
 });
 
-var nodeInfoPopup = basis.fn.lazyInit(function(){
+var nodeInfoPopup = basis.fn.lazyInit(function() {
   return new Balloon({
     dir: 'left bottom left top',
     template: resource('./template/hint-popup.tmpl'),
     autorotate: [
       'left top left bottom',
-      //'center center center center',
+      // 'center center center center',
       // 'left top left top',
       // 'left bottom left bottom',
       'right bottom right top',
@@ -122,26 +122,26 @@ var nodeInfoPopup = basis.fn.lazyInit(function(){
       openFileSupported: api.isOpenFileSupported,
       name: {
         events: 'delegateChanged update',
-        getter: function(node){
+        getter: function(node) {
           return api.getComponentNameByNode(node.data.node);
         }
       },
       instanceLocation: {
         events: 'delegateChanged update',
-        getter: function(node){
+        getter: function(node) {
           return api.getInstanceLocation(node.data.instance);
         }
       }
     },
     handler: {
-      update: function(){
+      update: function() {
         if (this.data.node) {
           this.show(boxElement);
         } else {
           this.hide();
         }
       },
-      hide: function(){
+      hide: function() {
         this.update({
           tmpl: null
         });
@@ -150,12 +150,12 @@ var nodeInfoPopup = basis.fn.lazyInit(function(){
   });
 });
 
-function contextmenuHandler(e){
+function contextmenuHandler(e) {
   e.die();
   stopInspect();
 }
 
-function startInspect(){
+function startInspect() {
   if (!inspectMode.value) {
     if (domViewer.isResolved()) {
       domViewer().set();
@@ -174,7 +174,7 @@ function startInspect(){
   }
 }
 
-function stopInspect(){
+function stopInspect() {
   if (inspectMode.value) {
     domEventUtils.removeGlobalHandler('mousemove', mousemoveHandler);
     domEventUtils.removeGlobalHandler('mousewheel', mouseWheelHandler);
@@ -194,7 +194,7 @@ var DEPTH_MODE_MOVE_THRESHOLD = 8;
 var lastMouseX;
 var lastMouseY;
 
-function mousemoveHandler(event){
+function mousemoveHandler(event) {
   var dx = Math.abs(event.mouseX - lastMouseX);
   var dy = Math.abs(event.mouseY - lastMouseY);
   var cursor = event.sender;
@@ -221,7 +221,7 @@ function mousemoveHandler(event){
   pickupTarget.set();
 }
 
-function mouseWheelHandler(event){
+function mouseWheelHandler(event) {
   var delta = event.wheelDelta;
   var sender = event.sender;
   var cursor = sender;
@@ -236,8 +236,9 @@ function mouseWheelHandler(event){
       lastDepth = curDepth;
       lastNode = cursor;
 
-      if (tempDepth < 0 || curDepth == tempDepth)
+      if (tempDepth < 0 || curDepth == tempDepth) {
         break;
+      }
 
       curDepth++;
     }
@@ -260,7 +261,7 @@ module.exports = {
   startInspect: startInspect,
   stopInspect: stopInspect,
   inspectMode: inspectMode,
-  isActive: function(){
+  isActive: function() {
     return inspectMode.value;
   }
 };

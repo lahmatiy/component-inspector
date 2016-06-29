@@ -1,6 +1,6 @@
 var Node = require('basis.ui').Node;
 
-function getClassName(cls){
+function getClassName(cls) {
   return cls.displayName || cls.name;
 }
 
@@ -9,23 +9,25 @@ module.exports = Node.subclass({
   template: resource('./class-view.tmpl'),
   binding: {
     isClass: 'isClass',
-    className: function(node){
+    className: function(node) {
       return getClassName(node.cls) || '<Unknown>';
     },
-    classLoc: function(node){
+    classLoc: function(node) {
       return node.getLocation(node.cls);
     },
-    renderLoc: function(node){
+    renderLoc: function(node) {
       return node.getLocation(node.cls && node.cls.prototype.render);
     },
-    extendsClassName: function(node){
-      if (Object.getPrototypeOf)
+    extendsClassName: function(node) {
+      if (Object.getPrototypeOf) {
         return getClassName(Object.getPrototypeOf(node.cls)) || 'React.Component';
+      }
       return 'unknown';
     },
-    extendsLoc: function(node){
-      if (Object.getPrototypeOf)
+    extendsLoc: function(node) {
+      if (Object.getPrototypeOf) {
         return node.getLocation(Object.getPrototypeOf(node.cls));
+      }
     }
   },
   childClass: {

@@ -5,16 +5,16 @@ var SINGLETON = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', '
 var jsSourcePopup = require('./js-source-popup.js');
 var templateSwitcher = require('basis.template').switcher;
 
-function memo(fn, oldValue){
-  return function(newValue){
+function memo(fn, oldValue) {
+  return function(newValue) {
     var result = fn(newValue, oldValue);
     oldValue = newValue;
     return result;
-  }
+  };
 }
 
 var showLocNode = new basis.Token();
-showLocNode.attach(memo(function(node, oldNode){
+showLocNode.attach(memo(function(node, oldNode) {
   if (oldNode) {
     oldNode.showLoc = false;
     oldNode.updateBind('showLoc');
@@ -32,12 +32,12 @@ showLocNode.attach(memo(function(node, oldNode){
 
 var DOMNode = Node.subclass({
   action: {
-    enter: function(){
+    enter: function() {
       if (this.loc) {
         showLocNode.set(this);
       }
     },
-    leave: function(){
+    leave: function() {
       var cursor = this.parentNode;
       while (cursor && cursor instanceof DOMNode) {
         if (cursor.loc) {
@@ -50,16 +50,17 @@ var DOMNode = Node.subclass({
 
       showLocNode.set();
     },
-    inspect: function(){
+    inspect: function() {
       if (this.selectDomNode && this.domNode) {
         this.selectDomNode(this.domNode);
       } else {
-        if (showLocNode.value && showLocNode.value.loc)
+        if (showLocNode.value && showLocNode.value.loc) {
           api.openFile(showLocNode.value.loc);
+        }
       }
     }
   },
-  destroy: function(){
+  destroy: function() {
     Node.prototype.destroy.call(this);
 
     // clean up references
@@ -75,7 +76,7 @@ var DOMNode = Node.subclass({
 
 var ValuePart = DOMNode.subclass({
   type: 'static',
-  template: templateSwitcher(function(node){
+  template: templateSwitcher(function(node) {
     return node.type == 'static'
       ? resource('./template/tree/attribute-value-static.tmpl')
       : resource('./template/tree/attribute-value.tmpl');
@@ -87,7 +88,7 @@ var ValuePart = DOMNode.subclass({
     loc: 'loc || ""'
   },
   action: {
-    openLoc: function(){
+    openLoc: function() {
       if (this.loc) {
         api.openFile(this.loc);
       }
@@ -114,7 +115,7 @@ var Element = DOMNode.subclass({
     childrenHidden: 'childrenHidden',
     inline: 'inlineChildren',
     attributes: 'satellite:',
-    singleton: function(node){
+    singleton: function(node) {
       return SINGLETON.indexOf(node.name) != -1;
     }
   },
@@ -124,7 +125,7 @@ var Element = DOMNode.subclass({
         template: resource('./template/tree/attritubes.tmpl'),
         childClass: Attribute
       }),
-      config: function(owner){
+      config: function(owner) {
         return {
           childNodes: owner.attributes
         };
@@ -152,7 +153,7 @@ var Comment = DOMNode.subclass({
   }
 });
 
-function buildAttribute(attr, attrBindings, actions){
+function buildAttribute(attr, attrBindings, actions) {
   var value = [{
     type: 'static',
     value: attr.value
@@ -168,13 +169,13 @@ function buildAttribute(attr, attrBindings, actions){
   };
 }
 
-module.exports = function buildNode(item, bindings, actions, selectDomNode){
-  function findBinding(node){
+module.exports = function buildNode(item, bindings, actions, selectDomNode) {
+  function findBinding(node) {
     return basis.array.search(bindings, node, 'dom');
   }
 
-  function findNodeBinding(node){
-    return basis.array.search(bindings, true, function(binding){
+  function findNodeBinding(node) {
+    return basis.array.search(bindings, true, function(binding) {
       return binding.val !== binding.dom && binding.val === node;
     });
   }
@@ -192,11 +193,12 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
       var attrs;
       var inline;
 
-      if (binding && binding.binding == 'element')
+      if (binding && binding.binding == 'element') {
         binding = null;
+      }
 
       attrs = binding || nestedView
-        ? attributes.map(function(attr){
+        ? attributes.map(function(attr) {
             return {
               name: attr.name,
               childNodes: [
@@ -207,21 +209,21 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode){
               ]
             };
           })
-        : attributes.map(function(attr){
-            return buildAttribute(attr, bindings.filter(function(bind){
+        : attributes.map(function(attr) {
+            return buildAttribute(attr, bindings.filter(function(bind) {
               return bind.dom === node && bind.attr === attr.name;
             }), actions);
           });
 
-      children = children.map(function(child){
+      children = children.map(function(child) {
         return buildNode(child, bindings, actions, selectDomNode);
       });
 
       inline =
-        children.every(function(node){
+        children.every(function(node) {
           return node instanceof Text;
         }) &&
-        children.reduce(function(res, node){
+        children.reduce(function(res, node) {
           return res + node.value.length;
         }, 0) < 32;
 

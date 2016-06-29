@@ -80,9 +80,9 @@ function getInfo(element) {
       if (name === null) {
         name = 'No display name';
       }
-    } else if (element._stringText) {
-      // nodeType = 'Text';
-      // text = element._stringText;
+    // } else if (element._stringText) {
+    //  nodeType = 'Text';
+    //  text = element._stringText;
     } else {
       name = type.displayName || type.name || 'Unknown';
     }
