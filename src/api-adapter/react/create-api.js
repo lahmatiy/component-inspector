@@ -103,6 +103,11 @@ function getReactElementByNode(node) {
 
   return null;
 }
+
+function getLocationElementByNode(node) {
+  return getReactElementByNode(node);
+}
+
 function isComponentRootNode(node) {
   var element = getReactElementByNode(node);
   return Boolean(
@@ -204,7 +209,7 @@ function getInstanceRenderLocation(element) {
 }
 
 function getNodeLocation(node) {
-  var element = getReactElementByNode(node);
+  var element = getLocationElementByNode(node);
 
   if (element) {
     var host = element._renderedComponent || element;
@@ -237,6 +242,13 @@ module.exports = function(config) {
   createInstanceView = config.createInstanceView;
 
   if (reactApi.ComponentTree) {
+    // React 15.0+
+    getLocationElementByNode = function(node) {
+      if (!node) {
+        return null;
+      }
+      return reactApi.ComponentTree.getClosestInstanceFromNode(node);
+    };
     getReactElementByNode = function(node) {
       if (!node) {
         return null;
@@ -257,6 +269,7 @@ module.exports = function(config) {
       return getInstanceRootNode(element) === node;
     };
   } else if (reactApi.Mount.getID && reactApi.Mount.getNode) {
+    // React prior 15.0
     getID = reactApi.Mount.getID;
     getNode = reactApi.Mount.getNode;
 
