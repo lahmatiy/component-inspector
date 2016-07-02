@@ -1,4 +1,5 @@
 [![NPM version](https://img.shields.io/npm/v/component-inspector.svg)](https://www.npmjs.com/package/component-inspector)
+[![Build Status](https://travis-ci.org/lahmatiy/component-inspector.svg?branch=master)](https://travis-ci.org/lahmatiy/component-inspector)
 
 # Component inspector
 
