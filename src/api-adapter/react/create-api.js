@@ -248,6 +248,14 @@ module.exports = function(config) {
     getInstanceRootNode = function(element) {
       return reactApi.ComponentTree.getNodeFromInstance(element);
     };
+
+    isComponentRootNode = function(node) {
+      var element = getReactElementByNode(node);
+      if (!element) {
+        return false;
+      }
+      return getInstanceRootNode(element) === node;
+    };
   } else if (reactApi.Mount.getID && reactApi.Mount.getNode) {
     getID = reactApi.Mount.getID;
     getNode = reactApi.Mount.getNode;
