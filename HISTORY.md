@@ -1,3 +1,7 @@
+## 1.4 (July 2, 2016)
+
+- Added support for React 15 (many thanks to @Mavrin)
+
 ## 1.3 (May 10, 2016)
 
 - New API methods `buildComponentInfo(instance, node)` and `logComponentInfo(info)` to customize instance info building and logging (#10)
