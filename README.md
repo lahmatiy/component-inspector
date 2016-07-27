@@ -14,6 +14,49 @@ Generally it's an adoptation of [basis.js](https://github.com/basisjs/basisjs) t
 
 You also could [setup custom API](#api-free-build) for your own component solution.
 
+<!-- MarkdownTOC -->
+
+- [Install](#install)
+- [Usage](#usage)
+  - [Ready to use builds](#ready-to-use-builds)
+    - [React](#react)
+    - [Backbone](#backbone)
+  - [API free build](#api-free-build)
+    - [isComponentRootNode\(node\)](#iscomponentrootnodenode)
+    - [getComponentNameByNode\(node\)](#getcomponentnamebynodenode)
+    - [getInstanceByNode\(node\)](#getinstancebynodenode)
+    - [getInstanceRootNode\(instance\)](#getinstancerootnodeinstance)
+    - [getInstanceClass\(instance\)](#getinstanceclassinstance)
+    - [getInstanceLocation\(instance\)](#getinstancelocationinstance)
+    - [getInstanceRenderLocation\(instance\)](#getinstancerenderlocationinstance)
+    - [getNodeLocation\(node\)](#getnodelocationnode)
+    - [getNestedComponentNameByNode\(node\)](#getnestedcomponentnamebynodenode)
+    - [getNestedComponentNodeLocation\(node\)](#getnestedcomponentnodelocationnode)
+    - [viewAttributeFilter\(attribute\)](#viewattributefilterattribute)
+    - [showDefaultInfo\(\)](#showdefaultinfo)
+    - [getAdditionalInstanceInfo\(instance, helpers\)](#getadditionalinstanceinfoinstance-helpers)
+    - [getLocation\(value\)](#getlocationvalue)
+    - [getDevInfo\(value\[, property\]\)](#getdevinfovalue-property)
+    - [buildComponentInfo\(instance, node\)](#buildcomponentinfoinstance-node)
+    - [logComponentInfo\(info\)](#logcomponentinfoinfo)
+    - [isOpenFileSupported\(\)](#isopenfilesupported)
+    - [openFile\(filename\)](#openfilefilename)
+  - [Custom info sections](#custom-info-sections)
+    - [Location links](#location-links)
+    - [HTML view](#html-view)
+    - [DOM view](#dom-view)
+    - [Links to source](#links-to-source)
+  - [Make your own build](#make-your-own-build)
+    - [Implementation](#implementation)
+    - [Build](#build)
+- [Additional features](#additional-features)
+  - [Locating component's source](#locating-components-source)
+  - [Fetching source fragments](#fetching-source-fragments)
+  - [Opening file in editor](#opening-file-in-editor)
+- [License](#license)
+
+<!-- /MarkdownTOC -->
+
 ## Install
 
 ```
@@ -347,7 +390,9 @@ Compare it to the same view but with meta-data available:
 
 ![Component inspector with instrumenting](http://o52.imgup.net/ScreenShot199c.png)
 
-Interface to get meta-data should be called `$devinfo` with at least single method `get()`. Inspector expects `get` method returns an object or falsy value if no data.
+You can use ready-to-use plugin for babel [babel-plugin-source-wrapper](https://github.com/restrry/babel-plugin-source-wrapper) to instrument your code with necessary API included. You free to use your own implementation. See [documentation](https://github.com/restrry/babel-plugin-source-wrapper) for details.
+
+By default interface to get meta-data should be called `$devinfo` with at least single method `get()`. Inspector expects `get` method returns an object or falsy value if no data.
 
 ```js
 window.$devinfo = {
@@ -362,8 +407,6 @@ If API has name other than `$devinfo`, it should be defined via global variable 
 ```js
 window.DEVINFO_API_NAME = 'customApiName';
 ```
-
-You can use ready-to-use [babel plugin](https://github.com/restrry/babel-plugin-source-wrapper) for source code instrumenting with necessary API included. You free to use your own implementation. See ([documentation](https://github.com/restrry/babel-plugin-source-wrapper)) for details.
 
 ### Locating component's source
 
@@ -396,6 +439,12 @@ Since original files are fetching by request to server, make sure those files ar
 
 ### Opening file in editor
 
+Ready-to-use solutions to provide `opening in editor` feature on server:
+
+- `express` extension [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor), that also could be used with [webpack-dev-server](https://github.com/lahmatiy/express-open-in-editor#using-with-webpack-dev-server).
+- in case you don't depend on dev-server, you can use [basisjs-tools](https://github.com/basisjs/basisjs-tools) that provides this feature out of box
+- add your own implementation for your dev-server using [open-in-editor](https://github.com/lahmatiy/open-in-editor)
+
 In case dev-server supports `opening in editor` feature, all location references become active links. A click on any of those opens a file in editor with cursor set at the start of the code fragment. You'll see a hint if feature is supported.
 
 One possible way to provide this feature is set global variable `OPEN_FILE_URL`.
@@ -411,12 +460,6 @@ GET /open-in-editor?file=/path/to/file.js:1:2:3:4
 ```
 
 > NOTE: Take in account if source file was changed since downloaded by browser, inspector could "open" file on wrong (outdated) position. Page refresh should solve the problem.
-
-There are options to provide `opening in editor` feature on server:
-
-- `express` extension [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor), that also could be used with [webpack-dev-server](https://github.com/lahmatiy/express-open-in-editor#using-with-webpack-dev-server).
-- in case you don't depend on dev-server, you can use [basisjs-tools](https://github.com/basisjs/basisjs-tools) that provides this feature out of box
-- roll your own implementation for your dev-server using [open-in-editor](https://github.com/lahmatiy/open-in-editor)
 
 ## License
 
