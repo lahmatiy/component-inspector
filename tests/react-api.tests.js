@@ -38,7 +38,7 @@ describe('react api test', function() {
     assert.equal(info[0].childNodes[0].name, '<Footer>');
     assert.include(info[0].childNodes[0].loc, '/examples/react-todomvc/components/MainSection.js:76:9:80:46');
     assert.equal(info[1].childNodes[0].cls.name, 'Footer');
-    assert.equal(info[1].childNodes[0].isClass, false);
+    assert.equal(info[1].childNodes[0].isClass, true);
   });
 
   it('getInstanceRootNode', function() {
