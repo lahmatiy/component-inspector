@@ -15,19 +15,20 @@ module.exports = {
     publicPath: '/static/'
   },
   babel: {
+    presets: ['es2015', 'stage-0', 'react'],
     plugins: [
       // in case you are using React, this plugin should be applied
       // before babel-plugin-source-wrapper
       // otherwise component names will not to be shown propertly
-      require('babel-plugin-react-display-name'),
-      require('babel-plugin-source-wrapper').configure({
+      'transform-react-display-name',
+      [require('babel-plugin-source-wrapper'), {
         // webpack sends absolute paths to plugins
         // but we need paths relative to project root
         basePath: basePath,
 
         // inject runtime in instrumented sources
         runtime: true
-      })
+      }]
     ]
   },
   plugins: [
