@@ -1,5 +1,4 @@
 // Karma configuration
-// Generated on Mon May 23 2016 22:39:36 GMT+0300 (MSK)
 module.exports = function (config) {
   var isCI = process.env.TRAVIS;
 
@@ -14,7 +13,7 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [
       'tests/fakeinject.js',
-      'tests/*tests.js'
+      'tests/react-api.tests.js'
     ],
 
     webpack: require('./tests/webpack.config'),
@@ -24,8 +23,8 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'tests/react-api.tests.js': ['webpack'],
-        'tests/fakeinject.js': ['webpack']
+      'tests/fakeinject.js': ['webpack'],
+      'tests/react-api.tests.js': ['webpack']
     },
 
     // test results reporter to use
@@ -33,7 +32,8 @@ module.exports = function (config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['spec'],
     webpackMiddleware: {
-        noInfo: true
+      // noInfo: true,
+      stats: true
     },
 
     // web server port
@@ -60,5 +60,5 @@ module.exports = function (config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
+  });
 };
