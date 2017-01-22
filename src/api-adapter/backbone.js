@@ -52,8 +52,8 @@ function getAdditionalInstanceInfo(instance) {
 
 if (typeof Backbone != 'undefined') {
   // patch backbone.js to have references to view
-  var _setElement = Backbone.View.prototype._setElement;
-  Backbone.View.prototype._setElement = function() {
+  var _setElement = global.Backbone.View.prototype._setElement;
+  global.Backbone.View.prototype._setElement = function() {
     _setElement.apply(this, arguments);
     this.el.__view = this;
   };

@@ -25,8 +25,8 @@ function openFileByBasisjsTools(host, filename) {
 
 function openFileByUrl(filename) {
   var xhr = new XMLHttpRequest();
-  var url = OPEN_FILE_URL +
-            (/\?/.test(OPEN_FILE_URL) ? '&' : '?') +
+  var url = global.OPEN_FILE_URL +
+            (/\?/.test(global.OPEN_FILE_URL) ? '&' : '?') +
             'file=' + escape(filename);
 
   // async GET to url

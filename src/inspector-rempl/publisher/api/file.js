@@ -1,4 +1,3 @@
-var remote = require('../remote.js');
 var openFile;
 
 function isOpenFileSupported() {

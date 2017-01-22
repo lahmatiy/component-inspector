@@ -58,58 +58,6 @@ function findParentComponent(node) {
   return null;
 }
 
-// var defaultSection = {
-//   name: 'Component',
-//   childNodes: [
-//     {
-//       type: 'instance',
-//       loc: selectedInstance.as(api.getInstanceLocation)
-//     },
-//     {
-//       type: 'class',
-//       loc: selectedInstance.as(function getRefClassLoc(instance) {
-//         var cls = api.getInstanceClass(instance);
-//         return api.getLocation(cls);
-//       })
-//     },
-//     {
-//       type: 'render',
-//       loc: selectedInstance.as(api.getInstanceRenderLocation)
-//     }
-//   ]
-// };
-
-// var info = new Node({
-//   childClass: sections.Section
-// });
-
-// var sectionFactory = {
-//   html: function(name, html) {
-//     return new sections.HTMLSection({
-//       name: name || '',
-//       html: String(html)
-//     });
-//   },
-//   dom: function(name, element) {
-//     return new sections.DOMSection({
-//       name: name || '',
-//       dom: element
-//     });
-//   }
-// };
-
-// selectedInstance.attach(function(instance) {
-//   if (!instance) {
-//     info.setChildNodes();
-//     return;
-//   };
-
-//   var base = api.showDefaultInfo(instance) ? [defaultSection] : [];
-//   info.setChildNodes(base.concat(
-//     api.getAdditionalInstanceInfo(instance, sectionFactory) || []
-//   ));
-// });
-
 selectedDomNode.attach(function(node) {
   var data = null;
 
@@ -126,10 +74,10 @@ selectedDomNode.attach(function(node) {
     remote.methods.selectNodeById = function(id) {
       selectedDomNode.set(dom.map[id]);
     };
-  } else {
-    // TODO: uncomment when available in rempl
-    // remote.revoke('selectNodeById');
   }
+
+  // TODO: revoke method when feature will be available in rempl
+  // remote.revoke('selectNodeById');
 
   remote.publish(data);
 });

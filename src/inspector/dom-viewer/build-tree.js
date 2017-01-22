@@ -153,7 +153,7 @@ var Comment = DOMNode.subclass({
   }
 });
 
-function buildAttribute(attr, attrBindings, actions) {
+function buildAttribute(attr) {
   var value = [{
     type: 'static',
     value: attr.value

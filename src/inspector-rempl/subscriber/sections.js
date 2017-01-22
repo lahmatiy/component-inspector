@@ -1,4 +1,4 @@
-// var jsSourcePopup = require('./js-source-popup.js');
+var jsSourcePopup = require('./js-source-popup.js');
 var Node = require('basis.ui').Node;
 var hideTimer;
 
