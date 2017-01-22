@@ -1,0 +1,23 @@
+HTML,
+BODY
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 12px;
+}
+
+.app
+{
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.app_disabled
+{
+  opacity: .4;
+  -webkit-filter: grayscale();
+  transition: all .25s;
+}

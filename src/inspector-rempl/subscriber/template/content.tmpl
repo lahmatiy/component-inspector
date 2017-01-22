@@ -1,0 +1,18 @@
+<b:style src="./content.css"/>
+<b:define name="isFile" type="bool"/>
+
+<div class="content">
+  <div class="toolbar">
+    <span class="up-buttons">
+      <span b:show="{upName}" class="button button_up" event-click="up">&#x2191; {upName}</span>
+    </span>
+    <div class="header">
+      <span class="source-title source-title_{isFile}" event-click="openSource" title="{sourceTitle}">
+        {sourceTitle}
+      </span> <span class="warnings" b:show="{warningCount}">{warningCount}</span>
+    </div>
+  </div>
+  <div{childNodesElement} class="code">
+    <!--{domTree}-->
+  </div>
+</div>

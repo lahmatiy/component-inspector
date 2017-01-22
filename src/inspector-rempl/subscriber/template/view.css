@@ -1,0 +1,37 @@
+.view
+{
+  transition: all .5s 2s;
+  flex: 1;
+}
+.view_disconnected
+{
+  pointer-events: none;
+  opacity: .25;
+  -webkit-filter: grayscale();
+  filter: grayscale();
+}
+
+.content
+{
+  box-sizing: border-box;
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  padding: 5px;
+}
+
+.no-subject
+{
+  color: #AAA;
+  text-align: center;
+  font: 20px Arial;
+  padding: 40px;
+}
+
+.source-toggle-button
+{
+  background: #CCC;
+  text-align: center;
+  padding: 6px;
+  cursor: pointer;
+}

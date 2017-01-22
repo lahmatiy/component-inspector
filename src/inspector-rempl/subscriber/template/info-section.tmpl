@@ -1,0 +1,14 @@
+<b:style src="./info-section.css"/>
+<b:isolate/>
+
+<div class="section"
+  event-click="openRefLocation"
+  event-mouseover="enterRefLocation"
+  event-mouseout="leaveRefLocation">
+  <div class="header" b:show="{name}">
+    {name}
+  </div>
+  <div{content}>
+    <div{childNodesElement} b:show="{childCount}"/>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+.wrapper
+{
+  display: block;
+  margin: 4px;
+  font-size: 11px;
+  color: #AAA;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.wrapper:last-child
+{
+  margin-bottom: 10px;
+}
+.location
+{
+  color: #888;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.location:hover
+{
+  color: #A00;
+}
+
+.instance:before,
+.class:before,
+.render:before
+{
+  border-radius: 2px;
+  padding: 0px 4px;
+  margin-right: 1ex;
+  width: 1.5ex;
+  display: inline-block;
+  text-align: center;
+}
+.instance:before
+{
+  content: "I";
+  color: #353;
+  background: #B6CFB6;
+}
+.class:before
+{
+  content: "C";
+  color: #618;
+  background: #EAC4F7;
+}
+.render:before
+{
+  content: "R";
+  color: #458;
+  background: #ADCCEB;
+}

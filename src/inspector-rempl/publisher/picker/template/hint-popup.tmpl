@@ -1,0 +1,23 @@
+<b:style src="./hint-popup.css"/>
+<b:isolate/>
+
+<div class="popup">
+  <div class="section">
+    <div class="section__title">
+      <span class="section__title-text">Component</span>
+    </div>
+    <div class="section__content">
+      <span class="name">
+        {name}
+      </span>
+      <span b:show="{instanceLocation}">
+        <span class="source">
+          Created at <span class="location">{instanceLocation}</span>
+        </span>
+        <span b:show="{openFileSupported}" class="ui-hint">
+          Use alt + click to open place in editor
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
