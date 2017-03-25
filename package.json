@@ -40,7 +40,7 @@
     "mocha": "2.5.3",
     "react-redux": "3.0.1",
     "redux": "3.0.0",
-    "rempl": "1.0.0-alpha6",
+    "rempl": "1.0.0-alpha11",
     "webpack": "1.13.1"
   },
   "eslintConfig": {

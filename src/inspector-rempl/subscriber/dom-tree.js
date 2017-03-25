@@ -63,9 +63,9 @@ var DOMNode = Node.subclass({
     },
     inspect: function() {
       if (this.data.nestedView && this.data.domNodeId) {
-        remoteApi.ns('dom-tree').invoke('selectNodeById', this.data.domNodeId);
+        remoteApi.ns('dom-tree').callRemote('selectNodeById', this.data.domNodeId);
       } else if (showLocNode.value && showLocNode.value.data.loc) {
-        remoteApi.invoke('openFile', showLocNode.value.data.loc);
+        remoteApi.callRemote('openFile', showLocNode.value.data.loc);
       }
     }
   }
@@ -86,7 +86,7 @@ var ValuePart = DOMNode.subclass({
   action: {
     openLoc: function() {
       if (this.data.loc) {
-        remoteApi.invoke('openFile', this.data.loc);
+        remoteApi.callRemote('openFile', this.data.loc);
       }
     }
   }

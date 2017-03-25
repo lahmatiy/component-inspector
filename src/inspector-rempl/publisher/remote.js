@@ -1,5 +1,5 @@
 var rempl = require('rempl');
-var INSPECTOR_URL = asset('/src/inspector-new/subscriber/index.html');
+var INSPECTOR_URL = asset('/src/inspector-rempl/subscriber/index.html');
 var INSPECTOR_BUILD_URL = asset('./unknown');
 
 module.exports = rempl.createPublisher('Component Inspector', function(settings, callback) {

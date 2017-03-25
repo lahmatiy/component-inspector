@@ -2,7 +2,7 @@ var remote = require('../remote.js');
 var openFile = require('./file.js').openFile;
 var getColoredSource = require('basis.utils.source').getColoredSource;
 
-remote.define({
+remote.provide({
   openFile: openFile,
   getColoredSource: function(loc, callback) {
     if (loc) {

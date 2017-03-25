@@ -70,19 +70,17 @@ selectedDomNode.attach(function(node) {
       sourceTitle: api.getComponentNameByNode(node)
     };
 
-    // TODO: fix to remote.define() when fixed in rempl
-    remote.methods.selectNodeById = function(id) {
+    remote.provide('selectNodeById', function(id) {
       selectedDomNode.set(dom.map[id]);
-    };
+    });
+  } else {
+    remote.revoke('selectNodeById');
   }
-
-  // TODO: revoke method when feature will be available in rempl
-  // remote.revoke('selectNodeById');
 
   remote.publish(data);
 });
 
-remote.define({
+remote.provide({
   up: function() {
     selectedDomNode.set(findParentComponent(selectedDomNode.value));
   },

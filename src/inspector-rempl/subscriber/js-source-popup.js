@@ -7,7 +7,7 @@ var source = new basis.Token('');
 rempl.getSubscriber(function(remote) {
   sourceLoc.as(function(loc) {
     if (loc) {
-      remote.invoke('getColoredSource', loc, function(result) {
+      remote.callRemote('getColoredSource', loc, function(result) {
         if (loc === sourceLoc.value) {
           source.set(result);
         }

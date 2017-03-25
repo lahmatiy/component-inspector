@@ -75,13 +75,13 @@ var view = new Node({
   },
   action: {
     up: function() {
-      remoteApi.invoke('up');
+      remoteApi.callRemote('up');
     },
     reset: function() {
-      remoteApi.invoke('reset');
+      remoteApi.callRemote('reset');
     },
     logInfo: function() {
-      remoteApi.invoke('logInfo');
+      remoteApi.callRemote('logInfo');
     }
   },
   satellite: {
