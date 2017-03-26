@@ -5,6 +5,6 @@ module.exports = rempl.createPublisher('Component Inspector', function(settings,
   /** @cut */ return callback(null, 'url', 'http://localhost:8000/src/inspector-rempl/subscriber/index.html');
   // jscs:enable
 
-  callback(null, 'script', asset('/dist/subscriber.js', true));
+  callback(null, 'script', asset('../../../dist/subscriber.js', true));
 });
 
