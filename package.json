@@ -27,6 +27,7 @@
     "babel-preset-stage-0": "^6.3.0",
     "basisjs": "1.10.0",
     "basisjs-tools": "~1.10.2",
+    "basisjs-tools-build": "^1.9.0",
     "chai": "3.5.0",
     "classnames": "2.1.2",
     "eslint": "^2.13.1",
@@ -66,7 +67,8 @@
     }
   },
   "scripts": {
-    "build": "basis build --pack",
+    "build": "npm run build:subscriber && basis build",
+    "build:subscriber": "basis build src/inspector-rempl/subscriber/index.html --js-bundle",
     "prepublish": "npm run build",
     "codestyle": "jscs src tests && eslint src",
     "test": "karma start",
