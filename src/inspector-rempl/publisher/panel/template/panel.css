@@ -69,6 +69,10 @@
 {
   background-color: rgba(255, 255, 255, 0.2);
 }
+.button-inpageDisabled
+{
+  text-decoration: line-through;
+}
 .section:last-child .button
 {
   border-right: none;

@@ -2,8 +2,15 @@ var Value = require('basis.data').Value;
 var Node = require('basis.ui').Node;
 var MoveableElement = require('basis.dragdrop').MoveableElement;
 var templateInspector = resource('../picker/index.js');
-var localStorage = global.localStorage || {};
-var STORAGE_ID = 'component-inspector';
+var inpageEnabled = templateInspector().inpageEnabled;
+var settingsStorage = global.localStorage || {};
+var SETTINGS_STORAGE_ID = 'component-inspector';
+var settings = {};
+
+function setSetting(name, value) {
+  settings[name] = value;
+  settingsStorage[SETTINGS_STORAGE_ID] = JSON.stringify(settings);
+}
 
 var currentInspector = new Value({
   handler: {
@@ -55,6 +62,7 @@ var panel = new Node({
   template: resource('./template/panel.tmpl'),
   binding: {
     isOnline: isOnline || basis.fn.$true,
+    inpageEnabled: inpageEnabled,
     inspectMode: inspectMode,
     inspector: currentInspectorName,
     inspectorId: currentInspectorName.as(function(inspectorName) {
@@ -69,7 +77,15 @@ var panel = new Node({
       currentInspector.set(templateInspector());
     },
     storePosition: function() {
-      localStorage[STORAGE_ID] = parseInt(this.element.style.left) + ';' + parseInt(this.element.style.top);
+      setSetting('panel-position', [
+        parseInt(this.element.style.left),
+        parseInt(this.element.style.top)
+      ]);
+    },
+    toggleInpage: function() {
+      inpageEnabled.set(!inpageEnabled.value);
+      setSetting('inpage-disabled', !inpageEnabled.value);
+      console.log(inpageEnabled.value);
     },
     cancelInspect: function() {
       currentInspector.set();
@@ -97,15 +113,13 @@ var panel = new Node({
   }
 });
 
-
-//
-// drag&drop stuff
-//
-if (typeof localStorage != 'undefined') {
-  var position = (localStorage[STORAGE_ID] || '10;10').split(';');
+try {
+  settings = JSON.parse(settingsStorage[SETTINGS_STORAGE_ID]);
+  var position = (settings['panel-position'] || '10,10').split(',');
   panel.element.style.left = position[0] + 'px';
   panel.element.style.top = position[1] + 'px';
-}
+  inpageEnabled.set(!settings['inpage-disabled']);
+} catch (e) {}
 
 
 //

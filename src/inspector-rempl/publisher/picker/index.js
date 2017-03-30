@@ -4,9 +4,27 @@ var setStyle = require('basis.cssom').setStyle;
 var getBoundingRect = require('basis.layout').getBoundingRect;
 var Value = require('basis.data').Value;
 var Balloon = require('basis.ui.popup').Balloon;
+var remote = require('../remote.js');
+var rempl = require('rempl');
+var inpageEnabled = new Value({ value: true });
 
 var api = require('../api.js');
 var selectedNode = require('../data/watcher.js');
+
+Value.from(selectedNode).link(rempl.getHost(), function(node) {
+  if (node) {
+    if (inpageEnabled.value) {
+      this.activate(remote.id);
+    }
+  } else {
+    this.deactivate(remote.id);
+  }
+});
+inpageEnabled.link(rempl.getHost(), function(value) {
+  if (!value) {
+    this.deactivate(remote.id);
+  }
+});
 
 var document = global.document;
 
@@ -256,6 +274,7 @@ function mouseWheelHandler(event) {
 //
 module.exports = {
   name: 'Component',
+  inpageEnabled: inpageEnabled,
   startInspect: startInspect,
   stopInspect: stopInspect,
   inspectMode: inspectMode,
