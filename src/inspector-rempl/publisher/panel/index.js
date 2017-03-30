@@ -85,7 +85,6 @@ var panel = new Node({
     toggleInpage: function() {
       inpageEnabled.set(!inpageEnabled.value);
       setSetting('inpage-disabled', !inpageEnabled.value);
-      console.log(inpageEnabled.value);
     },
     cancelInspect: function() {
       currentInspector.set();
@@ -115,12 +114,13 @@ var panel = new Node({
 
 try {
   settings = JSON.parse(settingsStorage[SETTINGS_STORAGE_ID]);
-  var position = (settings['panel-position'] || '10,10').split(',');
-  panel.element.style.left = position[0] + 'px';
-  panel.element.style.top = position[1] + 'px';
+  if (!settings['panel-position']) {
+    settings['panel-position'] = [10, 10];
+  }
+  panel.element.style.left = settings['panel-position'][0] + 'px';
+  panel.element.style.top = settings['panel-position'][1] + 'px';
   inpageEnabled.set(!settings['inpage-disabled']);
 } catch (e) {}
-
 
 //
 // exports
