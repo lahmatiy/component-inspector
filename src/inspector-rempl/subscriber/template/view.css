@@ -3,13 +3,6 @@
   transition: all .5s 2s;
   flex: 1;
 }
-.view_disconnected
-{
-  pointer-events: none;
-  opacity: .25;
-  -webkit-filter: grayscale();
-  filter: grayscale();
-}
 
 .content
 {

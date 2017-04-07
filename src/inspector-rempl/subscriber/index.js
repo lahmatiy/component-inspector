@@ -9,12 +9,12 @@ var appRoot = new Node({
 
 require('basis.app').create(appRoot);
 
-rempl.getSubscriber(function() {
-  appRoot.setSatellite('view', require('./view.js'));
+rempl.getSubscriber().connected.link(function(connected) {
+  if (connected) {
+    appRoot.setSatellite('view', require('./view.js'));
+  }
 });
 
-// rempl.getSubscriber(function(subscriber) {
-//   subscriber.ns('dom-tree').subscribe(function(data) {
-//     console.log(data);
-//   });
+// rempl.getSubscriber().ns('dom-tree').subscribe(function(data) {
+//   console.log(data);
 // });

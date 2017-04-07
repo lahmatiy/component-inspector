@@ -1,10 +1,9 @@
-var rempl = require('rempl');
 var DataObject = require('basis.data').Object;
 var Node = require('basis.ui').Node;
 var sections = require('./sections.js');
 var DomTree = require('./dom-tree.js');
 var noData = new DataObject();
-var remoteApi;
+var remoteApi = require('rempl').getSubscriber().ns('dom-tree');
 
 // var defaultSection = {
 //   name: 'Component',
@@ -61,7 +60,6 @@ var info = new Node({
 var view = new Node({
   template: resource('./template/view.tmpl'),
   binding: {
-    connected: basis.fn.$const(true), // TODO: nake it works
     hasSubject: {
       events: 'update',
       getter: function(node) {
@@ -90,17 +88,14 @@ var view = new Node({
   }
 });
 
-rempl.getSubscriber(function(subscriber) {
-  remoteApi = subscriber.ns('dom-tree');
-  remoteApi.subscribe(function(data) {
-    if (data) {
-      view.update(data);
-    } else {
-      // clear data
-      view.setDelegate(noData);
-      view.setDelegate();
-    }
-  });
+remoteApi.subscribe(function(data) {
+  if (data) {
+    view.update(data);
+  } else {
+    // clear data
+    view.setDelegate(noData);
+    view.setDelegate();
+  }
 });
 
 module.exports = view;

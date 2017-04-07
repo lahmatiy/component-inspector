@@ -1,20 +1,18 @@
 var Value = require('basis.data').Value;
 var Popup = require('basis.ui.popup').Popup;
-var rempl = require('rempl');
+var remote = require('rempl').getSubscriber();
 var sourceLoc = new Value();
 var source = new basis.Token('');
 
-rempl.getSubscriber(function(remote) {
-  sourceLoc.as(function(loc) {
-    if (loc) {
-      remote.callRemote('getColoredSource', loc, function(result) {
-        if (loc === sourceLoc.value) {
-          source.set(result);
-        }
-      });
-    }
-    source.set('');
-  });
+sourceLoc.as(function(loc) {
+  if (loc) {
+    remote.callRemote('getColoredSource', loc, function(result) {
+      if (loc === sourceLoc.value) {
+        source.set(result);
+      }
+    });
+  }
+  source.set('');
 });
 
 module.exports = new Popup({

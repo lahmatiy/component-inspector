@@ -2,7 +2,8 @@ var wrapData = require('basis.data').wrap;
 var Node = require('basis.ui').Node;
 var templateSwitcher = require('basis.template').switcher;
 var rempl = require('rempl');
-var remoteApi;
+var remoteApi = rempl.getSubscriber();
+
 var jsSourcePopup = resource('./js-source-popup.js');
 var SINGLETON = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source'];
 var NodeClassByType = {};
@@ -150,10 +151,6 @@ NodeClassByType.comment = DOMNode.subclass({
     value: 'data:',
     nestedView: 'data:'
   }
-});
-
-rempl.getSubscriber(function(subscriber) {
-  remoteApi = subscriber;
 });
 
 module.exports = Node.subclass({
