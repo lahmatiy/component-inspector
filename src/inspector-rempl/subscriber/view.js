@@ -93,6 +93,9 @@ remoteApi.subscribe(function(data) {
     view.update(data);
   } else {
     // clear data
+    // Note: basis.js has no method to reset data, therefore we use hack
+    // by setting a delegate with empty data and then reset a delegate
+    // to avoid its corruption
     view.setDelegate(noData);
     view.setDelegate();
   }

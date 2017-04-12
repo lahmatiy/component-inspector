@@ -1,8 +1,9 @@
 var wrapData = require('basis.data').wrap;
 var Node = require('basis.ui').Node;
 var templateSwitcher = require('basis.template').switcher;
-var rempl = require('rempl');
-var remoteApi = rempl.getSubscriber();
+var remplSubscriber = require('rempl').getSubscriber();
+var openFile = remplSubscriber.getRemoteMethod('openFile');
+var selectNodeById = remplSubscriber.ns('dom-tree').getRemoteMethod('selectNodeById');
 
 var jsSourcePopup = resource('./js-source-popup.js');
 var SINGLETON = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source'];
@@ -64,9 +65,9 @@ var DOMNode = Node.subclass({
     },
     inspect: function() {
       if (this.data.nestedView && this.data.domNodeId) {
-        remoteApi.ns('dom-tree').callRemote('selectNodeById', this.data.domNodeId);
+        selectNodeById(this.data.domNodeId);
       } else if (showLocNode.value && showLocNode.value.data.loc) {
-        remoteApi.callRemote('openFile', showLocNode.value.data.loc);
+        openFile(showLocNode.value.data.loc);
       }
     }
   }
@@ -87,7 +88,7 @@ var ValuePart = DOMNode.subclass({
   action: {
     openLoc: function() {
       if (this.data.loc) {
-        remoteApi.callRemote('openFile', this.data.loc);
+        openFile(this.data.loc);
       }
     }
   }

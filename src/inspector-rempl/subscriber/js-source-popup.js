@@ -1,12 +1,12 @@
 var Value = require('basis.data').Value;
 var Popup = require('basis.ui.popup').Popup;
-var remote = require('rempl').getSubscriber();
+var getColoredSource = require('rempl').getSubscriber().getRemoteMethod('getColoredSource');
 var sourceLoc = new Value();
 var source = new basis.Token('');
 
 sourceLoc.as(function(loc) {
-  if (loc) {
-    remote.callRemote('getColoredSource', loc, function(result) {
+  if (loc && getColoredSource.available) {
+    getColoredSource(loc, function(result) {
       if (loc === sourceLoc.value) {
         source.set(result);
       }
