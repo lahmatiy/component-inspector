@@ -12,6 +12,7 @@ BODY
 {
   height: 100%;
   overflow: auto;
+  display: -webkit-flex;
   display: flex;
   flex-direction: column;
 }

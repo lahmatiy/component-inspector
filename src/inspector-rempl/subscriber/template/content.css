@@ -1,12 +1,14 @@
 .content
 {
-  flex: 1;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
   min-width: 300px;
   padding: 0;
 }
 .toolbar
 {
   padding-bottom: 1px;
+  display: -webkit-flex;
   display: flex;
 }
 .header
@@ -18,7 +20,8 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  flex: 1;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 .source-title
 {
@@ -58,6 +61,8 @@
   margin-right: 3px;
   display: inline-block;
   cursor: pointer;
+  min-width: 45px;
+  text-align: center;
 }
 .button_up:hover
 {
