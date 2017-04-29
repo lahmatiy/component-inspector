@@ -30,6 +30,15 @@ describe('react api test', function() {
     assert.equal(api.isComponentRootNode(checkbox), false);
   });
 
+  it('getInstanceRenderLocation', function() {
+    var footer = this.domContainer.querySelector('footer');
+    var input = this.domContainer.querySelector('.new-todo');
+    var checkbox = this.domContainer.querySelector('.todo-list checkbox');
+    assert.equal(api.getInstanceRenderLocation(api.getInstanceByNode(footer)), '/examples/react-todomvc/components/Footer.js:20:3:34:4');
+    assert.equal(api.getInstanceRenderLocation(api.getInstanceByNode(input)), '/examples/react-todomvc/components/TodoTextInput.js:40:3:54:4');
+    assert.equal(api.getInstanceRenderLocation(api.getInstanceByNode(checkbox)), undefined);
+  });
+
   it('getAdditionalInstanceInfo', function() {
     var node = this.domContainer.querySelector('footer');
     var reactElementByNode = api.getInstanceByNode(node);

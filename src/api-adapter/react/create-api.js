@@ -147,7 +147,7 @@ function getAdditionalInstanceInfo(element) {
 
       if (wrapperClass) {
         classLoc = this.getLocation(wrapperClass);
-        renderLoc = this.getLocation(wrapperClass && wrapperClass.prototype.render);
+        renderLoc = this.getClassMethodLocation(wrapperClass, 'render');
       }
 
       return {
@@ -176,6 +176,7 @@ function getAdditionalInstanceInfo(element) {
         createClassView({
           cls: cls,
           isClass: info && info.type === 'class',
+          getClassMethodLocation: this.getClassMethodLocation,
           getLocation: this.getLocation,
           childNodes: decorators
         })
@@ -190,21 +191,16 @@ function getInstanceLocation(element) {
 
 function getInstanceRenderLocation(element) {
   var instance = element && element._instance;
-  var render;
 
   if (instance) {
     if (hasOwnProperty.call(instance, 'render')) {
-      render = instance.render;
+      return this.getLocation(instance.render);
     } else {
       var constructor = unwrap(instance.constructor, this.getDevInfo);
-      if (constructor && constructor.prototype) {
-        render = constructor.prototype.render;
+      if (constructor) {
+        return this.getClassMethodLocation(constructor, 'render');
       }
     }
-  }
-
-  if (typeof render == 'function') {
-    return this.getLocation(render);
   }
 }
 
