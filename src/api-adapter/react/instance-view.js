@@ -5,6 +5,15 @@ var InstanceView = Node.subclass({
   binding: {
     name: 'name',
     loc: 'loc'
+  },
+  childClass: {
+    template: resource('./prop-view.tmpl'),
+    binding: {
+      key: 'key',
+      type: 'type',
+      valueText: 'valueText',
+      valueLoc: 'valueLoc'
+    }
   }
 });
 

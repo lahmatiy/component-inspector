@@ -1,0 +1,51 @@
+.prop
+{
+  padding-left: 2ch;
+}
+
+.key
+{
+  color: #994500;
+}
+
+.valueWrapper {
+  color: #881280;
+}
+
+.valueWrapper_string:before,
+.valueWrapper_string:after
+{
+  content: '"';
+}
+
+.valueWrapper_function:before,
+.valueWrapper_other:before
+{
+  content: '{';
+  padding-right: 1ch;
+}
+
+.valueWrapper_function:after,
+.valueWrapper_other:after
+{
+  content: '}';
+  padding-left: 1ch;
+}
+
+.value_string,
+.value_other
+{
+  color: #1a1aa6;
+}
+
+.value_function
+{
+  color: #881280;
+  font-style: italic;
+}
+
+.value_hasValueLoc
+{
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -1,3 +1,5 @@
+var stringifyWithLimit = require('./stringify-with-limit.js');
+
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var elementMap = {};
 var getNode;
@@ -56,7 +58,7 @@ function getComponentNameByNode(node) {
     }
   }
 
-  return name ? '<' + name + '>' : 'Unknown';
+  return name || 'Unknown';
 }
 
 
@@ -119,12 +121,58 @@ function isComponentRootNode(node) {
   );
 }
 
+function getPropValueType(value) {
+  if (typeof value === 'string') {
+    return 'string';
+  } else if (typeof value === 'function') {
+    return 'function';
+  } else {
+    return 'other';
+  }
+}
+
+function getPropValueText(type, value) {
+  switch (type) {
+    case 'string':
+      return stringifyWithLimit.sliceText(value, 20);
+
+    case 'function':
+      // Additional 9 characters for 'function '
+      return stringifyWithLimit(value, 29);
+
+    case 'other':
+      return stringifyWithLimit(value, 20);
+  }
+}
+
+function getInstancePropsInfo(instanceProps, getLocation) {
+  var props = [];
+
+  for (var prop in instanceProps) {
+    if (hasOwnProperty.call(instanceProps, prop)) {
+      var value = instanceProps[prop];
+      var type = getPropValueType(value);
+      var valueText = getPropValueText(type, value);
+
+      props.push({
+        key: prop,
+        type: type,
+        valueText: valueText,
+        valueLoc: typeof value === 'object' ? getLocation(value) : undefined
+      });
+    }
+  }
+
+  return props;
+}
+
 function getAdditionalInstanceInfo(element) {
   var instanceRootNode = this.getInstanceRootNode(element);
   var instance = element && element._instance;
   var cls = instance && instance.constructor;
   var wrapperClassMap = {};
   var decorators = [];
+  var props = [];
   var info;
 
   if (typeof cls == 'function') {
@@ -160,13 +208,18 @@ function getAdditionalInstanceInfo(element) {
     }, this);
   }
 
+  if (instance.props) {
+    props = getInstancePropsInfo(instance.props, this.getLocation);
+  }
+
   return [
     {
       name: 'Instance',
       childNodes: [
         createInstanceView({
           name: this.getComponentNameByNode(instanceRootNode),
-          loc: this.getNestedComponentNodeLocation(instanceRootNode)
+          loc: this.getNestedComponentNodeLocation(instanceRootNode),
+          childNodes: props
         })
       ]
     },
