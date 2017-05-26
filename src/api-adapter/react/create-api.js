@@ -158,7 +158,7 @@ function getInstancePropsInfo(instanceProps, getLocation) {
         key: prop,
         type: type,
         valueText: valueText,
-        valueLoc: getLocation(value)
+        valueLoc: value && (typeof value === 'object' || typeof value === 'function') ? getLocation(value) : undefined
       });
     }
   }
