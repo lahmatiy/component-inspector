@@ -30,7 +30,7 @@ function stringifyArray(value, str, limit) {
   return str + ' ]';
 }
 
-function stringifyReactElement(value, str, limit) {
+function stringifyReactElement(value, str) {
   var type = value.type;
   var name;
 
