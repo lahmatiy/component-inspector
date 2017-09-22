@@ -1,17 +1,16 @@
 var path = require('path');
 var webpack = require('webpack');
-var basePath = '';
-if (require('os').platform() !== 'win32') {
-  basePath = process.cwd();
-}
+var basePath = require('os').platform() !== 'win32' ? basePath = process.cwd() : '';
+
 module.exports = {
   devtool: 'source-map',
   entry: {
     bundle: [
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
-      './index'],
-    inspector: [path.join(__dirname, '../../', 'dist', 'react.js')]
+      './index'
+    ],
+    inspector: [path.join(__dirname, '../../dist/react.js')]
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -25,14 +24,14 @@ module.exports = {
       // before babel-plugin-source-wrapper
       // otherwise component names will not to be shown propertly
       'transform-react-display-name',
-      [require('babel-plugin-source-wrapper'), {
+      require('babel-plugin-source-wrapper').configure({
         // webpack sends absolute paths to plugins
         // but we need paths relative to project root
         basePath: basePath,
 
         // inject runtime in instrumented sources
         runtime: true
-      }]
+      })
     ]
   },
   plugins: [
