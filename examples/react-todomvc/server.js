@@ -11,12 +11,12 @@ var server = new WebpackDevServer(webpack(config), {
   stats: {
     colors: true
   },
-  setup: function (app) {
-    app.use(openInEditor())
+  setup: function(app) {
+    app.use(openInEditor());
   }
 });
 var port = process.env.PORT || 3000;
-server.listen(port, 'localhost', function (err) {
+server.listen(port, 'localhost', function(err) {
   if (err) {
     console.log(err);
   }
