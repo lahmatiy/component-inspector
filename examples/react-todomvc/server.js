@@ -1,8 +1,8 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
-
 var openInEditor = require('express-open-in-editor');
+var config = require('./webpack.config');
+var PORT = process.env.PORT || 3000;
 
 var server = new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
@@ -12,14 +12,14 @@ var server = new WebpackDevServer(webpack(config), {
     colors: true
   },
   setup: function(app) {
-    app.use(openInEditor());
+    app.use('/open-in-editor', openInEditor());
   }
 });
-var port = process.env.PORT || 3000;
-server.listen(port, 'localhost', function(err) {
+
+server.listen(PORT, 'localhost', function(err) {
   if (err) {
     console.log(err);
   }
 
-  console.log('Listening at localhost:' + port);
+  console.log('Listening at localhost:' + PORT);
 });
