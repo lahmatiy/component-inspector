@@ -1,3 +1,4 @@
+var openFileUrl;
 var openFile;
 
 function isOpenFileSupported() {
@@ -5,12 +6,15 @@ function isOpenFileSupported() {
     return true;
   }
 
-  if (typeof OPEN_FILE_URL == 'string') {
+  if (typeof OPEN_FILE_URL === 'string') {
+    // eslint-disable-next-line no-undef
+    openFileUrl = OPEN_FILE_URL;
     openFile = openFileByUrl;
     return true;
   }
 
-  var basisjsTools = global.basisjsToolsFileSync || basis.devtools;
+  // eslint-disable-next-line no-undef
+  var basisjsTools = typeof basisjsToolsFileSync !== 'undefined' ? basisjsToolsFileSync : basis.devtools;
   if (basisjsTools && typeof basisjsTools.openFile == 'function') {
     openFile = function(filename) {
       openFileByBasisjsTools(basisjsTools, filename);
@@ -25,15 +29,13 @@ function openFileByBasisjsTools(host, filename) {
 
 function openFileByUrl(filename) {
   var xhr = new XMLHttpRequest();
-  var url = global.OPEN_FILE_URL +
-            (/\?/.test(global.OPEN_FILE_URL) ? '&' : '?') +
+  var url = openFileUrl +
+            (/\?/.test(openFileUrl) ? '&' : '?') +
             'file=' + escape(filename);
 
-  // async GET to url
+  // async GET
   xhr.open('GET', url, true);
-  // set if-modified-since header since begining prevents cache using;
-  // otherwise browser could never ask server for new file content
-  // and use file content from cache
+  // set if-modified-since header since begining prevents cache using
   xhr.setRequestHeader('If-Modified-Since', new Date(0).toGMTString());
   xhr.send('');
 }
