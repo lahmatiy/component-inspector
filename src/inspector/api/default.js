@@ -26,6 +26,11 @@ module.exports = {
     return this.getLocation(instance);
   },
   getInstanceRenderLocation: function(instance) {
+    var methodLocation = this.getClassMethodLocation(this.getInstanceClass(instance), 'render');
+    if (methodLocation) {
+      return methodLocation;
+    }
+
     if (instance && typeof instance.render == 'function') {
       return this.getLocation(instance.render);
     }
@@ -62,6 +67,12 @@ module.exports = {
   getLocation: function(value) {
     if (value) {
       return this.getDevInfo(value, 'loc');
+    }
+  },
+  getClassMethodLocation: function(value, method) {
+    if (value) {
+      var methods = this.getDevInfo(value, 'methods');
+      return methods ? methods[method] : null;
     }
   },
   buildComponentInfo: function(instance, node) {

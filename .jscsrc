@@ -4,7 +4,7 @@
     "excludeFiles": [
         "./dist",
         "./node_modules",
-        "./tests/**/node_modules"
+        "./**/node_modules"
     ],
 
     "disallowEmptyBlocks": true,

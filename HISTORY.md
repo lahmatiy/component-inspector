@@ -1,3 +1,8 @@
+## 1.5 (May 25, 2017)
+
+- Added instance props display for React version (@vslinko, #28)
+- Improved location resolving of `render` method for React version (@vslinko, #27)
+
 ## 1.4 (July 2, 2016)
 
 - Added support for React 15 (many thanks to @Mavrin)

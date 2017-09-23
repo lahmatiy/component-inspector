@@ -16,7 +16,8 @@ module.exports = Node.subclass({
       return node.getLocation(node.cls);
     },
     renderLoc: function(node) {
-      return node.getLocation(node.cls && node.cls.prototype.render);
+      var methodLocation = node.getClassMethodLocation(node.cls, 'render');
+      return methodLocation || node.getLocation(node.cls && node.cls.prototype.render);
     },
     extendsClassName: function(node) {
       if (Object.getPrototypeOf) {
