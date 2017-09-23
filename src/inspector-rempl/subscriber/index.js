@@ -1,5 +1,5 @@
-var rempl = require('rempl');
 var Node = require('basis.ui').Node;
+var remote = require('remote');
 var appRoot = new Node({
   template: resource('./template/app.tmpl'),
   binding: {
@@ -9,12 +9,12 @@ var appRoot = new Node({
 
 require('basis.app').create(appRoot);
 
-rempl.getSubscriber().connected.link(function(connected) {
+remote.connected.link(function(connected) {
   if (connected) {
     appRoot.setSatellite('view', require('./view.js'));
   }
 });
 
-// rempl.getSubscriber().ns('dom-tree').subscribe(function(data) {
+// remote.ns('dom-tree').subscribe(function(data) {
 //   console.log(data);
 // });

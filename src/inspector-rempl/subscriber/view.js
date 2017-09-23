@@ -3,7 +3,7 @@ var Node = require('basis.ui').Node;
 var sections = require('./sections.js');
 var DomTree = require('./dom-tree.js');
 var noData = new DataObject();
-var remoteApi = require('rempl').getSubscriber().ns('dom-tree');
+var remoteApi = require('remote').ns('dom-tree');
 
 // var defaultSection = {
 //   name: 'Component',

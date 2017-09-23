@@ -1,14 +1,15 @@
-var jsSourcePopup = require('./js-source-popup.js');
 var Node = require('basis.ui').Node;
+var openFile = require('remote').getRemoteMethod('openFile');
+var jsSourcePopup = require('./js-source-popup.js');
 var hideTimer;
 
 function openRefLocation(e) {
   var loc = e.target.getAttribute('data-loc');
   if (loc) {
-    console.log('open file', loc);
-    // api.openFile(loc);
+    openFile(loc);
   }
 }
+
 function enterRefLocation(e) {
   var loc = e.target.getAttribute('data-loc');
   if (loc) {
@@ -17,6 +18,7 @@ function enterRefLocation(e) {
     jsSourcePopup.show(e.target);
   }
 }
+
 function leaveRefLocation() {
   clearTimeout(hideTimer);
   hideTimer = setTimeout(function() {
