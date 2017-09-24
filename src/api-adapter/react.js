@@ -3,9 +3,7 @@ var api = new basis.Token();
 
 function adoptAPI(reactApi) {
   // export API
-  api.set(createApi({
-    reactApi: reactApi
-  }));
+  api.set(createApi(reactApi));
 }
 // attach to React devtools
 var oldHook = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
