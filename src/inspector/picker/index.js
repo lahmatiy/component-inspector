@@ -245,10 +245,13 @@ function mouseWheelHandler(event) {
   } while (cursor = cursor.parentNode);
 
   inspectDepth = lastDepth;
-  pickupTarget.set({
-    node: lastNode,
-    instance: api.getInstanceByNode(lastNode)
-  });
+  pickupTarget.set(lastNode
+    ? {
+        node: lastNode,
+        instance: api.getInstanceByNode(lastNode)
+      }
+    : null
+  );
 
   event.die();
 }
