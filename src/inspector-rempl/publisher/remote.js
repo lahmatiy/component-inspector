@@ -6,5 +6,6 @@ module.exports = rempl.createPublisher('Component Inspector', function(settings,
   // jscs:enable
 
   callback(null, 'script', asset('../../../dist/subscriber.js', true));
+}, {
+  ws: window.REMPL_HOST || false
 });
-
