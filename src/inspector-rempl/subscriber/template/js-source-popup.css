@@ -2,9 +2,6 @@
 {
   position: absolute;
   margin-top: 6px;
-  padding: 8px 16px 8px 10px;
-  min-height: 1em;
-  min-width: 300px;
   background-color: white;
   background-color: rgba(255, 255, 255, .95);
   border: 1px solid #e6e9ed;
@@ -96,6 +93,25 @@
   bottom: -8px;
   width: 20px;
   height: 8px;
+}
+
+.content
+{
+  overflow: hidden;
+  padding: 8px 16px 8px 10px;
+  min-height: 1em;
+  min-width: 300px;
+  box-sizing: border-box;
+}
+.content:after
+{
+  content: '';
+  background: linear-gradient(to bottom, transparent, white 70%, white);
+  position: absolute;
+  height: 24px;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .header
