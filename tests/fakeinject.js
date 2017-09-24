@@ -2,15 +2,7 @@ import createApi from './../src/api-adapter/react/create-api';
 import api from './../src/inspector/api';
 
 var adoptAPI = (reactApi) => {
-  api.set(createApi({
-    reactApi: reactApi,
-    createClassView: function(config) {
-      return config;
-    },
-    createInstanceView: function(config) {
-      return config;
-    }
-  }));
+  api.set(createApi(reactApi));
 
   window.reactInspectorApi = api;
 };
