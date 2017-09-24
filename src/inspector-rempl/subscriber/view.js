@@ -6,27 +6,6 @@ var noData = new DataObject();
 var remoteDomTree = require('./remote.js').ns('dom-tree');
 var remoteDetails = require('./remote.js').ns('details');
 
-// var defaultSection = {
-//   name: 'Component',
-//   childNodes: [
-//     {
-//       type: 'instance',
-//       loc: selectedInstance.as(api.getInstanceLocation)
-//     },
-//     {
-//       type: 'class',
-//       loc: selectedInstance.as(function getRefClassLoc(instance) {
-//         var cls = api.getInstanceClass(instance);
-//         return api.getLocation(cls);
-//       })
-//     },
-//     {
-//       type: 'render',
-//       loc: selectedInstance.as(api.getInstanceRenderLocation)
-//     }
-//   ]
-// };
-
 var info = new Node({
   childClass: sections.Section,
   childFactory: function(section) {
@@ -36,33 +15,6 @@ var info = new Node({
     });
   }
 });
-
-// var sectionFactory = {
-//   html: function(name, html) {
-//     return new sections.HTMLSection({
-//       name: name || '',
-//       html: String(html)
-//     });
-//   },
-//   dom: function(name, element) {
-//     return new sections.DOMSection({
-//       name: name || '',
-//       dom: element
-//     });
-//   }
-// };
-
-// selectedInstance.attach(function(instance) {
-//   if (!instance) {
-//     info.setChildNodes();
-//     return;
-//   };
-
-//   var base = api.showDefaultInfo(instance) ? [defaultSection] : [];
-//   info.setChildNodes(base.concat(
-//     api.getAdditionalInstanceInfo(instance, sectionFactory) || []
-//   ));
-// });
 
 remoteDetails.subscribe(function(data) {
   info.setChildNodes(data);
