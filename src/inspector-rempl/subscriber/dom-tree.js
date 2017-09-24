@@ -24,13 +24,13 @@ showLocNode.attach(memo(function(node, oldNode) {
   }
 
   if (node) {
+    jsSourcePopup().relElement = node.element;
     jsSourcePopup().loc.set(node.data.loc);
-    jsSourcePopup().show(node.element);
     node.showLoc = true;
     node.updateBind('showLoc');
     remoteDomTree.callRemote('hover', node.data.domNodeId);
   } else {
-    jsSourcePopup().hide();
+    jsSourcePopup().loc.set();
     remoteDomTree.callRemote('hover', null);
   }
 }));

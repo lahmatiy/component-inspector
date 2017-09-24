@@ -16,15 +16,15 @@ function enterRefLocation(e) {
   var loc = e.target.getAttribute('data-loc');
   if (loc) {
     clearTimeout(hideTimer);
+    jsSourcePopup.relElement = e.target;
     jsSourcePopup.loc.set(loc);
-    jsSourcePopup.show(e.target);
   }
 }
 
 function leaveRefLocation() {
   clearTimeout(hideTimer);
   hideTimer = setTimeout(function() {
-    jsSourcePopup.hide();
+    jsSourcePopup.loc.set();
   }, 100);
 }
 

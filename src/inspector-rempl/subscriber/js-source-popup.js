@@ -2,20 +2,22 @@ var Value = require('basis.data').Value;
 var Popup = require('basis.ui.popup').Popup;
 var getColoredSource = require('./remote.js').getRemoteMethod('getColoredSource');
 var sourceLoc = new Value();
-var source = new basis.Token('');
+var source = new Value({ value: '' });
 
 sourceLoc.as(function(loc) {
   if (loc && getColoredSource.available) {
     getColoredSource(loc, function(result) {
       if (loc === sourceLoc.value) {
         source.set(result);
+        popup.realign();
       }
     });
   }
+
   source.set('');
 });
 
-module.exports = new Popup({
+var popup = new Popup({
   loc: sourceLoc,
 
   dir: 'top left bottom left',
@@ -36,3 +38,13 @@ module.exports = new Popup({
     this.element.style.zIndex = 65000;
   }
 });
+
+source.link(popup, function(source) {
+  if (source) {
+    this.show();
+  } else {
+    this.hide();
+  }
+});
+
+module.exports = popup;
