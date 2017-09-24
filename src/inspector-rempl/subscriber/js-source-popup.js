@@ -1,6 +1,6 @@
 var Value = require('basis.data').Value;
 var Popup = require('basis.ui.popup').Popup;
-var getColoredSource = require('remote').getRemoteMethod('getColoredSource');
+var getColoredSource = require('./remote.js').getRemoteMethod('getColoredSource');
 var sourceLoc = new Value();
 var source = new basis.Token('');
 

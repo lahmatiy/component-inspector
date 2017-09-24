@@ -3,7 +3,8 @@ var Node = require('basis.ui').Node;
 var sections = require('./sections.js');
 var DomTree = require('./dom-tree.js');
 var noData = new DataObject();
-var remoteApi = require('remote').ns('dom-tree');
+var remoteDomTree = require('./remote.js').ns('dom-tree');
+var remoteDetails = require('./remote.js').ns('details');
 
 // var defaultSection = {
 //   name: 'Component',
@@ -27,7 +28,13 @@ var remoteApi = require('remote').ns('dom-tree');
 // };
 
 var info = new Node({
-  childClass: sections.Section
+  childClass: sections.Section,
+  childFactory: function(section) {
+    var ChildClass = sections.byType[section.type] || sections.UnknownSection;
+    return new ChildClass({
+      data: section
+    });
+  }
 });
 
 // var sectionFactory = {
@@ -57,6 +64,10 @@ var info = new Node({
 //   ));
 // });
 
+remoteDetails.subscribe(function(data) {
+  info.setChildNodes(data);
+});
+
 var view = new Node({
   template: resource('./template/view.tmpl'),
   binding: {
@@ -73,13 +84,13 @@ var view = new Node({
   },
   action: {
     up: function() {
-      remoteApi.callRemote('up');
+      remoteDomTree.callRemote('up');
     },
     reset: function() {
-      remoteApi.callRemote('reset');
+      remoteDomTree.callRemote('reset');
     },
     logInfo: function() {
-      remoteApi.callRemote('logInfo');
+      remoteDomTree.callRemote('logInfo');
     }
   },
   satellite: {
@@ -88,7 +99,7 @@ var view = new Node({
   }
 });
 
-remoteApi.subscribe(function(data) {
+remoteDomTree.subscribe(function(data) {
   if (data) {
     view.update(data);
   } else {

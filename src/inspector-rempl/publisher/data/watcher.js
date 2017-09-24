@@ -1,6 +1,7 @@
 var api = require('../api.js');
-var remote = require('../remote.js').ns('dom-tree');
 var parseDom = require('./parse-dom.js');
+var remoteDomTree = require('../remote.js').ns('dom-tree');
+var remoteDetails = require('../remote.js').ns('details');
 var selectedDomNode = new basis.Token();
 var selectedInstance = selectedDomNode.as(api.getInstanceByNode);
 
@@ -70,17 +71,47 @@ selectedDomNode.attach(function(node) {
       sourceTitle: api.getComponentNameByNode(node)
     };
 
-    remote.provide('selectNodeById', function(id) {
+    remoteDomTree.provide('selectNodeById', function(id) {
       selectedDomNode.set(dom.map[id]);
     });
   } else {
-    remote.revoke('selectNodeById');
+    remoteDomTree.revoke('selectNodeById');
   }
 
-  remote.publish(data);
+  remoteDomTree.publish(data);
 });
 
-remote.provide({
+selectedInstance.attach(function(instance) {
+  var details = [];
+
+  if (instance) {
+    if (api.showDefaultInfo(instance)) {
+      details.push({
+        type: 'default',
+        locations: [
+          {
+            type: 'instance',
+            loc: api.getInstanceLocation(instance)
+          },
+          {
+            type: 'class',
+            loc: api.getLocation(api.getInstanceClass(instance))
+          },
+          {
+            type: 'render',
+            loc: api.getInstanceRenderLocation(instance)
+          }
+        ]
+      });
+    }
+
+    details.push.apply(details, api.getAdditionalInstanceInfo(instance));
+  }
+
+  remoteDetails.publish(details);
+});
+
+remoteDomTree.provide({
   up: function() {
     selectedDomNode.set(findParentComponent(selectedDomNode.value));
   },

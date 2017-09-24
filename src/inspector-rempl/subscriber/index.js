@@ -1,5 +1,5 @@
 var Node = require('basis.ui').Node;
-var remote = require('remote');
+var remote = require('./remote.js');
 var appRoot = new Node({
   template: resource('./template/app.tmpl'),
   binding: {

@@ -1,8 +1,8 @@
 var wrapData = require('basis.data').wrap;
 var Node = require('basis.ui').Node;
 var templateSwitcher = require('basis.template').switcher;
-var openFile = require('remote').getRemoteMethod('openFile');
-var selectNodeById = require('remote').ns('dom-tree').getRemoteMethod('selectNodeById');
+var openFile = require('./remote.js').getRemoteMethod('openFile');
+var selectNodeById = require('./remote.js').ns('dom-tree').getRemoteMethod('selectNodeById');
 
 var jsSourcePopup = resource('./js-source-popup.js');
 var SINGLETON = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source'];

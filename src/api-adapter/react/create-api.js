@@ -4,8 +4,6 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
 var elementMap = {};
 var getNode;
 var getID;
-var createInstanceView;
-var createClassView;
 
 function unwrap(value, getDevInfo) {
   var info;
@@ -167,6 +165,10 @@ function getInstancePropsInfo(instanceProps, getLocation) {
 }
 
 function getAdditionalInstanceInfo(element) {
+  function getClassName(cls) {
+    return cls.displayName || cls.name;
+  }
+
   var instanceRootNode = this.getInstanceRootNode(element);
   var instance = element && element._instance;
   var cls = instance && instance.constructor;
@@ -214,26 +216,24 @@ function getAdditionalInstanceInfo(element) {
 
   return [
     {
-      name: 'Instance',
-      childNodes: [
-        createInstanceView({
-          name: this.getComponentNameByNode(instanceRootNode),
-          loc: this.getNestedComponentNodeLocation(instanceRootNode),
-          childNodes: props
-        })
-      ]
+      type: 'tag-instance-info',
+      name: this.getComponentNameByNode(instanceRootNode),
+      loc: this.getNestedComponentNodeLocation(instanceRootNode),
+      props: props
     },
     {
-      name: 'Component',
-      childNodes: [
-        createClassView({
-          cls: cls,
-          isClass: info && info.type === 'class',
-          getClassMethodLocation: this.getClassMethodLocation,
-          getLocation: this.getLocation,
-          childNodes: decorators
-        })
-      ]
+      type: 'class-info',
+      decorators: decorators,
+      isClass: info && info.type === 'class',
+      className: getClassName(cls) || '<Unknown>',
+      classLoc: this.getLocation(cls),
+      renderLoc: this.getClassMethodLocation(cls, 'render') || this.getLocation(cls && cls.prototype.render),
+      extendsClassName: Object.getPrototypeOf
+        ? getClassName(Object.getPrototypeOf(cls)) || 'React.Component'
+        : 'unknown',
+      extendsLoc: Object.getPrototypeOf
+        ? this.getLocation(Object.getPrototypeOf(cls))
+        : null
     }
   ];
 }
@@ -286,9 +286,6 @@ function getNestedComponentNodeLocation(node) {
  */
 module.exports = function(config) {
   var reactApi = config.reactApi;
-
-  createClassView = config.createClassView;
-  createInstanceView = config.createInstanceView;
 
   if (reactApi.ComponentTree) {
     // React 15.0+

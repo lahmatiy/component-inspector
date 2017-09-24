@@ -1,5 +1,7 @@
 var Node = require('basis.ui').Node;
-var openFile = require('remote').getRemoteMethod('openFile');
+var ClassView = require('./section/class-view.js');
+var TagInstanceView = require('./section/instance-view.js');
+var openFile = require('./remote.js').getRemoteMethod('openFile');
 var jsSourcePopup = require('./js-source-popup.js');
 var hideTimer;
 
@@ -27,15 +29,15 @@ function leaveRefLocation() {
 }
 
 var templates = require('basis.template').define('inspector.info', {
-  section: resource('./template/info-section.tmpl'),
-  location: resource('./template/info-location.tmpl')
+  section: resource('./section/section.tmpl'),
+  location: resource('./section/location.tmpl')
 });
 
 var Location = Node.subclass({
   template: templates.location,
   binding: {
-    type: 'type',
-    loc: 'loc'
+    type: 'data:',
+    loc: 'data:'
   }
 });
 
@@ -48,14 +50,39 @@ var Section = Node.subclass({
     openRefLocation: openRefLocation,
     enterRefLocation: enterRefLocation,
     leaveRefLocation: leaveRefLocation
-  },
-  childFactory: function(config) {
-    return new Location(config);
-  },
-  init: function() {
-    this.childNodes = this.locations || this.childNodes;
-    Node.prototype.init.call(this);
   }
+});
+
+var DefaultSection = Section.subclass({
+  name: 'Component',
+  childClass: Location,
+  init: function() {
+    Node.prototype.init.call(this);
+    if (Array.isArray(this.data.locations)) {
+      this.setChildNodes(this.data.locations.map(function(data) {
+        return { data: data };
+      }));
+    }
+  }
+});
+
+var UnknownSection = Section.subclass({
+  template: resource('./section/unknown.tmpl'),
+  binding: {
+    type: 'data:'
+  }
+});
+
+var TagInstanceSection = Section.subclass({
+  name: 'Instance definition',
+  childClass: TagInstanceView,
+  childNodes: [{}]
+});
+
+var ClassInfoSection = Section.subclass({
+  name: 'Component class',
+  childClass: ClassView,
+  childNodes: [{}]
 });
 
 var HTMLSection = Section.subclass({
@@ -65,26 +92,17 @@ var HTMLSection = Section.subclass({
   }
 });
 
-var DOMSection = Section.subclass({
-  dom: null,
-  binding: {
-    content: function(node) {
-      if (node.dom && node.dom instanceof global.Node) {
-        return node.dom;
-      }
-    }
-  },
-  templateSync: function() {
-    Section.prototype.templateSync.call(this);
-
-    if (this.tmpl && typeof this.dom === 'function') {
-      this.dom.call(null, this.element);
-    }
-  }
-});
-
 module.exports = {
   Section: Section,
   HTMLSection: HTMLSection,
-  DOMSection: DOMSection
+  DefaultSection: DefaultSection,
+  ClassInfoSection: ClassInfoSection,
+  TagInstanceSection: TagInstanceSection,
+  UnknownSection: UnknownSection,
+  byType: {
+    'unknown': UnknownSection,
+    'default': DefaultSection,
+    'tag-instance-info': TagInstanceSection,
+    'class-info': ClassInfoSection
+  }
 };
