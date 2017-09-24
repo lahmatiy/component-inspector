@@ -1,4 +1,5 @@
 var Node = require('basis.ui').Node;
+var Value = require('basis.data').Value;
 
 module.exports = Node.subclass({
   autoDelegate: true,
@@ -23,6 +24,6 @@ module.exports = Node.subclass({
   },
   init: function() {
     Node.prototype.init.call(this);
-    this.setChildNodes(this.data.decorators);
+    Value.query(this, 'data.decorators').link(this, this.setChildNodes);
   }
 });

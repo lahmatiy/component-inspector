@@ -1,4 +1,5 @@
 var Node = require('basis.ui').Node;
+var Value = require('basis.data').Value;
 
 var InstanceView = Node.subclass({
   autoDelegate: true,
@@ -18,11 +19,7 @@ var InstanceView = Node.subclass({
   },
   init: function() {
     Node.prototype.init.call(this);
-    this.setChildNodes(this.data.props);
-  },
-  emit_update: function() {
-    Node.prototype.emit_update.apply(this, arguments);
-    this.setChildNodes(this.data.props);
+    Value.query(this, 'data.props').link(this, this.setChildNodes);
   }
 });
 
