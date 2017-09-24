@@ -2,7 +2,7 @@ var wrapData = require('basis.data').wrap;
 var Node = require('basis.ui').Node;
 var templateSwitcher = require('basis.template').switcher;
 var openFile = require('./remote.js').getRemoteMethod('openFile');
-var selectNodeById = require('./remote.js').ns('dom-tree').getRemoteMethod('selectNodeById');
+var remoteDomTree = require('./remote.js').ns('dom-tree');
 
 var jsSourcePopup = resource('./js-source-popup.js');
 var SINGLETON = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source'];
@@ -28,8 +28,10 @@ showLocNode.attach(memo(function(node, oldNode) {
     jsSourcePopup().show(node.element);
     node.showLoc = true;
     node.updateBind('showLoc');
+    remoteDomTree.callRemote('hover', node.data.domNodeId);
   } else {
     jsSourcePopup().hide();
+    remoteDomTree.callRemote('hover', null);
   }
 }));
 
@@ -64,7 +66,7 @@ var DOMNode = Node.subclass({
     },
     inspect: function() {
       if (this.data.nestedView && this.data.domNodeId) {
-        selectNodeById(this.data.domNodeId);
+        remoteDomTree.callRemote('selectNodeById', this.data.domNodeId);
       } else if (showLocNode.value && showLocNode.value.data.loc) {
         openFile(showLocNode.value.data.loc);
       }

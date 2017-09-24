@@ -1,3 +1,6 @@
+var domUtils = require('basis.dom');
+var setStyle = require('basis.cssom').setStyle;
+var getBoundingRect = require('basis.layout').getBoundingRect;
 var api = require('../api.js');
 var parseDom = require('./parse-dom.js');
 var remoteDomTree = require('../remote.js').ns('dom-tree');
@@ -29,6 +32,20 @@ var observer = (function() {
   // fallback for case if MutationObserver doesn't support
   setInterval(syncSelectedNode, 100);
 })();
+
+var overlay = domUtils.createElement({
+  css: {
+    pointerEvents: 'none',
+    transition: 'all .05s',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10000,
+    background: 'rgba(110,163,217,0.7)'
+  }
+});
 
 selectedDomNode.attach(function(node) {
   if (observer) {
@@ -71,11 +88,41 @@ selectedDomNode.attach(function(node) {
       sourceTitle: api.getComponentNameByNode(node)
     };
 
-    remoteDomTree.provide('selectNodeById', function(id) {
-      selectedDomNode.set(dom.map[id]);
+    remoteDomTree.provide({
+      selectNodeById: function(id) {
+        selectedDomNode.set(dom.map[id]);
+      },
+      hover: function(id) {
+        if (dom.map.hasOwnProperty(id)) {
+          var rectNode = dom.map[id];
+          var rect;
+
+          if (rectNode.nodeType == 3) {
+            rectNode = document.createRange();
+            rectNode.selectNodeContents(dom.map[id]);
+          }
+
+          rect = getBoundingRect(rectNode);
+
+          if (rect) {
+            setStyle(overlay, {
+              left: rect.left + 'px',
+              top: rect.top + 'px',
+              width: rect.width + 'px',
+              height: rect.height + 'px'
+            });
+            document.body.appendChild(overlay);
+          }
+        } else {
+          domUtils.remove(overlay);
+        }
+      }
     });
   } else {
-    remoteDomTree.revoke('selectNodeById');
+    remoteDomTree.revoke([
+      'selectNodeById',
+      'hover'
+    ]);
   }
 
   remoteDomTree.publish(data);
