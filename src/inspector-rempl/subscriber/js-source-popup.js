@@ -22,8 +22,7 @@ var popup = new Popup({
 
   dir: 'top left bottom left',
   autorotate: [
-    'bottom left top left',
-    'top right top left'
+    'bottom left top left'
   ],
   template: resource('./template/js-source-popup.tmpl'),
   binding: {
