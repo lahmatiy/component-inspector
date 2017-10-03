@@ -1,6 +1,6 @@
 var stringifyWithLimit = require('./stringify-with-limit.js');
-
 var hasOwnProperty = Object.prototype.hasOwnProperty;
+var CONTAINED_BY = document.DOCUMENT_POSITION_CONTAINED_BY;
 
 function unwrap(value, getDevInfo) {
   var info;
@@ -245,6 +245,48 @@ function getNestedComponentNodeLocation(node) {
   return null;
 }
 
+var instanceResolvers = [];
+var instanceRootResolvers = [];
+var reactPrior15Inited = false;
+
+function resolveInstanceByNode(node) {
+  if (node) {
+    var candidateInstance = null;
+    var candidateRoot = null;
+
+    for (var i = 0; i < instanceResolvers.length; i++) {
+      var instance = instanceResolvers[i].getInstance(node);
+      if (instance) {
+        var root = instanceResolvers[i].getRootNode(instance);
+
+        if (candidateRoot === null || (candidateRoot.compareDocumentPosition(root) & CONTAINED_BY)) {
+          candidateInstance = instance;
+          candidateRoot = root;
+        }
+      }
+    }
+
+    return candidateInstance;
+  }
+
+  return null;
+}
+
+function resolveInstanceRootNode(instance) {
+  if (instance) {
+    // find nodes
+    for (var i = 0; i < instanceRootResolvers.length; i++) {
+      try {
+        var node = instanceRootResolvers[i](instance);
+        if (node) {
+          return node;
+        }
+      } catch (e) {}
+    }
+  }
+
+  return null;
+}
 
 module.exports = function(reactApi) {
   var getLocationInstanceByNode;
@@ -254,44 +296,38 @@ module.exports = function(reactApi) {
 
   if (reactApi.ComponentTree) {
     // React 15.0+
+
+    if (reactPrior15Inited) {
+      throw new Error('React prior 15.0 and 15.0+ can\'t be mixed on single page');
+    }
+
+    instanceResolvers.push({
+      getInstance: reactApi.ComponentTree.getClosestInstanceFromNode,
+      getRootNode: reactApi.ComponentTree.getNodeFromInstance
+    });
+    instanceRootResolvers.push(reactApi.ComponentTree.getNodeFromInstance);
+    getLocationInstanceByNode = resolveInstanceByNode;
+    getInstanceRootNode = resolveInstanceRootNode;
+
     getInstanceByNode = function(node) {
       var instance = this.getLocationInstanceByNode(node);
-      return instance && instance._currentElement != null ? instance._currentElement._owner : null;
-    };
-    getLocationInstanceByNode = function(node) {
-      return node
-        ? reactApi.ComponentTree.getClosestInstanceFromNode(node)
+      return instance && instance._currentElement != null
+        ? instance._currentElement._owner
         : null;
-    };
-    getInstanceRootNode = function(instance) {
-      return reactApi.ComponentTree.getNodeFromInstance(instance);
     };
     isComponentRootNode = function(node) {
       var instance = this.getInstanceByNode(node);
-      if (!instance) {
-        return false;
-      }
-      return this.getInstanceRootNode(instance) === node;
+      return instance
+        ? this.getInstanceRootNode(instance) === node
+        : false;
     };
   } else if (reactApi.Mount.getID && reactApi.Mount.getNode) {
+    reactPrior15Inited = true;
+    if (instanceResolvers.length) {
+      throw new Error('React prior 15.0 and 15.0+ can\'t be mixed on single page');
+    }
+
     // React prior 15.0
-    var getID = reactApi.Mount.getID;
-    var getNode = reactApi.Mount.getNode;
-    var instanceByNodeMap = {};
-
-    // patch React
-    var _mount = reactApi.Reconciler.mountComponent;
-    var _unmount = reactApi.Reconciler.unmountComponent;
-    reactApi.Reconciler.mountComponent = function(instance) {
-      var res = _mount.apply(this, arguments);
-      instanceByNodeMap[instance._rootNodeID] = instance;
-      return res;
-    };
-    reactApi.Reconciler.unmountComponent = function(instance) {
-      delete instanceByNodeMap[instance._rootNodeID];
-      return _unmount.apply(this, arguments);
-    };
-
     getInstanceByNode = function(node) {
       var instance = instanceByNodeMap[getID(node)];
 
@@ -317,8 +353,24 @@ module.exports = function(reactApi) {
         typeof instance._currentElement.type != 'string'
       );
     };
+
+    // patch React to make things work
+    var getID = reactApi.Mount.getID;
+    var getNode = reactApi.Mount.getNode;
+    var instanceByNodeMap = {};
+    var _mount = reactApi.Reconciler.mountComponent;
+    var _unmount = reactApi.Reconciler.unmountComponent;
+    reactApi.Reconciler.mountComponent = function(instance) {
+      var res = _mount.apply(this, arguments);
+      instanceByNodeMap[instance._rootNodeID] = instance;
+      return res;
+    };
+    reactApi.Reconciler.unmountComponent = function(instance) {
+      delete instanceByNodeMap[instance._rootNodeID];
+      return _unmount.apply(this, arguments);
+    };
   } else {
-    throw new Error('This version of React is not supported now');
+    throw new Error('This version of React is not supported');
   }
 
   return {
