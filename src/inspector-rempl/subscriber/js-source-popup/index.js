@@ -1,6 +1,6 @@
 var Value = require('basis.data').Value;
 var Popup = require('basis.ui.popup').Popup;
-var getSourceFragment = require('./remote.js').getRemoteMethod('getSourceFragment');
+var getSourceFragment = require('../remote.js').getRemoteMethod('getSourceFragment');
 var sourceLoc = new Value();
 var source = new Value({ value: '' });
 
@@ -24,7 +24,7 @@ var popup = new Popup({
   autorotate: [
     'bottom left top left'
   ],
-  template: resource('./template/js-source-popup.tmpl'),
+  template: resource('./template/popup.tmpl'),
   binding: {
     isOpenFileSupported: basis.fn.$const(true), // FIXME: use real value
     loc: sourceLoc.as(function(loc) {

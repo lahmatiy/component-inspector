@@ -1,24 +1,9 @@
 var DataObject = require('basis.data').Object;
 var Node = require('basis.ui').Node;
-var sections = require('./sections.js');
-var DomTree = require('./dom-tree.js');
+var sidebar = require('./sidebar/index.js');
+var DomTree = require('./dom-tree/index.js');
 var noData = new DataObject();
 var remoteDomTree = require('./remote.js').ns('dom-tree');
-var remoteDetails = require('./remote.js').ns('details');
-
-var info = new Node({
-  childClass: sections.Section,
-  childFactory: function(section) {
-    var ChildClass = sections.byType[section.type] || sections.UnknownSection;
-    return new ChildClass({
-      data: section
-    });
-  }
-});
-
-remoteDetails.subscribe(function(data) {
-  info.setChildNodes(data);
-});
 
 var view = new Node({
   template: resource('./template/view.tmpl'),
@@ -32,7 +17,7 @@ var view = new Node({
     sourceTitle: 'data:',
     upName: 'data:',
     domTree: 'satellite:',
-    info: 'satellite:'
+    sidebar: 'satellite:'
   },
   action: {
     up: function() {
@@ -47,7 +32,7 @@ var view = new Node({
   },
   satellite: {
     domTree: DomTree,
-    info: info
+    sidebar: sidebar
   }
 });
 

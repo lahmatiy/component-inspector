@@ -1,10 +1,9 @@
 var wrapData = require('basis.data').wrap;
 var Node = require('basis.ui').Node;
 var templateSwitcher = require('basis.template').switcher;
-var openFile = require('./remote.js').getRemoteMethod('openFile');
-var remoteDomTree = require('./remote.js').ns('dom-tree');
-
-var jsSourcePopup = resource('./js-source-popup.js');
+var openFile = require('../remote.js').getRemoteMethod('openFile');
+var remoteDomTree = require('../remote.js').ns('dom-tree');
+var jsSourcePopup = resource('../js-source-popup/index.js');
 var SINGLETON = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source'];
 var NodeClassByType = {};
 
@@ -78,8 +77,8 @@ var ValuePart = DOMNode.subclass({
   type: 'static',
   template: templateSwitcher(function(node) {
     return node.type == 'static'
-      ? resource('./template/tree/attribute-value-static.tmpl')
-      : resource('./template/tree/attribute-value.tmpl');
+      ? resource('./template/attribute-value-static.tmpl')
+      : resource('./template/attribute-value.tmpl');
   }),
   binding: {
     type: 'data:',
@@ -96,7 +95,7 @@ var ValuePart = DOMNode.subclass({
 });
 
 var Attribute = DOMNode.subclass({
-  template: resource('./template/tree/attritube.tmpl'),
+  template: resource('./template/attritube.tmpl'),
   binding: {
     name: 'data:'
   },
@@ -104,7 +103,7 @@ var Attribute = DOMNode.subclass({
 });
 
 NodeClassByType.element = DOMNode.subclass({
-  template: resource('./template/tree/element.tmpl'),
+  template: resource('./template/element.tmpl'),
   binding: {
     showLoc: 'showLoc',
     componentName: 'data:',
@@ -122,7 +121,7 @@ NodeClassByType.element = DOMNode.subclass({
   satellite: {
     attributes: {
       instance: Node.subclass({
-        template: resource('./template/tree/attritubes.tmpl'),
+        template: resource('./template/attritubes.tmpl'),
         childClass: Attribute
       }),
       config: function(owner) {
@@ -140,7 +139,7 @@ NodeClassByType.element = DOMNode.subclass({
 });
 
 NodeClassByType.text = DOMNode.subclass({
-  template: resource('./template/tree/text.tmpl'),
+  template: resource('./template/text.tmpl'),
   binding: {
     value: 'data:',
     l10n: 'data:',
@@ -149,7 +148,7 @@ NodeClassByType.text = DOMNode.subclass({
 });
 
 NodeClassByType.comment = DOMNode.subclass({
-  template: resource('./template/tree/comment.tmpl'),
+  template: resource('./template/comment.tmpl'),
   binding: {
     value: 'data:',
     nestedView: 'data:'

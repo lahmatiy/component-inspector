@@ -1,8 +1,8 @@
 var Node = require('basis.ui').Node;
 var ClassView = require('./section/class-view.js');
 var TagInstanceView = require('./section/instance-view.js');
-var openFile = require('./remote.js').getRemoteMethod('openFile');
-var jsSourcePopup = require('./js-source-popup.js');
+var openFile = require('../remote.js').getRemoteMethod('openFile');
+var jsSourcePopup = resource('../js-source-popup/index.js');
 var hideTimer;
 
 function openRefLocation(e) {
@@ -16,15 +16,15 @@ function enterRefLocation(e) {
   var loc = e.target.getAttribute('data-loc');
   if (loc) {
     clearTimeout(hideTimer);
-    jsSourcePopup.relElement = e.target;
-    jsSourcePopup.loc.set(loc);
+    jsSourcePopup().relElement = e.target;
+    jsSourcePopup().loc.set(loc);
   }
 }
 
 function leaveRefLocation() {
   clearTimeout(hideTimer);
   hideTimer = setTimeout(function() {
-    jsSourcePopup.loc.set();
+    jsSourcePopup().loc.set();
   }, 100);
 }
 
