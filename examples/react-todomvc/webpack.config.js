@@ -24,7 +24,7 @@ module.exports = {
     new webpack.DefinePlugin({
       OPEN_FILE_URL: '"/open-in-editor"',
       SOURCE_FRAGMENT: '"/source-fragment"',
-      REMPL_HOST: '"localhost:8177"'
+      REMPL_SERVER: '"localhost:8177"'
     })
   ],
   module: {
