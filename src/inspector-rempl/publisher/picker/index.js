@@ -9,7 +9,7 @@ var rempl = require('rempl');
 var inpageEnabled = new Value({ value: true });
 
 var api = require('../api.js');
-var selectedNode = require('../data/watcher.js');
+var selectedNode = require('../data/dom-watcher.js');
 
 Value.from(selectedNode).link(rempl.getHost(), function(node) {
   if (node) {

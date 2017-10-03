@@ -110,6 +110,7 @@ NodeClassByType.element = DOMNode.subclass({
     componentName: 'data:',
     name: 'data:',
     nestedView: 'data:',
+    foreign: 'data:',
     childrenHidden: 'data:',
     inline: 'data:inlineChildren',
     attributes: 'satellite:',

@@ -3,6 +3,9 @@ var getDevInfo = require('./getDevInfo.js');
 
 module.exports = {
   // dom tree traversal
+  isForeignComponentNode: function() {
+    return false;
+  },
   isComponentRootNode: function() {
     return false;
   },

@@ -10,15 +10,16 @@ function parseDom(node, api) {
     var node = [cursor, [], {}];
     nodesCursor[1].push(node);
 
-    if (!api.isComponentRootNode(cursor)) {
+    if (api.isComponentRootNode(cursor)) {
+      node[2].nestedView = true;
+      node[2].foreign = api.isForeignComponentNode(root, cursor);
+    } else {
       if (cursor.firstChild) {
         cursor = cursor.firstChild;
         nodesStack.push(nodesCursor);
         nodesCursor = node;
         continue;
       }
-    } else {
-      node[2].nestedView = true;
     }
 
     candidate = cursor.nextSibling;
@@ -95,6 +96,7 @@ module.exports = function buildDomTree(rootNode, api) {
           childrenHidden: node.firstChild && !children.length,
           inlineChildren: inline,
           nestedView: nestedView,
+          foreign: properties.foreign,
           attributes: attrs,
           childNodes: children,
           loc: nestedView
@@ -108,7 +110,8 @@ module.exports = function buildDomTree(rootNode, api) {
           type: 'text',
           domNodeId: node,
           value: node.nodeValue,
-          nestedView: properties.nestedView
+          nestedView: properties.nestedView,
+          foreign: properties.foreign,
         };
         break;
 
@@ -117,7 +120,8 @@ module.exports = function buildDomTree(rootNode, api) {
           type: 'comment',
           domNodeId: node,
           value: node.nodeValue,
-          nestedView: properties.nestedView
+          nestedView: properties.nestedView,
+          foreign: properties.foreign,
         };
         break;
     }

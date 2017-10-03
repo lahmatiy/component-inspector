@@ -8,7 +8,7 @@
 <b:define name="showLoc" type="bool"/>
 
 <div class="element {showLoc}" event-click="inspect" event-mouseenter="enter" event-mouseleave="leave">
-  <span class="{binding} {matchBinding} {nestedView}">
+  <span class="{binding} {matchBinding} {nestedView} {foreign}">
     <span b:show="{componentName}" class="component-name">{componentName}</span>
     &lt;{name}<!--{attributes}-->&gt;
     <span b:hide="{singleton}">

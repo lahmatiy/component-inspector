@@ -293,6 +293,7 @@ module.exports = function(reactApi) {
   var getInstanceByNode;
   var getInstanceRootNode;
   var isComponentRootNode;
+  var isForeignComponentNode;
 
   if (reactApi.ComponentTree) {
     // React 15.0+
@@ -320,6 +321,11 @@ module.exports = function(reactApi) {
       return instance
         ? this.getInstanceRootNode(instance) === node
         : false;
+    };
+    isForeignComponentNode = function(root, node) {
+      var rootInstance = this.getInstanceByNode(root);
+      var nodeInstance = this.getInstanceByNode(node);
+      return Boolean(rootInstance && nodeInstance && rootInstance._hostContainerInfo !== nodeInstance._hostContainerInfo);
     };
   } else if (reactApi.Mount.getID && reactApi.Mount.getNode) {
     reactPrior15Inited = true;
@@ -353,6 +359,9 @@ module.exports = function(reactApi) {
         typeof instance._currentElement.type != 'string'
       );
     };
+    isForeignComponentNode = function() {
+      return false;
+    };
 
     // patch React to make things work
     var getID = reactApi.Mount.getID;
@@ -375,6 +384,7 @@ module.exports = function(reactApi) {
 
   return {
     isComponentRootNode: isComponentRootNode,
+    isForeignComponentNode: isForeignComponentNode,
     getComponentNameByNode: getComponentNameByNode,
     getInstanceByNode: getInstanceByNode,
     getInstanceRootNode: getInstanceRootNode,
