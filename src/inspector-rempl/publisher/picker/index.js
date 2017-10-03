@@ -80,47 +80,55 @@ function pickHandler(event) {
   }
 }
 
-var pickupTarget = new Value({
-  handler: {
-    change: function() {
-      var target = this.value || null;
-
-      if (target) {
-        var rectNode = target.node;
-        var rect;
-
-        if (rectNode.nodeType == 3) {
-          rectNode = document.createRange();
-          rectNode.selectNodeContents(target.node);
-        }
-
-        rect = getBoundingRect(rectNode);
-
-        if (rect) {
-          var style = {
-            left: rect.left + 'px',
-            top: rect.top + 'px',
-            width: rect.width + 'px',
-            height: rect.height + 'px'
-          };
-          setStyle(overlay, style);
-          setStyle(boxElement, style);
-          document.body.appendChild(overlay);
-          document.body.appendChild(boxElement);
-        }
-      } else {
-        domUtils.remove(overlay);
-        domUtils.remove(boxElement);
-        inspectDepth = 0;
-      }
-
-      nodeInfoPopup().update({
-        node: target && target.node,
-        instance: target && target.instance
-      });
+var pickupTargetNode = new Value({ value: null });
+var pickupTarget = pickupTargetNode.as(function(node) {
+  if (node) {
+    var instance = api.getInstanceByNode(node);
+    if (instance) {
+      return {
+        node: node,
+        instance: instance
+      };
     }
   }
+
+  return null;
 });
+pickupTarget.link(null, function(target) {
+  if (target) {
+    var rectNode = target.node;
+    var rect;
+
+    if (rectNode.nodeType == 3) {
+      rectNode = document.createRange();
+      rectNode.selectNodeContents(target.node);
+    }
+
+    rect = getBoundingRect(rectNode);
+
+    if (rect) {
+      var style = {
+        left: rect.left + 'px',
+        top: rect.top + 'px',
+        width: rect.width + 'px',
+        height: rect.height + 'px'
+      };
+      setStyle(overlay, style);
+      setStyle(boxElement, style);
+      document.body.appendChild(overlay);
+      document.body.appendChild(boxElement);
+    }
+  } else {
+    domUtils.remove(overlay);
+    domUtils.remove(boxElement);
+    inspectDepth = 0;
+  }
+
+  nodeInfoPopup().update({
+    node: target && target.node,
+    instance: target && target.instance
+  });
+}, true);
 
 var nodeInfoPopup = basis.fn.lazyInit(function() {
   return new Balloon({
@@ -202,13 +210,14 @@ function stopInspect() {
     domEventUtils.removeGlobalHandler('click', pickHandler);
 
     inspectMode.set(false);
-    pickupTarget.set();
+    pickupTargetNode.set();
   }
 }
 
 var DEPTH_MODE_MOVE_THRESHOLD = 8;
 var lastMouseX;
 var lastMouseY;
+var prevMouseMoveElement = null;
 
 function mousemoveHandler(event) {
   var dx = Math.abs(event.mouseX - lastMouseX);
@@ -219,22 +228,24 @@ function mousemoveHandler(event) {
     return;
   }
 
+  if (cursor === prevMouseMoveElement || cursor === document) {
+    return;
+  }
+
+  prevMouseMoveElement = cursor;
   lastMouseX = event.mouseX;
   lastMouseY = event.mouseY;
 
   while (cursor) {
     if (api.isComponentRootNode(cursor)) {
-      pickupTarget.set({
-        node: cursor,
-        instance: api.getInstanceByNode(cursor)
-      });
+      pickupTargetNode.set(cursor);
       return;
     }
 
     cursor = cursor.parentNode;
   }
 
-  pickupTarget.set();
+  pickupTargetNode.set();
 }
 
 function mouseWheelHandler(event) {
@@ -261,13 +272,7 @@ function mouseWheelHandler(event) {
   } while (cursor = cursor.parentNode);
 
   inspectDepth = lastDepth;
-  pickupTarget.set(lastNode
-    ? {
-        node: lastNode,
-        instance: api.getInstanceByNode(lastNode)
-      }
-    : null
-  );
+  pickupTargetNode.set(lastNode);
 
   event.die();
 }
