@@ -3,7 +3,7 @@
 <b:define name="hasLoc" from="loc" type="bool"/>
 
 <div class="instance">
-  <div>&lt;<span class="name_{hasLoc}" data-loc="{loc}">{name}</span></div>
+  <div>&lt;<span class="name_{hasLoc}" data-loc="{loc}">{name}</span><span b:show="{empty}">&gt;</span></div>
   <!--{childNodesHere}-->
-  <div>&gt;</div>
+  <div b:hide="{empty}">&gt;</div>
 </div>
