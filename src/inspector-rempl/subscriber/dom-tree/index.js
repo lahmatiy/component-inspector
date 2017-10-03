@@ -15,21 +15,25 @@ function memo(fn, oldValue) {
   };
 }
 
-var showLocNode = new basis.Token();
-showLocNode.attach(memo(function(node, oldNode) {
+var hoverNode = new basis.Token();
+hoverNode.attach(memo(function(node, oldNode) {
   if (oldNode) {
-    oldNode.showLoc = false;
-    oldNode.updateBind('showLoc');
+    oldNode.hovered = false;
+    oldNode.updateBind('hovered');
+  }
+
+  if (node && node.data.loc) {
+    jsSourcePopup().relElement = node.element;
+    jsSourcePopup().loc.set(node.data.loc);
+  } else {
+    jsSourcePopup().loc.set();
   }
 
   if (node) {
-    jsSourcePopup().relElement = node.element;
-    jsSourcePopup().loc.set(node.data.loc);
-    node.showLoc = true;
-    node.updateBind('showLoc');
+    node.hovered = true;
+    node.updateBind('hovered');
     remoteDomTree.callRemote('hover', node.data.domNodeId);
   } else {
-    jsSourcePopup().loc.set();
     remoteDomTree.callRemote('hover', null);
   }
 }));
@@ -43,31 +47,30 @@ function childFactory(config) {
   });
 }
 
+function findNodeToHover(cursor) {
+  while (cursor && cursor instanceof DOMNode) {
+    if (cursor.data.type === 'element') { //  || cursor.data.type === 'text'
+      return hoverNode.set(cursor);
+    }
+    cursor = cursor.parentNode;
+  }
+
+  hoverNode.set(null);
+}
+
 var DOMNode = Node.subclass({
   action: {
     enter: function() {
-      if (this.data.loc) {
-        showLocNode.set(this);
-      }
+      findNodeToHover(this);
     },
     leave: function() {
-      var cursor = this.parentNode;
-      while (cursor && cursor instanceof DOMNode) {
-        if (cursor.data.loc) {
-          showLocNode.set(cursor);
-          return;
-        }
-
-        cursor = cursor.parentNode;
-      }
-
-      showLocNode.set();
+      findNodeToHover(this.parentNode);
     },
     inspect: function() {
       if (this.data.nestedView && this.data.domNodeId) {
         remoteDomTree.callRemote('selectNodeById', this.data.domNodeId);
-      } else if (showLocNode.value && showLocNode.value.data.loc) {
-        openFile(showLocNode.value.data.loc);
+      } else if (hoverNode.value && hoverNode.value.data.loc) {
+        openFile(hoverNode.value.data.loc);
       }
     }
   }
@@ -105,7 +108,7 @@ var Attribute = DOMNode.subclass({
 NodeClassByType.element = DOMNode.subclass({
   template: resource('./template/element.tmpl'),
   binding: {
-    showLoc: 'showLoc',
+    hovered: 'hovered',
     componentName: 'data:',
     name: 'data:',
     nestedView: 'data:',
@@ -141,6 +144,7 @@ NodeClassByType.element = DOMNode.subclass({
 NodeClassByType.text = DOMNode.subclass({
   template: resource('./template/text.tmpl'),
   binding: {
+    hovered: 'hovered',
     value: 'data:',
     l10n: 'data:',
     nestedView: 'data:'

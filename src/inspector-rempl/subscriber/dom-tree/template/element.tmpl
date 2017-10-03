@@ -5,9 +5,9 @@
 <b:define name="matchBinding" type="bool"/>
 <b:define name="nestedView" type="bool"/>
 <b:define name="inline" type="bool"/>
-<b:define name="showLoc" type="bool"/>
+<b:define name="hovered" type="bool"/>
 
-<div class="element {showLoc}" event-click="inspect" event-mouseenter="enter" event-mouseleave="leave">
+<div class="element {hovered}" event-click="inspect" event-mouseenter="enter" event-mouseleave="leave">
   <span class="{binding} {matchBinding} {nestedView} {foreign}">
     <span b:show="{componentName}" class="component-name">{componentName}</span>
     &lt;{name}<!--{attributes}-->&gt;

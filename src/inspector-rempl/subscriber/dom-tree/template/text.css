@@ -31,12 +31,13 @@
   background: #B6CFB6;
   color: #353;
 }
-.l10n
-{
-  background: #EAC4F7;
-  color: #661188;
-}
 .nestedView
 {
   cursor: pointer;
 }
+.hovered:hover
+{
+  background: #D0D8FF;
+  box-shadow: 0px 0 0 5px #D0D8FF;
+}
+
