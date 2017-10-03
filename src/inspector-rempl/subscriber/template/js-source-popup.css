@@ -134,63 +134,8 @@
 .source
 {
   margin: 0;
-  padding: 0;
+  padding: 0 0 5px;
   font-family: Consolas, Monaco, monospace;
   font-size: 12px;
   line-height: 16px;
-}
-.source [class~="line"]
-{
-  max-width: 600px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.source [class~="num"]
-{
-  color: #BBB;
-  margin-right: 2px;
-}
-.source [class~="line"]:first-child [class~="num"],
-.source [class~="skip-before"] + [class~="line"] [class~="num"]
-{
-  margin-right: 6px;
-}
-.source [class~="range"]
-{
-  background: #F8F0D0;
-  padding: 2px 4px 2px 4px;
-}
-.source [class~="line"]:first-child [class~="range"],
-.source [class~="skip-before"] + [class~="line"] [class~="range"]
-{
-  padding-left: 2px;
-  margin-left: -2px;
-}
-.source [class~="skip-before"],
-.source [class~="skip-after"]
-{
-  color: #CCC;
-}
-
-.source [class~="token-string"]
-{
-  color: blue;
-}
-.source [class~="token-comment"]
-{
-  color: #008200;
-}
-.source [class~="token-keyword"]
-{
-  color: #006699;
-  font-weight: bold;
-}
-.source [class~="token-key"]
-{
-  color: #006699;
-}
-.source [class~="token-value"]
-{
-  color: #AA8844;
-  font-weight: bold;
 }

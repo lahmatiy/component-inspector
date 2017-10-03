@@ -8,11 +8,17 @@ function isOpenFileSupported() {
   }
 
   var openFileUrl = typeof OPEN_FILE_URL === 'string' ? OPEN_FILE_URL : false;
+  var meta = document.querySelector('meta[name="open-in-editor"]');
+
+  if (!openFileUrl && meta && meta.hasAttribute('content')) {
+    openFileUrl = meta.getAttribute('content') || false;
+  }
+
   if (openFileUrl) {
     openFile = function(filename) {
       var xhr = new XMLHttpRequest();
-      var url = OPEN_FILE_URL +
-                (/\?/.test(OPEN_FILE_URL) ? '&' : '?') +
+      var url = openFileUrl +
+                (/\?/.test(openFileUrl) ? '&' : '?') +
                 'file=' + escape(filename);
 
       // async GET
@@ -31,6 +37,8 @@ function isOpenFileSupported() {
     };
     return true;
   }
+
+  return false;
 }
 
 module.exports = {

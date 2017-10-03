@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var openInEditor = require('express-open-in-editor');
+var sourceFragment = require('express-source-fragment');
 var config = require('./webpack.config');
 var PORT = process.env.PORT || 3000;
 
@@ -12,7 +13,12 @@ var server = new WebpackDevServer(webpack(config), {
     colors: true
   },
   setup: function(app) {
-    app.use('/open-in-editor', openInEditor());
+    app.use('/open-in-editor', openInEditor({
+      cwd: __dirname
+    }));
+    app.use('/source-fragment', sourceFragment({
+      cwd: __dirname
+    }));
   }
 });
 

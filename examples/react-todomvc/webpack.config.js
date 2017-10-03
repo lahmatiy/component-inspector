@@ -23,6 +23,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       OPEN_FILE_URL: '"/open-in-editor"',
+      SOURCE_FRAGMENT: '"/source-fragment"',
       REMPL_HOST: '"localhost:8177"'
     })
   ],
@@ -58,5 +59,8 @@ module.exports = {
         include: __dirname
       }
     ]
+  },
+  node: {
+    fs: 'empty'
   }
 };

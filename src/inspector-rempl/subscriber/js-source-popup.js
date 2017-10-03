@@ -1,12 +1,12 @@
 var Value = require('basis.data').Value;
 var Popup = require('basis.ui.popup').Popup;
-var getColoredSource = require('./remote.js').getRemoteMethod('getColoredSource');
+var getSourceFragment = require('./remote.js').getRemoteMethod('getSourceFragment');
 var sourceLoc = new Value();
 var source = new Value({ value: '' });
 
 sourceLoc.as(function(loc) {
-  if (loc && getColoredSource.available) {
-    getColoredSource(loc, function(result) {
+  if (loc && getSourceFragment.available) {
+    getSourceFragment(loc, function(result) {
       if (loc === sourceLoc.value) {
         source.set(result);
         popup.realign();
