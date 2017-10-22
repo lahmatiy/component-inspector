@@ -1,14 +1,17 @@
-var path = require('path');
-var webpack = require('webpack');
-var basePath = require('os').platform() !== 'win32' ? basePath = process.cwd() : '';
-var PORT = process.env.PORT || 3000;
+const path = require('path');
+const webpack = require('webpack');
+let basePath = '';
 
+if (require('os').platform() !== 'win32') {
+  basePath = process.cwd();
+}
+
+console.log(path.join(__dirname, '..', '..', 'src'));
 module.exports = {
   devtool: 'source-map',
   entry: {
     bundle: [
-      'webpack-dev-server/client?http://localhost:' + PORT,
-      'webpack/hot/only-dev-server',
+      'react-hot-loader/patch',
       './index'
     ],
     inspector: [path.join(__dirname, '../../dist/react.js')]
@@ -19,44 +22,62 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       OPEN_FILE_URL: '"/open-in-editor"',
       SOURCE_FRAGMENT: '"/source-fragment"',
       REMPL_SERVER: '"localhost:8177"'
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
+  resolve: {
+    alias: {
+      'react': path.join(__dirname, 'node_modules', 'react')
+    },
+    extensions: ['.js']
+  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
         include: __dirname,
-        options: {
-          babelrc: false,
-          presets: ['es2015', 'stage-0', 'react'],
-          plugins: [
-            // in case you are using React, this plugin should be applied
-            // before babel-plugin-source-wrapper
-            // otherwise component names will not to be shown propertly
-            'transform-react-display-name',
-            require('babel-plugin-source-wrapper').configure({
-              // webpack sends absolute paths to plugins
-              // but we need paths relative to project root
-              basePath: basePath,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              presets: ['env', 'react'],
+              plugins: [
+                'babel-plugin-transform-class-properties',
+                'babel-plugin-transform-function-bind',
+                'babel-plugin-transform-object-rest-spread',
+                'react-hot-loader/babel',
+                require('babel-plugin-source-wrapper').configure({
+                  // webpack sends absolute paths to plugins
+                  // but we need paths relative to project root
+                  basePath: basePath,
 
-              // inject runtime in instrumented sources
-              runtime: true
-            })
-          ]
-        }
+                  // inject runtime in instrumented sources
+                  runtime: true
+                })
+              ],
+              cacheDirectory: true
+            }
+          }
+        ]
       },
       {
         test: /\.css?$/,
-        loaders: ['style-loader', 'raw-loader'],
-        include: __dirname
+        include: __dirname,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'raw-loader'
+          }
+        ]
       }
     ]
   },
