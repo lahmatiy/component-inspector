@@ -1,18 +1,20 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var openInEditor = require('express-open-in-editor');
-var sourceFragment = require('express-source-fragment');
-var config = require('./webpack.config');
-var PORT = process.env.PORT || 3000;
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const openInEditor = require('express-open-in-editor');
+const sourceFragment = require('express-source-fragment');
+const config = require('./webpack.config');
+const PORT = process.env.PORT || 3000;
 
-var server = new WebpackDevServer(webpack(config), {
+const options = {
   publicPath: config.output.publicPath,
+  contentBase: '.',
   hot: true,
+  host: 'localhost',
   historyApiFallback: true,
   stats: {
     colors: true
   },
-  setup: function(app) {
+  before(app) {
     app.use('/open-in-editor', openInEditor({
       cwd: __dirname
     }));
@@ -20,7 +22,12 @@ var server = new WebpackDevServer(webpack(config), {
       cwd: __dirname
     }));
   }
-});
+};
+
+WebpackDevServer.addDevServerEntrypoints(config, options);
+const compiler = webpack(config);
+const server = new WebpackDevServer(compiler, options);
+
 
 server.listen(PORT, 'localhost', function(err) {
   if (err) {
