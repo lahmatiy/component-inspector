@@ -28,12 +28,13 @@
   },
   "homepage": "https://github.com/gaearon/redux#readme",
   "dependencies": {
-    "classnames": "2.1.2",
-    "react": "15.1.0",
-    "react-dom": "15.1.0",
-    "react-redux": "3.0.1",
-    "redux": "3.0.0",
-    "todomvc-app-css": "2.0.1"
+    "classnames": "2.2.5",
+    "prop-types": "15.6.0",
+    "react": "15.6.0",
+    "react-dom": "15.6.0",
+    "react-redux": "5.0.6",
+    "redux": "3.7.2",
+    "todomvc-app-css": "2.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.3.0",
