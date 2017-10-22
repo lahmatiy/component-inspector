@@ -2,7 +2,7 @@
   "name": "test-package",
   "version": "0.0.1",
   "devDependencies": {
-    "react": "15.1.0",
-    "react-dom": "15.1.0"
+    "react": "15.6.0",
+    "react-dom": "15.6.0"
   }
 }
