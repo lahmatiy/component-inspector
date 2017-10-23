@@ -184,7 +184,7 @@ function getAdditionalInstanceInfo(element) {
     {
       type: 'tag-instance-info',
       name: this.getComponentNameByNode(instanceRootNode),
-      loc: this.getNestedComponentNodeLocation(instanceRootNode),
+      loc: this.getNodeLocation(instanceRootNode),
       props: props
     },
     {
@@ -230,16 +230,6 @@ function getNodeLocation(node) {
     var host = element._renderedComponent || element;
 
     return this.getLocation(host._currentElement);
-  }
-
-  return null;
-}
-
-function getNestedComponentNodeLocation(node) {
-  var element = this.getInstanceByNode(node);
-
-  if (element) {
-    return this.getLocation(element._currentElement);
   }
 
   return null;
@@ -398,8 +388,6 @@ module.exports = function(reactApi) {
       return false;
     },
 
-    getNestedComponentNameByNode: getComponentNameByNode,
-    getNestedComponentNodeLocation: getNestedComponentNodeLocation,
     viewAttributeFilter: function(attr) {
       return attr.name !== 'data-reactid';
     }

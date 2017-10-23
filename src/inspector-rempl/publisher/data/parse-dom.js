@@ -92,16 +92,14 @@ module.exports = function buildDomTree(rootNode, api) {
           type: 'element',
           domNodeId: node,
           name: node.tagName.toLowerCase(),
-          componentName: nestedView ? api.getNestedComponentNameByNode(node) : null,
+          componentName: nestedView ? api.getComponentNameByNode(node) : null,
           childrenHidden: node.firstChild && !children.length,
           inlineChildren: inline,
           nestedView: nestedView,
           foreign: properties.foreign,
           attributes: attrs,
           childNodes: children,
-          loc: nestedView
-            ? api.getNestedComponentNodeLocation(node)
-            : api.getNodeLocation(node)
+          loc: api.getNodeLocation(node)
         };
         break;
 
@@ -111,7 +109,7 @@ module.exports = function buildDomTree(rootNode, api) {
           domNodeId: node,
           value: node.nodeValue,
           nestedView: properties.nestedView,
-          foreign: properties.foreign,
+          foreign: properties.foreign
         };
         break;
 
@@ -121,7 +119,7 @@ module.exports = function buildDomTree(rootNode, api) {
           domNodeId: node,
           value: node.nodeValue,
           nestedView: properties.nestedView,
-          foreign: properties.foreign,
+          foreign: properties.foreign
         };
         break;
     }
