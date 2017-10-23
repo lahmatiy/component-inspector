@@ -47,7 +47,7 @@ templateInspector.ready(function(inspector) {
 //
 
 // var basisjsTools = global.basisjsToolsFileSync;
-var isOnline = new basis.Token(false);
+var isOnline = new basis.Token(true);
 
 // if (basisjsTools &&
 //     basisjsTools.isOnline &&
