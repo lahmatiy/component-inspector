@@ -30,8 +30,6 @@ You also could [setup custom API](#api-free-build) for your own component soluti
     - [getInstanceLocation\(instance\)](#getinstancelocationinstance)
     - [getInstanceRenderLocation\(instance\)](#getinstancerenderlocationinstance)
     - [getNodeLocation\(node\)](#getnodelocationnode)
-    - [getNestedComponentNameByNode\(node\)](#getnestedcomponentnamebynodenode)
-    - [getNestedComponentNodeLocation\(node\)](#getnestedcomponentnodelocationnode)
     - [viewAttributeFilter\(attribute\)](#viewattributefilterattribute)
     - [showDefaultInfo\(\)](#showdefaultinfo)
     - [getAdditionalInstanceInfo\(instance, helpers\)](#getadditionalinstanceinfoinstance-helpers)
@@ -161,14 +159,6 @@ By default it returns source location of `instance.render` method. You can overr
 #### getNodeLocation(node)
 
 If there is source location where DOM node was created this function should returns it. Uses in DOM viewer when hover nodes.
-
-#### getNestedComponentNameByNode(node)
-
-Used in DOM viewer to get name for nested components. Override function if those names should be provided.
-
-#### getNestedComponentNodeLocation(node)
-
-Allow provide location for nested component root node. If not defined `getNodeLocation` is used.
 
 #### viewAttributeFilter(attribute)
 

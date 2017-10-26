@@ -234,13 +234,11 @@ module.exports = function buildNode(item, bindings, actions, selectDomNode) {
         childrenHidden: node.firstChild && !children.length,
         inlineChildren: inline,
         nestedView: nestedView,
-        componentName: nestedView ? api.getNestedComponentNameByNode(node) : null,
+        componentName: nestedView ? api.getComponentNameByNode(node) : null,
         selectDomNode: nestedView ? selectDomNode : null,
         attributes: attrs,
         childNodes: children,
-        loc: nestedView
-          ? api.getNestedComponentNodeLocation(node)
-          : api.getNodeLocation(node)
+        loc: api.getNodeLocation(node)
       });
 
       break;

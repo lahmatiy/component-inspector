@@ -48,12 +48,6 @@ module.exports = {
   },
 
   // dom view
-  getNestedComponentNameByNode: function() {
-    return '';
-  },
-  getNestedComponentNodeLocation: function(node) {
-    return this.getNodeLocation(node);
-  },
   viewAttributeFilter: function() {
     return true;
   },

@@ -1,0 +1,43 @@
+.text
+{
+  color: rgb(48, 57, 66);
+}
+.binding,
+.nestedView,
+.l10n
+{
+  padding: 3px;
+  padding: 3px .65ch;
+  margin-left: -3px;
+  margin-left: -.5ch;
+  border-radius: 2px;
+  background: #EEE;
+  color: #666;
+  text-shadow: 0px 0px 1px white;  
+  transition: color .15s, background-color .15s;
+  cursor: default;
+}
+.nestedView:not(.binding),
+.matchBinding.nestedView
+{
+  background: #E0E4B0;
+}
+.matchBinding
+{
+  background: #B6CFB6;
+}
+.matchBinding
+{
+  background: #B6CFB6;
+  color: #353;
+}
+.nestedView
+{
+  cursor: pointer;
+}
+.hovered:hover
+{
+  background: #D0D8FF;
+  box-shadow: 0px 0 0 5px #D0D8FF;
+}
+

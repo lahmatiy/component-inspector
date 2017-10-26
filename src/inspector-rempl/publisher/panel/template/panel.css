@@ -1,0 +1,105 @@
+.panel
+{
+  position: fixed;
+  z-index: 10001;
+  left: 10px;
+  top: 10px;
+  padding: 1px;
+
+  opacity: 0.5;
+  background: #999;
+  border-radius: 3px;
+  box-shadow:
+    0 0 7px 1px rgba(0, 0, 0, 0),
+    0 0 0px 1px rgba(255, 255, 255, .75);
+  
+  font-family: Arial;
+  font-size: 12px;
+  line-height: normal;
+  color: white;
+  text-align: center;
+  
+  cursor: pointer;
+
+  transition: box-shadow .15s, background .15s, opacity .15s, border-color .15s;
+}
+.panel,
+.panel *
+{
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+@media print {
+  .panel
+  {
+    display: none;
+  }
+}
+
+.panel:hover
+{
+  opacity: .999999;
+  box-shadow:
+    0 0 7px 1px rgba(0, 0, 0, .3),
+    0 0 0px 1px rgba(255, 255, 255, 1);
+}
+
+.panel_isOnline
+{
+  background: #4B77CC;
+}
+
+.section
+{
+  position: relative;
+  display: inline-block;
+}
+
+.button
+{
+  border-left: 1px solid rgba(255, 255, 255, .4);
+  display: inline-block;
+  padding: 8px 10px;
+  min-width: 10px;
+  background: no-repeat center center;
+}
+.button:hover,
+.button_active-template
+{
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.button-inpageDisabled
+{
+  text-decoration: line-through;
+}
+.section:last-child .button
+{
+  border-right: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.button_template
+{
+  background-image: url(img/inspect-template.png); 
+}
+
+.dd-trigger
+{
+  display: inline-block;
+  position: relative;
+  top: 0px;
+  width: 12px;
+  height: 100%;
+  cursor: move;
+  background: url(img/drag.png) no-repeat center;
+}
+
+.info-panels
+{
+  position: absolute;
+  left: 100%;
+  margin-left: 3px;
+  top: -3px;
+  width: 200px;
+}

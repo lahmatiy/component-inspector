@@ -1,0 +1,35 @@
+.view
+{
+  transition: all .5s 2s;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: -webkit-flex;
+  display: flex;
+  align-items: stretch;
+}
+
+.content
+{
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 5px;
+}
+
+.no-subject
+{
+  color: #AAA;
+  text-align: center;
+  font: 20px Arial;
+  padding: 40px;
+}
+
+.source-toggle-button
+{
+  background: #CCC;
+  text-align: center;
+  padding: 6px;
+  cursor: pointer;
+}
