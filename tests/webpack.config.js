@@ -1,7 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
-var basePath = '';
-var reactPath = process.env.REACT === '14' ? 'react14' : 'react15';
+const path = require('path');
+const webpack = require('webpack');
+let basePath = '';
+const reactPath = process.env.REACT === '14' ? 'react14' : 'react15';
 
 if (require('os').platform() !== 'win32') {
   basePath = process.cwd();
@@ -14,42 +14,48 @@ module.exports = {
     filename: '[name].js',
     publicPath: '/static/'
   },
-  babel: {
-    presets: ['es2015', 'stage-0', 'react'],
-    plugins: [
-      // in case you are using React, this plugin should be applied
-      // before babel-plugin-source-wrapper
-      // otherwise component names will not to be shown propertly
-      'transform-react-display-name',
-      [require('babel-plugin-source-wrapper'), {
-        // webpack sends absolute paths to plugins
-        // but we need paths relative to project root
-        basePath: basePath,
-
-        // inject runtime in instrumented sources
-        runtime: true
-      }]
-    ]
-  },
   plugins: [
-    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       OPEN_FILE_URL: '"/open-in-editor"'
     })
   ],
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
     alias: {
       'react-dom': path.join(__dirname, reactPath, 'node_modules', 'react-dom'),
       'react': path.join(__dirname, reactPath, 'node_modules', 'react')
     }
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      exclude: /node_modules/,
-      include: path.join(__dirname, '..')
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        include: path.join(__dirname, '..'),
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              presets: ['env', 'react'],
+              plugins: [
+                'babel-plugin-transform-class-properties',
+                'babel-plugin-transform-function-bind',
+                'babel-plugin-transform-object-rest-spread',
+                require('babel-plugin-source-wrapper').configure({
+                  // webpack sends absolute paths to plugins
+                  // but we need paths relative to project root
+                  basePath: basePath,
+
+                  // inject runtime in instrumented sources
+                  runtime: true
+                })
+              ],
+              cacheDirectory: true
+            }
+          }
+        ]
+      }
+    ]
   }
 };
