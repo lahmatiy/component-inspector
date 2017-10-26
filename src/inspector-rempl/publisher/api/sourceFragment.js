@@ -41,7 +41,7 @@ module.exports = {
   isSourceFragmentSupported: isSourceFragmentSupported,
   getSourceFragment: function(loc, callback) {
     if (!isSourceFragmentSupported()) {
-      return callback('Not supported');
+      return callback('Source preview is not supported');
     }
 
     if (!loc) {
