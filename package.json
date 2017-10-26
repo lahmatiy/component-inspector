@@ -67,7 +67,7 @@
   },
   "scripts": {
     "build": "npm run build:subscriber && basis build --pack",
-    "build:subscriber": "basis build src/inspector-rempl/subscriber/index.html --js-bundle --js-bundle-name subscriber --pack",
+    "build:subscriber": "basis build src/inspector-rempl/subscriber/index.html --js-bundle --js-bundle-name subscriber --pack --warnings",
     "prepublish": "npm run build",
     "codestyle": "jscs src tests && eslint src",
     "test": "karma start",
