@@ -184,7 +184,7 @@ function getAdditionalInstanceInfo(element) {
     {
       type: 'tag-instance-info',
       name: this.getComponentNameByNode(instanceRootNode),
-      loc: this.getNodeLocation(instanceRootNode),
+      loc: this.getInstanceLocation(element),
       props: props
     },
     {
