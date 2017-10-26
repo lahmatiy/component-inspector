@@ -13,8 +13,7 @@ module.exports = {
     bundle: [
       'react-hot-loader/patch',
       './index'
-    ],
-    inspector: [path.join(__dirname, '../../dist/react.js')]
+    ]
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -47,7 +46,7 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               babelrc: false,
-              presets: ['env', 'react'],
+              presets: [['env', { modules: false }], 'react'],
               plugins: [
                 'babel-plugin-transform-class-properties',
                 'babel-plugin-transform-function-bind',

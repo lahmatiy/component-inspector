@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const openInEditor = require('express-open-in-editor');
@@ -21,6 +23,11 @@ const options = {
     app.use('/source-fragment', sourceFragment({
       cwd: __dirname
     }));
+    app.use('/dist', function(req, res) {
+      res.setHeader('content-type', 'application/javascript');
+      const filename = req.url.replace('/', '');
+      fs.createReadStream(path.join(__dirname, '../../dist', filename)).pipe(res);
+    });
   }
 };
 
