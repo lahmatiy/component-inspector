@@ -138,4 +138,5 @@
   font-family: Consolas, Monaco, monospace;
   font-size: 12px;
   line-height: 16px;
+  white-space: nowrap;
 }
