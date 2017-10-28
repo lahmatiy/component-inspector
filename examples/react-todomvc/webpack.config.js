@@ -6,7 +6,6 @@ if (require('os').platform() !== 'win32') {
   basePath = process.cwd();
 }
 
-console.log(path.join(__dirname, '..', '..', 'src'));
 module.exports = {
   devtool: 'source-map',
   entry: {
