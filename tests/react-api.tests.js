@@ -34,8 +34,8 @@ describe('react api test', function() {
     var footer = this.domContainer.querySelector('footer');
     var input = this.domContainer.querySelector('.new-todo');
     var checkbox = this.domContainer.querySelector('.todo-list checkbox');
-    assert.equal(api.getInstanceRenderLocation(api.getInstanceByNode(footer)), '/examples/react-todomvc/components/Footer.js:20:3:34:4');
-    assert.equal(api.getInstanceRenderLocation(api.getInstanceByNode(input)), '/examples/react-todomvc/components/TodoTextInput.js:40:3:54:4');
+    assert.equal(api.getInstanceRenderLocation(api.getInstanceByNode(footer)), '/examples/react-todomvc/components/Footer.js:21:3:35:4');
+    assert.equal(api.getInstanceRenderLocation(api.getInstanceByNode(input)), '/examples/react-todomvc/components/TodoTextInput.js:41:3:55:4');
     assert.equal(api.getInstanceRenderLocation(api.getInstanceByNode(checkbox)), undefined);
   });
 
@@ -45,7 +45,7 @@ describe('react api test', function() {
     var info = reactInspectorApi.getAdditionalInstanceInfo(reactElementByNode);
 
     assert.equal(info[0].name, 'Footer');
-    assert.include(info[0].loc, '/examples/react-todomvc/components/MainSection.js:76:9:80:46');
+    assert.include(info[0].loc, '/examples/react-todomvc/components/MainSection.js:77:9:81:46');
     assert.equal(info[0].props[0].key, 'markedCount');
     assert.equal(info[0].props[0].type, 'other');
     assert.equal(info[0].props[0].valueText, '0');
