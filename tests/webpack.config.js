@@ -1,4 +1,5 @@
 const path = require('path');
+const resolve = require('resolve');
 const webpack = require('webpack');
 let basePath = '';
 const reactPath = process.env.REACT === '14' ? 'react14' : 'react15';
@@ -7,8 +8,14 @@ if (require('os').platform() !== 'win32') {
   basePath = process.cwd();
 }
 
+function resolveAlias(name) {
+  return path.dirname(resolve.sync(name, {
+    basedir: path.dirname(require.resolve(reactPath))
+  }));
+}
+
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
@@ -16,14 +23,16 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      OPEN_FILE_URL: '"/open-in-editor"'
+      OPEN_FILE_URL: '"/open-in-editor"',
+      SOURCE_FRAGMENT: '"/source-fragment"',
+      REMPL_SERVER: '"localhost:8177"'
     })
   ],
   resolve: {
     extensions: ['.js'],
     alias: {
-      'react-dom': path.join(__dirname, reactPath, 'node_modules', 'react-dom'),
-      'react': path.join(__dirname, reactPath, 'node_modules', 'react')
+      'react-dom': resolveAlias('react-dom'),
+      'react': resolveAlias('react')
     }
   },
   module: {
@@ -37,7 +46,7 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               babelrc: false,
-              presets: ['env', 'react'],
+              presets: [['env', { modules: false }], 'react'],
               plugins: [
                 'babel-plugin-transform-class-properties',
                 'babel-plugin-transform-function-bind',
@@ -55,7 +64,22 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.css?$/,
+        include: path.join(__dirname, '..'),
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'raw-loader'
+          }
+        ]
       }
     ]
+  },
+  node: {
+    fs: 'empty'
   }
 };
