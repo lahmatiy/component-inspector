@@ -75,7 +75,10 @@
     "prepublish": "npm run build",
     "codestyle": "jscs src test && eslint src",
     "test": "karma start test/env/karma.conf.js",
-    "travis": "npm run codestyle && npm test"
+    "test:14": "REACT=14 npm test -- --single-run",
+    "test:15": "REACT=15 npm test -- --single-run",
+    "test:all": "npm run test:14 && npm run test:15",
+    "travis": "npm run codestyle && npm run test:all"
   },
   "files": [
     "dist",

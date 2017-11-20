@@ -1,8 +1,14 @@
 const path = require('path');
 const resolve = require('resolve');
 const webpack = require('webpack');
-const reactPath = process.env.REACT === '14' ? 'react14' : 'react15';
+const VERSIONS = { '14': 'react14', '15': 'react15' };
+const reactPath = VERSIONS[process.env.REACT || '15'] || false;
 let basePath = '';
+
+if (!reactPath) {
+  console.error('Wrong version of React', process.env.REACT);
+  process.exit();
+}
 
 if (require('os').platform() !== 'win32') {
   basePath = process.cwd();
