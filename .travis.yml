@@ -3,7 +3,5 @@ sudo: false
 script: "npm run travis"
 node_js:
   - "6"
-before_script:
-  - export DISPLAY=:99.0
-  - export TRAVIS=true
-  - sh -e /etc/init.d/xvfb start
+env:
+  - TRAVIS=true

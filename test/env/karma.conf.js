@@ -1,6 +1,7 @@
 // Karma configuration
 module.exports = function(config) {
   var isCI = process.env.TRAVIS;
+  var debug = false;
 
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -48,7 +49,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [isCI ? 'Firefox' : 'Chrome'],
+    browsers: [debug ? 'Chrome' : 'ChromeHeadless'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
