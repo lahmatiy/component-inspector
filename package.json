@@ -39,8 +39,8 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "2.0.5",
     "mocha": "2.5.3",
-    "react14": "file:tests/react14",
-    "react15": "file:tests/react15",
+    "react14": "file:test/env/react14",
+    "react15": "file:test/env/react15",
     "react-redux": "5.0.6",
     "redux": "3.7.2",
     "resolve": "^1.5.0",
@@ -74,8 +74,8 @@
     "build": "npm run build:subscriber && basis build --pack",
     "build:subscriber": "basis build src/inspector-rempl/subscriber/index.html --js-bundle --js-bundle-name subscriber --pack --warnings",
     "prepublish": "npm run build",
-    "codestyle": "jscs src tests && eslint src",
-    "test": "karma start",
+    "codestyle": "jscs src test && eslint src",
+    "test": "karma start test/env/karma.conf.js",
     "travis": "npm run codestyle && npm test"
   },
   "files": [

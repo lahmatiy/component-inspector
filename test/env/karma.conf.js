@@ -1,5 +1,5 @@
 // Karma configuration
-module.exports = function (config) {
+module.exports = function(config) {
   var isCI = process.env.TRAVIS;
 
   config.set({
@@ -12,19 +12,17 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'tests/fakeinject.js',
-      'tests/react-api.tests.js'
+      '../index.js'
     ],
 
-    webpack: require('./tests/webpack.config'),
+    webpack: require('./webpack.config'),
     // list of files to exclude
     exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'tests/fakeinject.js': ['webpack'],
-      'tests/react-api.tests.js': ['webpack']
+      '../index.js': ['webpack']
     },
 
     // test results reporter to use

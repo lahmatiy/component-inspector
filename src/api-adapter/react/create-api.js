@@ -109,7 +109,7 @@ function getPropValueText(type, value) {
   }
 }
 
-function getInstancePropsInfo(instanceProps, getLocation) {
+function getInstancePropsInfo(instanceProps) {
   var props = [];
 
   for (var prop in instanceProps) {
@@ -122,7 +122,7 @@ function getInstancePropsInfo(instanceProps, getLocation) {
         key: prop,
         type: type,
         valueText: valueText,
-        valueLoc: value && (typeof value === 'object' || typeof value === 'function') ? getLocation(value) : undefined
+        valueLoc: value && (typeof value === 'object' || typeof value === 'function') ? this.getLocation(value) : undefined
       });
     }
   }
@@ -177,7 +177,7 @@ function getAdditionalInstanceInfo(element) {
   }
 
   if (instance.props) {
-    props = getInstancePropsInfo(instance.props, this.getLocation);
+    props = getInstancePropsInfo.call(this, instance.props);
   }
 
   return [

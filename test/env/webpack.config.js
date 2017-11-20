@@ -1,8 +1,8 @@
 const path = require('path');
 const resolve = require('resolve');
 const webpack = require('webpack');
-let basePath = '';
 const reactPath = process.env.REACT === '14' ? 'react14' : 'react15';
+let basePath = '';
 
 if (require('os').platform() !== 'win32') {
   basePath = process.cwd();
@@ -40,7 +40,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        include: path.join(__dirname, '..'),
+        include: path.join(__dirname, '../..'),
         use: [
           {
             loader: 'babel-loader',
@@ -67,7 +67,7 @@ module.exports = {
       },
       {
         test: /\.css?$/,
-        include: path.join(__dirname, '..'),
+        include: path.join(__dirname, '../..'),
         use: [
           {
             loader: 'style-loader'
