@@ -423,15 +423,13 @@ How does it work:
 
 Since original files are fetching by request to server, make sure those files are available for downloading by your server.
 
-> NOTE: Take in account if source file was changed since downloaded by browser, inspector could show wrong (outdated) source fragment. Page refresh should solve the problem.
-
-> NOTE: Support for external or server API for source fragment extraction is coming in next releases (see [issue](https://github.com/lahmatiy/component-inspector/issues/10)).
+> NOTE: Inspector can show outdated source fragments due to cache. Page refresh should solve the problem.
 
 ### Opening file in editor
 
 Ready-to-use solutions to provide `opening in editor` feature on server:
 
-- `express` extension [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor), that also could be used with [webpack-dev-server](https://github.com/lahmatiy/express-open-in-editor#using-with-webpack-dev-server).
+- `express` extension [express-open-in-editor](https://github.com/lahmatiy/express-open-in-editor), that also can be used with [webpack-dev-server](https://github.com/lahmatiy/express-open-in-editor#using-with-webpack-dev-server).
 - in case you don't depend on dev-server, you can use [basisjs-tools](https://github.com/basisjs/basisjs-tools) that provides this feature out of box
 - add your own implementation for your dev-server using [open-in-editor](https://github.com/lahmatiy/open-in-editor)
 
