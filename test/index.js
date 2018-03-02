@@ -1,4 +1,5 @@
 import '../src/api-adapter/react.js'; // NOTE: should be first to ensure React dev API to be attached
+import './getComponentNameByNode.js';
 import './old.js';
 import React from 'react';
 
