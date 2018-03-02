@@ -64,20 +64,7 @@ module.exports = function buildDomTree(rootNode, api) {
         var attrs;
         var inline;
 
-        attrs = nestedView
-          ? attributes.map(function(attr) {
-              return {
-                name: attr.name,
-                childNodes: !attr.value ? [] : [
-                  {
-                    type: 'static',
-                    value: attr.value
-                  }
-                ]
-              };
-            })
-          : attributes.map(buildAttribute);
-
+        attrs = attributes.map(buildAttribute);
         children = children.map(createNode);
 
         inline =
